@@ -67,7 +67,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('productos.productoEdit');
+        return view('productos.productoEdit', compact('producto'));
     }
 
     /**
@@ -84,7 +84,6 @@ class ProductoController extends Controller
             ]
         );
 
-        $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->categoria = $request->categoria;
         $producto->subCategoria = $request->subCategoria;
@@ -92,7 +91,7 @@ class ProductoController extends Controller
         $producto->codigoBarras = $request->codigoBarras;
         $producto->save();
 
-        return redirect()->route('producto.productoShow', $producto);
+        return redirect()->route('producto.show', $producto);
     }
 
     /**
@@ -100,6 +99,7 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        return redirect()->route('producto.index');
     }
 }

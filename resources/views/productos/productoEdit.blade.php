@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Introducir los datos necesarios</h1>
-    <form action="{{route('producto.update')}}" method="POST">
+    <form action="{{route('producto.update', $producto)}}" method="POST">
         @csrf
         @method('PATCH')
         <label for="nombre">Nombre</label>
@@ -16,9 +16,9 @@
         <br>
         <label for="categoria">Categoría</label>
         <select name="categoria" id="categoria">
-            <option value="lacteos">Lácteos</option>
-            <option value="bebidas">Bebidas</option>
-            <option value="botanas">Botanas</option>
+            <option value="lacteos" @selected(old('categoria') ?? $producto->categoria == "lacteos")>Lácteos</option>
+            <option value="bebidas" @selected(old('categoria') ?? $producto->categoria == "bebidas")>Bebidas</option>
+            <option value="botanas" @selected(old('categoria') ?? $producto->categoria == "botanas")>Botanas</option>
         </select>
 
         <br>
@@ -36,7 +36,7 @@
         <label for="codigoBarras">Código de barras</label>
         <input name="codigoBarras" type="text" value="{{old('codigoBarras') ?? $producto->codigoBarras}}">
         <br>
-        <button type="submit">Crear</button>
+        <button type="submit">Editar</button>
     </form>
 </body>
 </html>
