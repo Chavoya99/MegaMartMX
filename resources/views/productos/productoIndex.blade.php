@@ -6,7 +6,7 @@
     <title>Lista de productos</title>
 </head>
 <body>
-<a class="btn btn-primary" href="{{route('producto.create')}}">Agregar producto</a>
+    <a class="btn btn-primary" href="{{route('producto.create')}}">Agregar producto</a><br><br>
     <table border="1">
         <thead>
             <tr>

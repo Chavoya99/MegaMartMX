@@ -6,6 +6,7 @@
     <title>Crear nuevo producto</title>
 </head>
 <body>
+    <a href="{{route('producto.index')}}">Cancelar</a><br>
     <h1>Introducir los datos necesarios</h1>
     <form action="{{route('producto.update', $producto)}}" method="POST">
         @csrf
