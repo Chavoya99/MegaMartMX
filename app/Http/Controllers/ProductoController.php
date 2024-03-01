@@ -25,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.productoCreate');
     }
 
     /**
@@ -33,7 +33,24 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nombre'=>'required|max:50',
+                'precio'=> 'required',
+                'codigoBarras' =>'required|min:6|max:13'
+
+            ]
+        );
+
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->categoria = $request->categoria;
+        $producto->subCategoria = $request->subCategoria;
+        $producto->precio = $request->precio;
+        $producto->codigoBarras = $request->codigoBarras;
+        $producto->save();
+
+        return redirect()->route('producto.index');
     }
 
     /**
@@ -41,7 +58,8 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        
+        return view('productos.productoShow', compact('producto'));
     }
 
     /**
@@ -49,7 +67,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        return view('productos.productoEdit');
     }
 
     /**
@@ -57,7 +75,24 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $request->validate(
+            [
+                'nombre'=>'required|max:50',
+                'precio'=> 'required',
+                'codigoBarras' =>'required|min:6|max:13'
+
+            ]
+        );
+
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->categoria = $request->categoria;
+        $producto->subCategoria = $request->subCategoria;
+        $producto->precio = $request->precio;
+        $producto->codigoBarras = $request->codigoBarras;
+        $producto->save();
+
+        return redirect()->route('producto.productoShow', $producto);
     }
 
     /**
