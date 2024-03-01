@@ -6,19 +6,19 @@
     <title>Crear nuevo producto</title>
 </head>
 <body>
+    <a href="{{route('producto.index')}}">Cancelar</a><br>
     <h1>Introducir los datos necesarios</h1>
     <form action="{{route('producto.store')}}" method="POST">
         @csrf
-        @method('PATCH')
         <label for="nombre">Nombre</label>
-        <input name="nombre" type="text" value="{{old('nombre') ?? $producto->nombre}}">
+        <input name="nombre" type="text" value="{{old('nombre')}}">
 
         <br>
         <label for="categoria">Categoría</label>
         <select name="categoria" id="categoria">
-            <option value="lacteos">Lácteos</option>
-            <option value="bebidas">Bebidas</option>
-            <option value="botanas">Botanas</option>
+            <option value="lacteos" @selected(old('categoria') == "energetizantes")>Lácteos</option>
+            <option value="bebidas" @selected(old('categoria') == "bebidas")>Bebidas</option>
+            <option value="botanas" @selected(old('categoria') == "botanas")>Botanas</option>
         </select>
 
         <br>
@@ -30,11 +30,11 @@
         </select>
         <br>            
         <label for="precio">Precio</label>
-        <input name="precio" type="number" value="{{old('precio') ?? $producto->precio}}">
+        <input name="precio" type="number" value="{{old('precio')}}">
         
         <br>
         <label for="codigoBarras">Código de barras</label>
-        <input name="codigoBarras" type="text" value="{{old('codigoBarras') ?? $producto->codigoBarras}}">
+        <input name="codigoBarras" type="text" value="{{old('codigoBarras')}}">
         <br>
         <button type="submit">Crear</button>
     </form>
