@@ -29,7 +29,7 @@
                     <td>
                         <a href="{{route('producto.show', $producto)}}">Detalle</a> |
                         <a href="{{route('producto.edit', $producto)}}">Editar</a> |
-                        <form action="{{route('producto.destroy', $producto)}}" method="POST">
+                        <form onsubmit="return confirm('Se eliminará el registro, ¿continuar?')" action="{{route('producto.destroy', $producto)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Eliminar">

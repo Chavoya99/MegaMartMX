@@ -12,7 +12,9 @@
         @csrf
         <label for="nombre">Nombre</label>
         <input name="nombre" type="text" value="{{old('nombre')}}">
-
+        @error('nombre')
+            <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
+        @enderror
         <br>
         <label for="categoria">Categoría</label>
         <select name="categoria" id="categoria">
@@ -31,10 +33,16 @@
         <br>            
         <label for="precio">Precio</label>
         <input name="precio" type="number" value="{{old('precio')}}">
+        @error('precio')
+            <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
+        @enderror
         
         <br>
         <label for="codigoBarras">Código de barras</label>
         <input name="codigoBarras" type="text" value="{{old('codigoBarras')}}">
+        @error('codigoBarras')
+            <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
+        @enderror
         <br>
         <button type="submit">Crear</button>
     </form>
