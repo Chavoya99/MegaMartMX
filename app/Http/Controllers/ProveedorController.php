@@ -12,10 +12,7 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
-
         $proveedores = Proveedor::all();
-
         return view('proveedores.proveedorIndex', compact('proveedores'));
     }
 
@@ -73,17 +70,21 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-        $request->validate(
-            [
-                'nombre'=>'required|max:30',
-                'direccion'=>'required|max:50',
-                'correo'=>'required|email|max:30',
-                'telefono' =>'required|max:10'
-            ]
-        );
+        $request->validate([
+            'nombre'=>'required|max:30',
+            'direccion'=>'required|max:50',
+            'correo'=>'required|email|max:30',
+            'telefono' =>'required|max:10'
+        ]);
 
-        $proveedor->update($request->all());
-        return redirect()->route('proveedor.index');
+        $proveedor->nombre = $request->nombre;
+        $proveedor->direccion = $request->direccion;
+        $proveedor->correo = $request->correo;
+        $proveedor->telefono = $request->telefono;
+        $proveedor->estado = $request->estado;
+        $proveedor->save(); 
+
+    return redirect()->route('proveedor.show', $proveedor);
     }
 
     /**
