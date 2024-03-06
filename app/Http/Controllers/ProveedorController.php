@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
 {
@@ -25,7 +24,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedores.proveedorCreate');
     }
 
     /**
@@ -33,38 +32,68 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nombre'=>'required|max:30',
+                'direccion'=>'required|max:50',
+                'correo'=>'required|email|max:30',
+                'telfono' =>'required|max:10',
+                'estado'=> 'required'
+            ]
+        );
+
+        $proveedor = new Proveedor();
+        $proveedor->nombre = $request->nombre;
+        $proveedor->direccion = $request->direccion;
+        $proveedor->correo = $request->correo;
+        $proveedor->telefono = $request->telefono;
+        $proveedor->estado = $request->estado;
+        $proveedor->save();
+
+        return redirect()->route('proveedor.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Proveedor $Proveedor)
+    public function show(Proveedor $proveedor)
     {
-        //
+        return view('proveedores.proveedorShow', compact('proveedor'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Proveedor $Proveedor)
+    public function edit(Proveedor $proveedor)
     {
-        //
+        return view('proveedores.proveedorEdit', compact('proveedor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Proveedor $Proveedor)
+    public function update(Request $request, Proveedor $proveedor)
     {
-        //
+        $request->validate(
+            [
+                'nombre'=>'required|max:30',
+                'direccion'=>'required|max:50',
+                'correo'=>'required|email|max:30',
+                'telefono' =>'required|max:10',
+                'estado'=> 'required'
+            ]
+        );
+
+        $proveedor->update($request->all());
+        return redirect()->route('proveedor.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Proveedor $Proveedor)
+    public function destroy(Proveedor $proveedor)
     {
-        //
+        $proveedor->delete();
+        return redirect()->route('proveedor.index')->with('success', 'Proveedor eliminado con éxito');
     }
 }

@@ -11,32 +11,29 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Categoria</th>
                 <th>Direccion</th>
                 <th>Correo</th>
                 <th>Telefono</th>
-                <th>Acciones</th>
+                <th>Estado</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($proveedores as  $proveedor)
                 <tr>
                     <td>{{$proveedor->nombre}}</td>
-                    <td>{{$proveedor->producto}}</td>
                     <td>{{$proveedor->direccion}}</td>
                     <td>{{$proveedor->correo}}</td>
                     <td>{{$proveedor->telefono}}</td>
+                    <td>{{$proveedor->estado}}</td>
                     <td>
                         <a href="{{route('proveedor.show', $proveedor)}}">Detalle</a> |
                         <a href="{{route('proveedor.edit', $proveedor)}}">Editar</a> |
-                        <form action="{{route('proveedor.destroy', $proveedor)}}" method="POST">
+                        <form onsubmit="return confirm('Se eliminará el siguiente registro, ¿desea continuar?')" action="{{route('proveedor.destroy', $proveedor)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Eliminar">
-                        </form>
-                        
+                        </form>                       
                     </td>
-                    
                 </tr> 
             @endforeach
         </tbody>
