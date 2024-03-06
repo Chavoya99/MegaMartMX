@@ -12,42 +12,45 @@
     <form action="{{route('proveedor.update', $proveedor)}}" method="POST">
         @csrf
         @method('PATCH')
-        <label for="nombre">Nombre</label>
-        <input name="nombre" type="text" value="{{old('nombre') ?? $proveedor->nombre}}">
-        @error('nombre')
+        <fieldset>
+            <legend>Datos del proveedor</legend>
+            <label for="nombre">Nombre: </label>
+            <input name="nombre" type="text" value="{{old('nombre') ?? $proveedor->nombre}}"placeholder="Ingrese el nombre del proveedor" size="27" >
+            @error('nombre')
+                <div class="alert alert-danger" style="color:red">{{ $message }}</div>
+            @enderror
+            <br><br>
+            
+            <label for="direccion">Direccion: </label>
+            <input name="direccion" type="text" value="{{old('direccion') ?? $proveedor->direccion}}" placeholder="Ingrese la dirección del proveedor" size="26">
+            @error('direccion')
             <div class="alert alert-danger" style="color:red">{{ $message }}</div>
-        @enderror
-        <br>
-           
-        <label for="direccion">Direccion</label>
-        <input name="direccion" type="text" value="{{old('direccion') ?? $proveedor->direccion}}">
-        @error('direccion')
-        <div class="alert alert-danger" style="color:red">{{ $message }}</div>
-        @enderror
-        <br>
+            @enderror
+            <br><br>
 
-        <label for="telefono">Telefono</label>
-        <input name="telefono" type="text" value="{{old('telefono') ?? $proveedor->telefono}}">
-        @error('telefono')
-            <div class="alert alert-danger" style="color:red">{{ $message }}</div>
-        @enderror
-        <br>
+            <label for="telefono">Telefono: </label>
+            <input name="telefono" type="text" value="{{old('telefono') ?? $proveedor->telefono}}" placeholder="Ingrese el teléfono del proveedor" size="27">
+            @error('telefono')
+                <div class="alert alert-danger" style="color:red">{{ $message }}</div>
+            @enderror
+            <br><br>
 
-        <label for="correo">Correo electronico</label>
-        <input name="correo" type="text" value="{{old('correo') ?? $proveedor->correo}}">
-        @error('correo')
-            <div class="alert alert-danger" style="color:red">{{ $message }}</div>
-        @enderror
-        <br>
+            <label for="correo">Correo electronico: </label>
+            <input name="correo" type="text" value="{{old('correo') ?? $proveedor->correo}}" placeholder="Ingrese el correo del proveedor" size="25">
+            @error('correo')
+                <div class="alert alert-danger" style="color:red">{{ $message }}</div>
+            @enderror
+            <br><br>
 
-        <label for="estado">Estado</label>
-        <select name="estado" id="estado">
-            <option value="activo" @selected(old('estado') ?? $proveedor->estado == "activo")>Activo</option>
-            <option value="inactivo" @selected(old('estado') ?? $proveedor->estado == "inactivo")>Inactivo</option>
-        </select>
-        <br>
+            <label for="estado">Estado: </label>
+            <select name="estado" id="estado">
+                <option value="activo" @selected(old('estado') ?? $proveedor->estado == "activo")>Activo</option>
+                <option value="inactivo" @selected(old('estado') ?? $proveedor->estado == "inactivo")>Inactivo</option>
+            </select>
+            <br><br>
 
-        <button type="submit">Modificar</button>
+            <button type="submit">Modificar</button>
+        </fieldset>
     </form>
 </body>
 </html>

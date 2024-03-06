@@ -7,13 +7,13 @@
 </head>
 <body>
     <a href="{{route('proveedor.index')}}">Inicio</a>
-    <h1>Datos del proveedor</h1>
-    <ul>
-        <li>Nombre: {{$proveedor->nombre}}</li>
-        <li>Direccion: {{$proveedor->direccion}}</li>
-        <li>Telefono: {{$proveedor->telefono}}</li>
-        <li>Correo: {{$proveedor->correo}}</li>
-        <li>Estado: {{$proveedor->estado}}</li>
-    </ul>
+        <h1>Datos del proveedor</h1>
+        <ul>
+            <li><strong>Nombre:</strong> {{$proveedor->nombre}}</li>
+            <li><strong>Dirección:</strong> {{$proveedor->direccion}}</li>
+            <li><strong>Teléfono:</strong> {{$proveedor->telefono}}</li>
+            <li><strong>Correo electrónico:</strong> {{$proveedor->correo}}</li>
+            <li><strong>Estado:</strong> {{$proveedor->estado}}</li>
+        </ul>
 </body>
 </html>
