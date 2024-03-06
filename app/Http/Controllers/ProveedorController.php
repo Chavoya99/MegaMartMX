@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\DB;
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
 
 class ProveedorController extends Controller
 {
@@ -12,8 +16,16 @@ class ProveedorController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $proveedores = Proveedor::all();
         return view('proveedores.proveedorIndex', compact('proveedores'));
+=======
+        //
+
+        $producto = Proveedor::all();
+
+        return view('proveedor.proveedorIndex', compact('proveedores'));
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 
     /**
@@ -21,7 +33,11 @@ class ProveedorController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         return view('proveedores.proveedorCreate');
+=======
+        //
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 
     /**
@@ -29,6 +45,7 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $request->validate(
             [
                 'nombre'=>'required|max:30',
@@ -47,27 +64,43 @@ class ProveedorController extends Controller
         $proveedor->save();
 
         return redirect()->route('proveedor.index');
+=======
+        //
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(Proveedor $proveedor)
     {
         return view('proveedores.proveedorShow', compact('proveedor'));
+=======
+    public function show(Proveedor $Proveedor)
+    {
+        //
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+<<<<<<< HEAD
     public function edit(Proveedor $proveedor)
     {
         return view('proveedores.proveedorEdit', compact('proveedor'));
+=======
+    public function edit(Proveedor $Proveedor)
+    {
+        //
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(Request $request, Proveedor $proveedor)
     {
         $request->validate([
@@ -85,14 +118,25 @@ class ProveedorController extends Controller
         $proveedor->save(); 
 
     return redirect()->route('proveedor.show', $proveedor);
+=======
+    public function update(Request $request, Proveedor $Proveedor)
+    {
+        //
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 
     /**
      * Remove the specified resource from storage.
      */
+<<<<<<< HEAD
     public function destroy(Proveedor $proveedor)
     {
         $proveedor->delete();
         return redirect()->route('proveedor.index')->with('success', 'Proveedor eliminado con éxito');
+=======
+    public function destroy(Proveedor $Proveedor)
+    {
+        //
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
     }
 }

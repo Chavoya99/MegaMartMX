@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::resource('proveedor', ProveedorController::class );
+=======
+Route::resource('proveedor', ProveedorController::class );
+>>>>>>> a2a4001274c8d159f9a4121f154341df3ffcfaea
