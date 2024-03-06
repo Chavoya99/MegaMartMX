@@ -37,8 +37,7 @@ class ProveedorController extends Controller
                 'nombre'=>'required|max:30',
                 'direccion'=>'required|max:50',
                 'correo'=>'required|email|max:30',
-                'telfono' =>'required|max:10',
-                'estado'=> 'required'
+                'telefono' =>'required|max:10'
             ]
         );
 
@@ -79,8 +78,7 @@ class ProveedorController extends Controller
                 'nombre'=>'required|max:30',
                 'direccion'=>'required|max:50',
                 'correo'=>'required|email|max:30',
-                'telefono' =>'required|max:10',
-                'estado'=> 'required'
+                'telefono' =>'required|max:10'
             ]
         );
 

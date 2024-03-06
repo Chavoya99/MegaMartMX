@@ -7,6 +7,7 @@
 </head>
 <body>
 <a class="btn btn-primary" href="{{route('proveedor.create')}}">Agregar proveedor</a>
+<h1>Tabla proveedores</h1>
     <table border="1">
         <thead>
             <tr>
@@ -15,6 +16,7 @@
                 <th>Correo</th>
                 <th>Telefono</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
