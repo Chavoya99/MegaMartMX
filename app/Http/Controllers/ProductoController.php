@@ -41,9 +41,16 @@ class ProductoController extends Controller
         $request->validate(
             [
                 'nombre'=>'required|max:50',
-                'precio'=> 'required',
-                'codigoBarras' =>'required|min:6|max:13'
+                'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
+                'codigoBarras' =>'required|integer|digits_between:3,13'
 
+            ],[
+                'nombre.required' => 'El campo nombre es obligatorio',
+                'precio.required' => 'Debe incluir un precio',
+                'precio.regex' => 'Introduce un número válido',
+                'codigoBarras.required' => 'El campo código de barras es obligatorio',
+                'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
+                
             ]
         );
 
@@ -83,9 +90,16 @@ class ProductoController extends Controller
         $request->validate(
             [
                 'nombre'=>'required|max:50',
-                'precio'=> 'required',
-                'codigoBarras' =>'required|min:6|max:13'
+                'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
+                'codigoBarras' =>'required|integer|digits_between:3,13'
 
+            ],[
+                'nombre.required' => 'El campo nombre es obligatorio',
+                'precio.required' => 'Debe incluir un precio',
+                'precio.regex' => 'Introduce un número válido',
+                'codigoBarras.required' => 'El campo código de barras es obligatorio',
+                'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
+                
             ]
         );
 
