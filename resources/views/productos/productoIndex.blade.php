@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de productos</title>
-</head>
-<body>
+<x-mi-layout titulo="Lista de productos">
     <a class="btn btn-primary" href="{{route('producto.create')}}">Agregar producto</a><br><br>
-    <table border="1">
+    <table class="table">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -27,12 +20,12 @@
                     <td>{{$producto->precio}}</td>
                     <td>{{$producto->codigoBarras}}</td>
                     <td>
-                        <a href="{{route('producto.show', $producto)}}">Detalle</a> |
-                        <a href="{{route('producto.edit', $producto)}}">Editar</a> |
+                        <a class="btn btn-primary" href="{{route('producto.show', $producto)}}"> <i class="fa fa-info-circle"></i>Detalle</a>
+                        <a class="btn btn-success" href="{{route('producto.edit', $producto)}}">&#x270E;Editar</a>
                         <form onsubmit="return confirm('Se eliminará el registro, ¿continuar?')" action="{{route('producto.destroy', $producto)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Eliminar">
+                            <input class="btn btn-danger" type="submit" value="x Eliminar">
                         </form>
                         
                     </td>
@@ -41,5 +34,4 @@
             @endforeach
         </tbody>
     </table>
-</body>
-</html>
+</x-mi-layout>
