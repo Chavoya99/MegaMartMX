@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');//->except('index', 'show');
+        //->only() especificar los metodos
+       
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-
         $productos = Producto::all();
 
         return view('productos.productoIndex', compact('productos'));

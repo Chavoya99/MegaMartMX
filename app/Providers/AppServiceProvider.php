@@ -20,6 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Pluralizer::useLanguage('spanish');
+        //Pluralizer::useLanguage('spanish');
     }
 }
