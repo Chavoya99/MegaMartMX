@@ -1,10 +1,9 @@
 <x-milayout titulo="Editar proveedor">
-    <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a><br>
-    <h3>Introduzca los siguientes datos</h3>
+    <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a><br><br>
+    <legend>Introduzca los siguientes datos</legend>
     <form action="{{route('proveedor.update', $proveedor)}}" method="POST">
     @csrf
     @method('PATCH')
-        <legend>Datos del proveedor</legend>
         <label for="nombre">Nombre: </label>
         <input class="form-control" name="nombre" type="text" value="{{old('nombre') ?? $proveedor->nombre}}"placeholder="Ingrese el nombre del proveedor">
         @error('nombre')

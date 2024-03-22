@@ -1,6 +1,6 @@
 <x-mi-layout titulo="Nuevo proveedor">
-    <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a><br>
-    <h3>Introduzca los siguientes datos</h3>
+    <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a><br><br>
+    <legend>Introduzca los siguientes datos</legend>
     <form action="{{route('proveedor.store')}}" method="POST">
     @csrf
         <label for="nombre">Nombre: </label>
