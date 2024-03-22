@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos del proveedor</title>
-</head>
-<body>
-    <a href="{{route('proveedor.index')}}">Inicio</a>
-        <h1>Datos del proveedor</h1>
-        <ul>
+<x-mi-layout titulo="Detalles del proveedor">
+    <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a>
+    <a class="btn btn-success" href="{{route('proveedor.edit', $proveedor)}}">&#x270E;Editar</a><br><br>
             <li><strong>Nombre:</strong> {{$proveedor->nombre}}</li>
             <li><strong>Dirección:</strong> {{$proveedor->direccion}}</li>
             <li><strong>Teléfono:</strong> {{$proveedor->telefono}}</li>
             <li><strong>Correo electrónico:</strong> {{$proveedor->correo}}</li>
             <li><strong>Estado:</strong> {{$proveedor->estado}}</li>
-        </ul>
-</body>
-</html>
+</x-mi-layout>
