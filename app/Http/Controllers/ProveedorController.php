@@ -34,7 +34,14 @@ class ProveedorController extends Controller
                 'nombre'=>'required|max:30',
                 'direccion'=>'required|max:50',
                 'correo'=>'required|email|max:30',
-                'telefono' =>'required|max:10'
+                'telefono' => 'required|digits:10'
+            ],[
+                'nombre.required' => 'Por favor, proporciona el nombre del proveedor.',
+                'direccion.required' => 'Por favor, proporciona la dirección del proveedor.',
+                'correo.required' => 'Por favor, proporciona un correo electrónico válido.',
+                'correo.email' => 'Por favor, proporciona un correo electrónico válido.',
+                'telefono.required' => 'Por favor, proporciona un número de teléfono de 10 dígitos.',
+                'telefono.digits' => 'El número de teléfono debe tener exactamente :digits dígitos.',
             ]
         );
 
@@ -70,12 +77,21 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-        $request->validate([
-            'nombre'=>'required|max:30',
-            'direccion'=>'required|max:50',
-            'correo'=>'required|email|max:30',
-            'telefono' =>'required|max:10'
-        ]);
+        $request->validate(
+            [
+                'nombre'=>'required|max:30',
+                'direccion'=>'required|max:50',
+                'correo'=>'required|email|max:30',
+                'telefono' => 'required|digits:10'
+            ],[
+                'nombre.required' => 'Por favor, proporciona el nombre del proveedor.',
+                'direccion.required' => 'Por favor, proporciona la dirección del proveedor.',
+                'correo.required' => 'Por favor, proporciona un correo electrónico válido.',
+                'correo.email' => 'Por favor, proporciona un correo electrónico válido.',
+                'telefono.required' => 'Por favor, proporciona un número de teléfono de 10 dígitos.',
+                'telefono.digits' => 'El número de teléfono debe tener exactamente :digits dígitos.',
+            ]
+        );
 
         $proveedor->nombre = $request->nombre;
         $proveedor->direccion = $request->direccion;
