@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ProductoController extends Controller
 {
@@ -42,7 +43,7 @@ class ProductoController extends Controller
             [
                 'nombre'=>'required|max:50',
                 'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
-                'codigoBarras' =>'required|integer|digits_between:3,13'
+                'codigoBarras' =>'required|integer|digits_between:3,13|unique:productos,codigoBarras'
 
             ],[
                 'nombre.required' => 'El campo nombre es obligatorio',
@@ -50,6 +51,8 @@ class ProductoController extends Controller
                 'precio.regex' => 'Introduce un número válido',
                 'codigoBarras.required' => 'El campo código de barras es obligatorio',
                 'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
+                'codigoBarras.integer' => 'Introduce un çodigo de barras válido',
+                'codigoBarras.unique' => 'Código de barras duplicado',
                 
             ]
         );
@@ -91,7 +94,8 @@ class ProductoController extends Controller
             [
                 'nombre'=>'required|max:50',
                 'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
-                'codigoBarras' =>'required|integer|digits_between:3,13'
+                'codigoBarras' =>['required','integer','digits_between:3,13',
+                Rule::unique('productos')->ignore($producto->id)],
 
             ],[
                 'nombre.required' => 'El campo nombre es obligatorio',
@@ -99,6 +103,8 @@ class ProductoController extends Controller
                 'precio.regex' => 'Introduce un número válido',
                 'codigoBarras.required' => 'El campo código de barras es obligatorio',
                 'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
+                'codigoBarras.integer' => 'Introduce un çodigo de barras válido',
+                'codigoBarras.unique' => 'Código de barras duplicado',
                 
             ]
         );
