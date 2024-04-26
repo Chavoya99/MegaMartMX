@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -30,8 +32,10 @@ class ProductoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('productos.productoCreate');
+    {   
+        $categorias = Categoria::orderBy('nombre')->get();
+        $proveedores = Proveedor::orderBy('nombre')->get();
+        return view('productos.productoCreate', compact('categorias', 'proveedores'));
     }
 
     /**
@@ -42,28 +46,27 @@ class ProductoController extends Controller
         $request->validate(
             [
                 'nombre'=>'required|max:50',
+                'categoria_id' => 'required',
+                'subcategoria_id' => 'required',
                 'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
-                'codigoBarras' =>'required|integer|digits_between:3,13|unique:productos,codigoBarras'
+                'codigoBarras' =>'required|integer|digits_between:3,13|unique:productos,codigoBarras',
+                'proveedor_id' => 'required',
 
             ],[
                 'nombre.required' => 'El campo nombre es obligatorio',
+                'categoria_id.required' => 'Debe seleccionar una categoria',
+                'subcategoria_id.required' => 'Debe seleccionar una subcategoria',
                 'precio.required' => 'Debe incluir un precio',
                 'precio.regex' => 'Introduce un número válido',
                 'codigoBarras.required' => 'El campo código de barras es obligatorio',
                 'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
-                'codigoBarras.integer' => 'Introduce un çodigo de barras válido',
+                'codigoBarras.integer' => 'Introduce un código de barras válido',
                 'codigoBarras.unique' => 'Código de barras duplicado',
-                
+                'proveedor_id.required' => 'Debe seleccionar un proveedor',
             ]
         );
 
-        $producto = new Producto();
-        $producto->nombre = $request->nombre;
-        $producto->categoria = $request->categoria;
-        $producto->subCategoria = $request->subCategoria;
-        $producto->precio = $request->precio;
-        $producto->codigoBarras = $request->codigoBarras;
-        $producto->save();
+        $producto = Producto::create($request->all());
 
         return redirect()->route('producto.index');
     }
@@ -82,7 +85,9 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('productos.productoEdit', compact('producto'));
+        $categorias = Categoria::orderBy('nombre')->get();
+        $proveedores = Proveedor::orderBy('nombre')->get();
+        return view('productos.productoEdit', compact('producto', 'categorias', 'proveedores'));
     }
 
     /**
@@ -103,7 +108,7 @@ class ProductoController extends Controller
                 'precio.regex' => 'Introduce un número válido',
                 'codigoBarras.required' => 'El campo código de barras es obligatorio',
                 'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
-                'codigoBarras.integer' => 'Introduce un çodigo de barras válido',
+                'codigoBarras.integer' => 'Introduce un código de barras válido',
                 'codigoBarras.unique' => 'Código de barras duplicado',
                 
             ]
