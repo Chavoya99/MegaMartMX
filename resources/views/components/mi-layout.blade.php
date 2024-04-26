@@ -57,9 +57,15 @@
             </li> -->
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('dashboard')}}">
+                <a class="nav-link" href="{{route('producto.index')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Productos</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('proveedor.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Proveedores</span></a>
             </li>
 
             <!-- Divider -->

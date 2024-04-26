@@ -18,7 +18,7 @@ class ProveedorSeeder extends Seeder
             'direccion' => 'Calzada Independencia Sur',
             'correo' => 'walmart@walmart.mx',
             'telefono' => '3355665555',
-            'estado' => 'Activo',
+            'estado' => 'activo',
         ]);
     }
 }

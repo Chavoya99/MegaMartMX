@@ -28,6 +28,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return redirect(route('producto.index'));
+        return view('dashboard');
     })->name('dashboard');
 });
