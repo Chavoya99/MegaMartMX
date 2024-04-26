@@ -5,28 +5,28 @@
     @csrf
     @method('PATCH')
         <label for="nombre">Nombre: </label>
-        <input class="form-control" name="nombre" type="text" value="{{old('nombre') ?? $proveedor->nombre}}"placeholder="Ingrese el nombre del proveedor">
+        <input class="form-control" name="nombre" type="text" value="{{old('nombre') ?? $proveedor->nombre}}"placeholder="Ingrese el nombre del proveedor" required>
         @error('nombre')
             <div class="alert alert-danger" style="color:red">{{ $message }}</div>
         @enderror
         <br><br>
             
         <label for="direccion">Direccion: </label>
-        <input class="form-control" name="direccion" type="text" value="{{old('direccion') ?? $proveedor->direccion}}" placeholder="Ingrese la dirección del proveedor">
+        <input class="form-control" name="direccion" type="text" value="{{old('direccion') ?? $proveedor->direccion}}" placeholder="Ingrese la dirección del proveedor" required>
         @error('direccion')
         <div class="alert alert-danger" style="color:red">{{ $message }}</div>
         @enderror
         <br><br>
 
         <label for="telefono">Telefono: </label>
-        <input class="form-control" name="telefono" type="text" value="{{old('telefono') ?? $proveedor->telefono}}" placeholder="Ingrese el teléfono del proveedor">
+        <input class="form-control" name="telefono" type="text" value="{{old('telefono') ?? $proveedor->telefono}}" placeholder="Ingrese el teléfono del proveedor" required>
         @error('telefono')
             <div class="alert alert-danger" style="color:red">{{ $message }}</div>
         @enderror
         <br><br>
 
         <label for="correo">Correo electronico: </label>
-        <input class="form-control" name="correo" type="text" value="{{old('correo') ?? $proveedor->correo}}" placeholder="Ingrese el correo del proveedor">
+        <input class="form-control" name="correo" type="email" value="{{old('correo') ?? $proveedor->correo}}" placeholder="Ingrese el correo del proveedor" required>
         @error('correo')
             <div class="alert alert-danger" style="color:red">{{ $message }}</div>
         @enderror
