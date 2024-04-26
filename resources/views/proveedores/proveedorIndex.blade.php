@@ -1,5 +1,6 @@
 <x-mi-layout titulo="Lista de proveedores">
     <a class="btn btn-primary" href="{{route('proveedor.create')}}">Agregar proveedor</a><br><br>
+    <div class="table-responsive">    
         <table class="table">
             <thead>
                 <tr>
@@ -17,8 +18,8 @@
                         <td>{{$proveedor->nombre}}</td>
                         <td>{{$proveedor->direccion}}</td>
                         <td>{{$proveedor->correo}}</td>
-                        <td>{{ucfirst($proveedor->telefono)}}</td>
-                        <td>{{$proveedor->estado}}</td>
+                        <td>{{$proveedor->telefono}}</td>
+                        <td>{{ucfirst($proveedor->estado)}}</td>
                         <td>
                             <a class="btn btn-primary mt-1" href="{{route('proveedor.show', $proveedor)}}"> <i class="fa fa-info-circle"></i>Detalles</a>
                             <a class="btn btn-success mt-1" href="{{route('proveedor.edit', $proveedor)}}">&#x270E;Editar</a>
@@ -32,4 +33,5 @@
                 @endforeach
             </tbody>
         </table>
-    </x-mi-layout>
+    </div>
+</x-mi-layout>

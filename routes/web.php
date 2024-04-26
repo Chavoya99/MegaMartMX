@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProveedorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('producto', ProductoController::class )->middleware('auth');
+Route::resource('proveedor', ProveedorController::class )->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
@@ -26,6 +28,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return redirect(route('producto.index'));
+        return view('dashboard');
     })->name('dashboard');
 });
