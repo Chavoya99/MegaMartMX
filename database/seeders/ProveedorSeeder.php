@@ -20,5 +20,21 @@ class ProveedorSeeder extends Seeder
             'telefono' => '3355665555',
             'estado' => 'activo',
         ]);
+
+        Proveedor::create([
+            'nombre' => 'Pepsico',
+            'direccion' => 'Calzada Lázaro Cardenas',
+            'correo' => 'pepsico@pepsico.mx',
+            'telefono' => '3355666666',
+            'estado' => 'activo',
+        ]);
+
+        Proveedor::create([
+            'nombre' => 'Coca-Cola Company',
+            'direccion' => 'Calzada Independencia Norte',
+            'correo' => 'cocacola@cocacola.mx',
+            'telefono' => '3377889999',
+            'estado' => 'activo',
+        ]);
     }
 }

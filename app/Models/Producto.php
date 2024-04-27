@@ -30,4 +30,8 @@ class Producto extends Model
     public function proveedor(){
         return $this->belongsTo(Proveedor::class);
     }
+
+    public function archivo(){
+        return $this->hasOne(Archivo::class);
+    }
 }

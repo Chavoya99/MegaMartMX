@@ -19,17 +19,17 @@ class Dropdown2 extends Component
     public function mount($id){
 
         $producto = Producto::find($id);
-        $this->categorias = Categoria::all();
-        $this->categoriaId = $id;
+        $this->categorias = Categoria::orderBy('nombre')->get();
+        $this->categoriaId = $producto->categoria_id;
         $this->categoriaId = old('categoria_id', $this->categoriaId);
 
-        $this->subcategorias = Subcategoria::where('categoria_id', old('categoria_id', $this->categoriaId))->get();
-        $this->subcategoriaId = $id;
+        $this->subcategorias = Subcategoria::where('categoria_id', old('categoria_id', $this->categoriaId))->orderBy('nombre')->get();
+        $this->subcategoriaId = $producto->subcategoria_id;
         $this->subcategoriaId = old('subcategoria_id', $this->subcategoriaId);
     }
 
     public function updatedcategoriaId($valor){
-        $this->subcategorias = Subcategoria::where('categoria_id', $valor)->get();
+        $this->subcategorias = Subcategoria::where('categoria_id', $valor)->orderBy('nombre')->get();
     }
 
     public function render()

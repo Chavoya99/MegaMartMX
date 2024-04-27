@@ -15,14 +15,14 @@ class Dropdown extends Component
     
 
     public function mount(){
-        $this->categorias = Categoria::all();
+        $this->categorias = Categoria::orderBy('nombre')->get();
         $this->categoriaId = old('categoria_id', $this->categoriaId);
-        $this->subcategorias = Subcategoria::where('categoria_id', old('categoria_id', $this->categoriaId))->get();
+        $this->subcategorias = Subcategoria::where('categoria_id', old('categoria_id', $this->categoriaId))->orderBy('nombre')->get();
         $this->subcategoriaId = old('subcategoria_id', $this->subcategoriaId);
     }
 
     public function updatedcategoriaId($valor){
-        $this->subcategorias = Subcategoria::where('categoria_id', $valor)->get();
+        $this->subcategorias = Subcategoria::where('categoria_id', $valor)->orderBy('nombre')->get();
     }
 
     public function render()

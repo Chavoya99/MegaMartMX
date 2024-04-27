@@ -1,7 +1,7 @@
 <div>
     <br>
     <label for="categoria_id">Categoría</label>
-    <select class="form-control" name="categoria_id" id="categoria" wire:model.live ="categoriaId">
+    <select class="form-control" name="categoria_id" id="categoria" wire:model.live ="categoriaId" required>
         <option value="{{null}}">Selecciona una categoría</option>
         @foreach ($categorias as $categoria)
             <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
@@ -13,7 +13,7 @@
     @enderror
     <br>
     <label for="subcategoria_id">Subcategoría</label>
-    <select class="form-control" name="subcategoria_id" id="subcategoria" wire:model="subcategoriaId">
+    <select class="form-control" name="subcategoria_id" id="subcategoria" wire:model="subcategoriaId" required>
         <option value="{{null}}">Selecciona una subcategoría</option>
         @foreach ($subcategorias as $subcategoria)
             <option value="{{$subcategoria->id}}">{{$subcategoria->nombre}}</option>

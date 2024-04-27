@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <!-- Custom styles for datatbles-->
+    <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -40,32 +43,19 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">MegaMartMX</div>
             </a>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Productos</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Crear</a>
-                        <a class="collapse-item" href="cards.html">Lista</a>
-                        <a class="collapse-item" href="cards.html"></a>
-                    </div>
-                </div>
-            </li> -->
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('producto.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Productos</span></a>
+                    <img src="{{asset('img/grocery-icon.svg')}}" width=30 height="30">
+                    <span>Productos</span>
+                </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('proveedor.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Proveedores</span></a>
+                    <img src="{{asset('img/proveedor-icon.svg')}}" width=30 height="30">
+                    <span>Proveedores</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -358,6 +348,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @livewireScripts
 </body>
 
