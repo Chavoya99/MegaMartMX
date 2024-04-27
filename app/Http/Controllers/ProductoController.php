@@ -33,9 +33,8 @@ class ProductoController extends Controller
      */
     public function create()
     {   
-        $categorias = Categoria::orderBy('nombre')->get();
-        $proveedores = Proveedor::orderBy('nombre')->get();
-        return view('productos.productoCreate', compact('categorias', 'proveedores'));
+        $proveedores = Proveedor::orderBy('nombre', 'desc')->get();
+        return view('productos.productoCreate', compact('proveedores'));
     }
 
     /**
@@ -50,6 +49,7 @@ class ProductoController extends Controller
                 'subcategoria_id' => 'required',
                 'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
                 'codigoBarras' =>'required|integer|digits_between:3,13|unique:productos,codigoBarras',
+                'existencia' => ['required', 'integer'],
                 'proveedor_id' => 'required',
 
             ],[
@@ -62,6 +62,7 @@ class ProductoController extends Controller
                 'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
                 'codigoBarras.integer' => 'Introduce un código de barras válido',
                 'codigoBarras.unique' => 'Código de barras duplicado',
+                'existencia.required' => 'Debe especificar una cantidad en existencia',
                 'proveedor_id.required' => 'Debe seleccionar un proveedor',
             ]
         );
@@ -98,28 +99,31 @@ class ProductoController extends Controller
         $request->validate(
             [
                 'nombre'=>'required|max:50',
+                'categoria_id' => 'required',
+                'subcategoria_id' => 'required',
                 'precio'=> 'required|regex:/^(?=.*[1-9])\d*(\.\d+)?$/',
                 'codigoBarras' =>['required','integer','digits_between:3,13',
+                'existencia' => ['required', 'integer'],
+                'proveedor_id' => 'required',
                 Rule::unique('productos')->ignore($producto->id)],
 
             ],[
                 'nombre.required' => 'El campo nombre es obligatorio',
+                'categoria_id.required' => 'Debe seleccionar una categoria',
+                'subcategoria_id.required' => 'Debe seleccionar una subcategoria',
                 'precio.required' => 'Debe incluir un precio',
                 'precio.regex' => 'Introduce un número válido',
                 'codigoBarras.required' => 'El campo código de barras es obligatorio',
                 'codigoBarras.digits_between' => 'El código de barras debe tener entre :min y :max dígitos',
                 'codigoBarras.integer' => 'Introduce un código de barras válido',
                 'codigoBarras.unique' => 'Código de barras duplicado',
+                'existencia.required' => 'Debe especificar una cantidad en existencia',
+                'proveedor_id.required' => 'Debe seleccionar un proveedor',
                 
             ]
         );
 
-        $producto->nombre = $request->nombre;
-        $producto->categoria = $request->categoria;
-        $producto->subCategoria = $request->subCategoria;
-        $producto->precio = $request->precio;
-        $producto->codigoBarras = $request->codigoBarras;
-        $producto->save();
+        $producto->update($request->all());
 
         return redirect()->route('producto.show', $producto);
     }

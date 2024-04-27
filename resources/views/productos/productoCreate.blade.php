@@ -4,7 +4,7 @@
     <form action="{{route('producto.store')}}" method="POST">
         @csrf
         <label for="nombre">Nombre</label>
-        <input class="form-control" name="nombre" type="text" value="{{old('nombre')}}" >
+        <input class="form-control" name="nombre" type="text" value="{{old('nombre')}}" required>
         @error('nombre')
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
@@ -21,6 +21,13 @@
         <label for="codigoBarras">Código de barras</label>
         <input class="form-control" name="codigoBarras" type="text" value="{{old('codigoBarras')}}" required>
         @error('codigoBarras')
+            <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
+        @enderror
+        <br>
+        
+        <label for="existencia">Existencia</label>
+        <input class="form-control" name="existencia" type="number" value="{{old('existencia') ?? 0}}" required>
+        @error('existencia')
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
         <br>

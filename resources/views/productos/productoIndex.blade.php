@@ -9,6 +9,7 @@
                         <th>Categoría</th>
                         <th>SubCategoría</th>
                         <th>Precio</th>
+                        <th>Existencia</th>
                         <th>Código de barras</th>
                         <th>Acciones</th>
                     </tr>
@@ -20,6 +21,7 @@
                             <td>{{ucfirst($producto->categoria->nombre)}}</td>
                             <td>{{ucfirst($producto->subcategoria->nombre)}}</td>
                             <td>{{$producto->precio}}</td>
+                            <td>{{$producto->existencia}}</td>
                             <td>{{$producto->codigoBarras}}</td>
                             <td>
                                 <a class="btn btn-primary mt-1" href="{{route('producto.show', $producto)}}"> <i class="fa fa-info-circle"></i>Detalle</a>

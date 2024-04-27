@@ -10,7 +10,8 @@
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
         
-        @livewire('dropdown2', ['id' => $producto])
+        @livewire('dropdown2', ['id' => $producto->id])
+        
 
         <label for="precio">Precio</label>
         <input class="form-control" name="precio" type="number" step="0.01" value="{{old('precio') ?? $producto->precio}}" required>
