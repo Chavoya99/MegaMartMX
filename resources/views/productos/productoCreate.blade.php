@@ -1,7 +1,7 @@
 <x-mi-layout titulo="Nuevo producto">
     <a class="btn btn-primary" href="{{route('producto.index')}}">&#129044;Regresar</a><br>
     <h3>Introducir los datos necesarios</h3>
-    <form action="{{route('producto.store')}}" method="POST">
+    <form action="{{route('producto.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="nombre">Nombre</label>
         <input class="form-control" name="nombre" type="text" value="{{old('nombre')}}" required>
@@ -43,6 +43,14 @@
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
         <br>
+
+        <label for="imagen">Imagen (MAX 4mb)</label><br>
+        <input type="file" name="imagen" accept=".jpg, .jpeg, .png">
+        @error('imagen')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <br><br>
+        
         <button class="btn btn-primary" type="submit">Crear</button>
     </form>
 </x-mi-layout>

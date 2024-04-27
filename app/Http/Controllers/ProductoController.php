@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProductoController extends Controller
@@ -23,7 +24,8 @@ class ProductoController extends Controller
     public function index()
     {
         //
-        $productos = Producto::all();
+        //$productos = Producto::all();
+        $productos = Producto::with(['categoria', 'subcategoria', 'proveedor'])->orderBy('nombre')->get();
 
         return view('productos.productoIndex', compact('productos'));
     }
@@ -67,7 +69,35 @@ class ProductoController extends Controller
             ]
         );
 
-        $producto = Producto::create($request->all());
+        
+
+        if($request->hasFile('imagen')){
+            if ($request->file('imagen')->isValid()) {
+
+                $request->validate([
+                    'imagen' => 'file|mimes:jpg,jpeg,png|max:4096'
+                ],[
+                    'imagen.mimes' => 'Sólo se permiten imágenes',
+                    'imagen.max' => 'La imagen no debe pesar más de 4mb'
+                ]);
+                $producto = Producto::create($request->all());
+
+                $imagen = $request->file('imagen');
+                $nombre_original = $imagen->getClientOriginalName();
+                //$ubicacion = $imagen->storeAs('archivos_productos', $nombre_original, 'public');
+                $ubicacion = $imagen->store('archivos_productos', 'public');
+                $producto->archivo()->create(
+                    [
+                        'ubicacion' => $ubicacion,
+                        'nombre_original' => $nombre_original,
+                        'mime' => $request->file('imagen')->getClientMimeType(),
+                    ]
+                );
+                
+            }
+        }else{
+            $producto = Producto::create($request->all());
+        }
 
         return redirect()->route('producto.index');
     }
@@ -124,6 +154,42 @@ class ProductoController extends Controller
         );
 
         $producto->update($request->all());
+
+        if($request->hasFile('imagen')){
+            if ($request->file('imagen')->isValid()) {
+
+                $request->validate([
+                    'imagen' => 'file|mimes:jpg,jpeg,png|max:4096'
+                ],[
+                    'imagen.mimes' => 'Sólo se permiten imágenes',
+                    'imagen.max' => 'La imagen no debe pesar más de 4mb'
+                ]);
+
+                $imagen = $request->file('imagen');
+                $nombre_original = $imagen->getClientOriginalName();
+                //$ubicacion = $imagen->storeAs('archivos_productos', $nombre_original, 'public');
+                $ubicacion = $imagen->store('archivos_productos', 'public');
+
+                if($producto->archivo){
+                    Storage::disk('public')->delete($producto->archivo->ubicacion);
+                    $producto->archivo->update(
+                        [
+                            'ubicacion' => $ubicacion,
+                            'nombre_original' => $nombre_original,
+                            'mime' => $request->file('imagen')->getClientMimeType(),
+                        ]
+                    );
+                }else{
+                    $producto->archivo()->create(
+                        [
+                            'ubicacion' => $ubicacion,
+                            'nombre_original' => $nombre_original,
+                            'mime' => $request->file('imagen')->getClientMimeType(),
+                        ]
+                    );
+                }
+            }
+        }
 
         return redirect()->route('producto.show', $producto);
     }

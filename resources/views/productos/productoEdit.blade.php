@@ -1,7 +1,7 @@
 <x-milayout titulo="Editar producto">
     <a class="btn btn-primary" href="{{route('producto.index')}}">&#129044;Regresar</a><br>
     <h3>Introducir los datos necesarios</h3>
-    <form action="{{route('producto.update', $producto)}}" method="POST">
+    <form action="{{route('producto.update', $producto)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <label for="nombre">Nombre</label>
@@ -46,8 +46,22 @@
         @error('proveedor_id')
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
-
         <br>
+
+        <label>Imagen actual</label><br>
+        @if ($producto->archivo)
+            <img src="{{asset(\Storage::url($producto->archivo->ubicacion))}}" width="100" height="100" alt="{{$producto->nombre}}">
+        @else
+            <img src="{{asset('img/producto_default.png')}}" width="100" height="100" alt="{{$producto->nombre}}">
+        @endif
+        
+        <br><br>
+        <label for="imagen">Nueva imagen (MAX 4mb)</label><br>
+        <input type="file" name="imagen" accept=".jpg, .jpeg, .png">
+        @error('imagen')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <br><br>
         <button class="btn btn-primary" type="submit">Editar</button>
     </form>
 </x-mi-layout>

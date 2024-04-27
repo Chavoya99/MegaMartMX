@@ -1,7 +1,7 @@
 <x-mi-layout titulo="Lista de proveedores">
     <a class="btn btn-primary" href="{{route('proveedor.create')}}">Agregar proveedor</a><br><br>
     <div class="table-responsive">    
-        <table class="table">
+        <table class="table" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>Nombre</th>
