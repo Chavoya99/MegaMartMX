@@ -34,4 +34,8 @@ class Producto extends Model
     public function archivo(){
         return $this->hasOne(Archivo::class);
     }
+
+    public function compras(){
+        return $this->belongsToMany(Compra::class)->withPivot('cantidad', 'subtotal');
+    }
 }
