@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ClienteMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,27 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-Route::resource('producto', ProductoController::class )->middleware('auth');
-Route::resource('proveedor', ProveedorController::class )->middleware('auth');
+
+Route::middleware('auth')->group(function(){
+    
+
+    Route::middleware(AdminMiddleware::class)->group(function(){
+        Route::resource('producto', ProductoController::class);
+        Route::resource('proveedor', ProveedorController::class);
+    });
+    
+
+    Route::get('/clientes', function(){
+        return "clientes";
+    })->name('clientes')->middleware(ClienteMiddleware::class);
+    
+    Route::get('/admin', function(){
+        return "admin";
+    })->name('clientes')->middleware(
+    AdminMiddleware::class);
+
+});
+
 
 Route::middleware([
     'auth:sanctum',
@@ -28,6 +49,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return redirect(route('producto.index'));
+        return view('dashboard');
     })->name('dashboard');
 });
