@@ -18,13 +18,19 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'Administrador',
-            'email' => 'admin@admin.com',
-            'tipo_usuario' => 'admin',
+            'name' => "Administrador",
+            'email' => "admin@admin.com",
+            'tipo_usuario' => "superAdmin",
         ]);
 
         \App\Models\User::factory()->create([
-            'email' => 'cliente@gmail.com',
+            'name' => "Administrador Auxiliar",
+            'email' => "aux@admin.com",
+            'tipo_usuario' => "admin",
+        ]);
+
+        \App\Models\User::factory()->create([
+            'email' => "cliente@gmail.com",
         ]);
 
         \App\Models\User::factory(5)->create();

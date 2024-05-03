@@ -23,11 +23,13 @@
                         <td>
                             <a class="btn btn-primary mt-1" href="{{route('proveedor.show', $proveedor)}}"> <i class="fa fa-info-circle"></i>Detalles</a>
                             <a class="btn btn-success mt-1" href="{{route('proveedor.edit', $proveedor)}}">&#x270E;Editar</a>
-                            <form onsubmit="return confirm('Se eliminará el siguiente registro, ¿Desea continuar?')" action="{{route('proveedor.destroy', $proveedor)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-danger mt-1" type="submit" value="x Eliminar">
-                            </form>                       
+                            @can('delete' , Auth::user())
+                                <form onsubmit="return confirm('Se eliminará el siguiente registro, ¿Desea continuar?')" action="{{route('proveedor.destroy', $proveedor)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-danger mt-1" type="submit" value="x Eliminar">
+                                </form> 
+                            @endcan                     
                         </td>
                     </tr> 
                 @endforeach

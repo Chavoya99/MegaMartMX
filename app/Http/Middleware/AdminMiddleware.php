@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        if(Auth::user()->tipo_usuario != "admin"){
+        if(Auth::user()->tipo_usuario != "superAdmin" && Auth::user()->tipo_usuario != "admin"){
             return redirect('/clientes');
         }
 

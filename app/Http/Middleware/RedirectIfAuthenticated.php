@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if(Auth::user()->tipo_usuario == "admin"){
+                if(Auth::user()->tipo_usuario == "admin" || Auth::user()->tipo_usuario == "superAdmin"){
                     return redirect(route('producto.index'));
                 }else{
                     return redirect(route('clientes'));
