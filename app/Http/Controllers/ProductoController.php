@@ -25,7 +25,8 @@ class ProductoController extends Controller
     {
         //
         //$productos = Producto::all();
-        $productos = Producto::with(['categoria', 'subcategoria', 'proveedor'])->orderBy('nombre')->get();
+        $productos = Producto::with(['categoria', 'subcategoria', 'proveedor', 'archivo'])->orderBy('nombre')->get();
+        
 
         return view('productos.productoIndex', compact('productos'));
     }
@@ -107,7 +108,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        
+            
         return view('productos.productoShow', compact('producto'));
     }
 
@@ -116,6 +117,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
+        
         $categorias = Categoria::orderBy('nombre')->get();
         $proveedores = Proveedor::orderBy('nombre')->get();
         return view('productos.productoEdit', compact('producto', 'categorias', 'proveedores'));
