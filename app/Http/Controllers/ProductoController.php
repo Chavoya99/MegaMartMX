@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -24,7 +25,6 @@ class ProductoController extends Controller
     public function index()
     {
         //
-        //$productos = Producto::all();
         $productos = Producto::with(['categoria', 'subcategoria', 'proveedor', 'archivo'])->orderBy('nombre')->get();
         
 
@@ -100,7 +100,7 @@ class ProductoController extends Controller
             $producto = Producto::create($request->all());
         }
 
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index')->with('success', 'Producto creado con éxito');
     }
 
     /**
@@ -193,15 +193,16 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect()->route('producto.show', $producto);
+        return redirect()->route('producto.show', $producto)->with('success', 'Producto modificado con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Producto $producto)
-    {
+    {   
+        $this->authorize('delete', Auth::user());
         $producto->delete();
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index')->with('success', 'Producto eliminado con éxito');
     }
 }
