@@ -54,7 +54,7 @@ class ProveedorController extends Controller
         $proveedor->estado = $request->estado;
         $proveedor->save();
 
-        return redirect()->route('proveedor.index');
+        return redirect()->route('proveedor.index')->with('success', 'Nuevo proveedor creado con éxito');
     }
 
     /**
@@ -101,7 +101,7 @@ class ProveedorController extends Controller
         $proveedor->estado = $request->estado;
         $proveedor->save(); 
 
-    return redirect()->route('proveedor.show', $proveedor);
+    return redirect()->route('proveedor.show', $proveedor)->with('success', 'Proveedor modificado con éxito');
     }
 
     /**

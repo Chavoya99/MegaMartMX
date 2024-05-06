@@ -36,5 +36,7 @@ class ProveedorSeeder extends Seeder
             'telefono' => '3377889999',
             'estado' => 'activo',
         ]);
+
+        Proveedor::factory(5)->create();
     }
 }

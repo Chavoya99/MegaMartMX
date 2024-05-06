@@ -1,4 +1,9 @@
 <x-mi-layout titulo="Lista de proveedores">
+    
+    @if (session('success'))
+        <x-success-message type="success" :mensaje="session('success')"/>
+    @endif
+    
     <a class="btn btn-primary" href="{{route('proveedor.create')}}">Agregar proveedor</a><br><br>
     <div class="table-responsive">    
         <table class="table" id="dataTable" width="100%" cellspacing="0">

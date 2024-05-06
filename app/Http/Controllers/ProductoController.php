@@ -100,7 +100,7 @@ class ProductoController extends Controller
             $producto = Producto::create($request->all());
         }
 
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index')->with('success', 'Producto creado con éxito');
     }
 
     /**
@@ -193,7 +193,7 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect()->route('producto.show', $producto);
+        return redirect()->route('producto.show', $producto)->with('success', 'Producto modificado con éxito');
     }
 
     /**
@@ -203,6 +203,6 @@ class ProductoController extends Controller
     {   
         $this->authorize('delete', Auth::user());
         $producto->delete();
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index')->with('success', 'Producto eliminado con éxito');
     }
 }

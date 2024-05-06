@@ -1,7 +1,9 @@
 <x-mi-layout titulo="Detalles del producto">
     <a class="btn btn-primary" href="{{route('producto.index')}}">&#129044;Regresar</a>
     <a class="btn btn-success" href="{{route('producto.edit', $producto)}}">&#x270E;Editar</a><br><br>
-    
+    @if (session('success'))
+        <x-success-message type="success" :mensaje="session('success')"/>
+    @endif
         <div class="container mt-4">
             <div class="row align-items-center">
                 <div class="col-md-6 offset-md-3">
