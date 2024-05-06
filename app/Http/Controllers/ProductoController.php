@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -199,7 +200,8 @@ class ProductoController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Producto $producto)
-    {
+    {   
+        $this->authorize('delete', Auth::user());
         $producto->delete();
         return redirect()->route('producto.index');
     }

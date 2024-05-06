@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProveedorController extends Controller
 {
@@ -108,7 +109,15 @@ class ProveedorController extends Controller
      */
     public function destroy(Proveedor $proveedor)
     {
+        $this->authorize('delete', Auth::user());
         $proveedor->delete();
         return redirect()->route('proveedor.index')->with('success', 'Proveedor eliminado con éxito');
+    }
+
+    public function eliminar_proveedor_permanente(Proveedor $proveedor){
+
+        $this->authorize('delete', Auth::user());
+        $proveedor->forceDelete();
+        return redirect()->route('proveedor.index')->with('success', 'Proveedor eliminado permanentemente con éxito');
     }
 }

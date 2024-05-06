@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function(){
     Route::middleware(AdminMiddleware::class)->group(function(){
         Route::resource('producto', ProductoController::class);
         Route::resource('proveedor', ProveedorController::class);
+        Route::delete('eliminar_proveedor_permanente/{proveedor}', 
+        [ProveedorController::class, 'eliminar_proveedor_permanente'])
+        ->name('borrar_proveedor');
     });
     
 
