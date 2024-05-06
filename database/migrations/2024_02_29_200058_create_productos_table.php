@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('codigoBarras');
             $table->bigInteger('existencia')->default(0);
             $table->foreignId('proveedor_id')->constrained(table: 'proveedores', indexName: 'id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

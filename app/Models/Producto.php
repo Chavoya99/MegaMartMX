@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [ 
         'nombre',
@@ -33,5 +35,9 @@ class Producto extends Model
 
     public function archivo(){
         return $this->hasOne(Archivo::class);
+    }
+
+    public function compras(){
+        return $this->belongsToMany(Compra::class)->withPivot('cantidad', 'subtotal');
     }
 }
