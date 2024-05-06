@@ -1,4 +1,4 @@
-<x-mi-layout titulo="Nuevo proveedor">
+<x-admin-layout titulo="Nuevo proveedor">
     <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a><br><br>
     <legend>Introduzca los siguientes datos</legend>
     <form action="{{route('proveedor.store')}}" method="POST">
@@ -40,4 +40,4 @@
 
         <button class="btn btn-primary" type="submit">Crear</button>
     </form>
-</x-mi-layout>
+</x-admin-layout>

@@ -1,4 +1,4 @@
-<x-mi-layout titulo="Detalles del proveedor">
+<x-admin-layout titulo="Detalles del proveedor">
     <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a>
     <a class="btn btn-success" href="{{route('proveedor.edit', $proveedor)}}">&#x270E;Editar</a><br><br>
     @if (session('success'))
@@ -12,4 +12,4 @@
         <li><strong>Estado:</strong> {{$proveedor->estado}}</li>
     </ul>  
                 
-</x-mi-layout>
+</x-admin-layout>
