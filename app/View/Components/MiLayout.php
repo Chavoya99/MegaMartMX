@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class MiLayout extends Component
+class AdminLayout extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class MiLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.mi-layout');
+        return view('components.admin-layout');
     }
 }
