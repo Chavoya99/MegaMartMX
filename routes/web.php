@@ -54,9 +54,14 @@ Route::middleware('auth')->group(function(){
     });
     
 
-    Route::get('/clientes', function(){
-        return view('clientes');
-    })->name('clientes')->middleware(ClienteMiddleware::class);
+    Route::middleware(ClienteMiddleware::class)->group(function(){
+        Route::controller(HomeController::class)->group(function(){
+            Route::get('/clientes', 'index')->name('clientes')->middleware(ClienteMiddleware::class);
+        });    
+    });
+        
+
+    
 
 });
 
