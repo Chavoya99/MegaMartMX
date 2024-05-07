@@ -31,8 +31,23 @@ Route::middleware('auth')->group(function(){
     Route::middleware(AdminMiddleware::class)->group(function(){
         Route::resource('producto', ProductoController::class);
         Route::resource('categoria', CategoriaController::class);
-        Route::resource('subcategoria', SubcategoriaController::class);
         Route::resource('proveedor', ProveedorController::class);
+
+        Route::get('subcategoria/create/categoria/{categoria}', 
+        [SubcategoriaController::class, 'create'])->name('subcategoria.create');
+
+        Route::get('subcategoria/{subcategoria}/edit/categoria/{categoria}', 
+        [SubcategoriaController::class, 'edit'])->name('subcategoria.edit');
+
+        Route::post('subcategoria/{categoria}', 
+        [SubcategoriaController::class, 'store'])->name('subcategoria.store');
+
+        Route::patch('subcategoria/{subcategoria}/{categoria}', 
+        [SubcategoriaController::class, 'update'])->name('subcategoria.update');
+
+        Route::delete('subcategoria/{subcategoria}/{categoria}', 
+        [SubcategoriaController::class, 'destroy'])->name('subcategoria.destroy');
+
         Route::delete('eliminar_proveedor_permanente/{proveedor}', 
         [ProveedorController::class, 'eliminar_proveedor_permanente'])
         ->name('borrar_proveedor');
