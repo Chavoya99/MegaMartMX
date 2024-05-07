@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->foreignId('categoria_id')->constrained();
-            $table->foreignId('subcategoria_id')->constrained();
+            $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subcategoria_id')->constrained()->onDelete('cascade');
             $table->decimal('precio', 10, 2);
             $table->string('codigoBarras');
             $table->bigInteger('existencia')->default(0);
             $table->foreignId('proveedor_id')->constrained(table: 'proveedores', indexName: 'id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

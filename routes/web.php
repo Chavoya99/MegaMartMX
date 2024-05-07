@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\SubcategoriaController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +30,12 @@ Route::middleware('auth')->group(function(){
 
     Route::middleware(AdminMiddleware::class)->group(function(){
         Route::resource('producto', ProductoController::class);
+        Route::resource('categoria', CategoriaController::class);
+        Route::resource('subcategoria', SubcategoriaController::class);
         Route::resource('proveedor', ProveedorController::class);
+        Route::delete('eliminar_proveedor_permanente/{proveedor}', 
+        [ProveedorController::class, 'eliminar_proveedor_permanente'])
+        ->name('borrar_proveedor');
     });
     
 

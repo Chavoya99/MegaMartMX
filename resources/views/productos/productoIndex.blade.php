@@ -1,4 +1,8 @@
-<x-mi-layout titulo="Lista de productos">
+<x-admin-layout titulo="Lista de productos">
+    @if (session('success'))
+        <x-success-message type="success" :mensaje="session('success')"/>
+    @endif
+    
     <a class="btn btn-primary" href="{{route('producto.create')}}">Agregar producto</a><br><br>
     <div class="container-fluid">
         
@@ -13,6 +17,7 @@
                             <th>Precio</th>
                             <th>Existencia</th>
                             <th>Código de barras</th>
+                            <th>Proveedor</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -32,6 +37,7 @@
                                 <td>${{$producto->precio}}</td>
                                 <td>{{$producto->existencia}}</td>
                                 <td>{{$producto->codigoBarras}}</td>
+                                <td>{{$producto->proveedor->nombre}}</td>
                                 <td>
                                     <a class="btn btn-primary mt-1" href="{{route('producto.show', $producto)}}"> <i class="fa fa-info-circle"></i>Detalle</a>
                                     <a class="btn btn-success mt-1" href="{{route('producto.edit', $producto)}}">&#x270E;Editar</a>
@@ -51,4 +57,4 @@
             </div>
      
     </div>
-</x-mi-layout>
+</x-admin-layout>

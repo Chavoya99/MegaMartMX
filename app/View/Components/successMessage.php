@@ -6,14 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class MiLayout extends Component
+class successMessage extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $titulo)
-    {   
 
+    public $mensaje;
+    public $type;
+    public function __construct($type="", $mensaje = "")
+    {
+        $this->mensaje = $mensaje;
+        $this->type = $type;
     }
 
     /**
@@ -21,6 +25,6 @@ class MiLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.mi-layout');
+        return view('components.success-message');
     }
 }

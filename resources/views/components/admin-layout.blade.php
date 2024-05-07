@@ -62,6 +62,13 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{route('categoria.index')}}">
+                    <img src="{{asset('img/category-icon.svg')}}" width=30 height="30">
+                    <span>Categorías</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <img src="{{asset('img/carrito.png')}}" width=30 height="30">
                     <span>Carrito</span>
@@ -262,6 +269,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
+
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Mi perfil
