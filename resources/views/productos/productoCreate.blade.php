@@ -1,4 +1,4 @@
-<x-mi-layout titulo="Nuevo producto">
+<x-admin-layout titulo="Nuevo producto">
     <a class="btn btn-primary" href="{{route('producto.index')}}">&#129044;Regresar</a><br>
     <h3>Introducir los datos necesarios</h3>
     <form action="{{route('producto.store')}}" method="POST" enctype="multipart/form-data">
@@ -53,4 +53,4 @@
         
         <button class="btn btn-primary" type="submit">Crear</button>
     </form>
-</x-mi-layout>
+</x-admin-layout>

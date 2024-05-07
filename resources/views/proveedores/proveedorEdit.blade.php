@@ -1,4 +1,4 @@
-<x-milayout titulo="Editar proveedor">
+<x-admin-layout titulo="Editar proveedor">
     @if (session('success'))
         <x-success-message type="success" :mensaje="session('success')"/>
     @endif
@@ -44,4 +44,4 @@
 
         <button class="btn btn-primary" type="submit">Modificar</button>
     </form>
-</x-milayout>
+</x-admin-layout>

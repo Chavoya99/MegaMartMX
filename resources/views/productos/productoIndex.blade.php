@@ -1,4 +1,4 @@
-<x-mi-layout titulo="Lista de productos">
+<x-admin-layout titulo="Lista de productos">
     @if (session('success'))
         <x-success-message type="success" :mensaje="session('success')"/>
     @endif
@@ -57,4 +57,4 @@
             </div>
      
     </div>
-</x-mi-layout>
+</x-admin-layout>
