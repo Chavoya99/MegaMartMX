@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Categoria;
 use App\Models\Proveedor;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -101,10 +102,54 @@ class AdminTest extends TestCase
             'estado' => 'Activo',
         ]);
         
-        $response = $this->delete(route('borrar_proveedor', [$proveedor]));
+        $response = $this->delete(route('borrar_proveedor', $proveedor));
         $this->assertDatabaseMissing('proveedores', ['id' => $proveedor->id]);
 
         $response->assertStatus(302);
         $response->assertRedirect(route('proveedor.index'));   
+    }
+
+    public function test_verifica_eliminacion_categoria(){
+
+        $user = User::factory()->create([
+            'name' => "Administrador de prueba",
+            'email' => "adminprueba@admin.com",
+            'tipo_usuario' => "superAdmin",
+        ]);
+
+        $this->actingAs($user);
+
+        $categoria = Categoria::create(
+        [
+            'nombre' => 'Categoría de prueba'
+        ]);
+        
+        $response = $this->delete(route('categoria.destroy', $categoria));
+        $this->assertDatabaseMissing('categorias', ['id' => $categoria->id]);
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('categoria.index'));   
+    }
+
+    public function test_verifica_permiso_de_eliminacion_admin(){
+
+        $user = User::factory()->create([
+            'name' => "Administrador de prueba",
+            'email' => "adminprueba@admin.com",
+            'tipo_usuario' => "admin", 
+            //Admin no tiene permiso de eliminar sólo superAdmin
+        ]);
+
+        $this->actingAs($user);
+
+        $categoria = Categoria::create(
+        [
+            'nombre' => 'Categoría de prueba'
+        ]);
+        
+        $response = $this->delete(route('categoria.destroy', $categoria));
+        $response->assertStatus(403); 
+
+         
     }
 }
