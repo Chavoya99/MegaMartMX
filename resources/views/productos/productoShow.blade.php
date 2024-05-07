@@ -39,6 +39,15 @@
                                     <div class="text-center mb-3">
                                         @if ($producto->archivo)
                                             <img src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" class="img-fluid align-self-center" alt="{{ $producto->nombre }}">
+                                            <a class="btn btn-info" href="{{route('archivo.download', $producto->archivo) }}">
+                                                <i>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                                                    class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                                    <polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                                                </i>
+                                                Descargar imagen
+                                            </a>
                                         @else
                                             <img src="{{ asset('img/producto_default.png') }}" class="img-fluid align-self-center" alt="{{ $producto->nombre }}">
                                         @endif
