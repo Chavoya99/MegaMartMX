@@ -38,49 +38,49 @@
                 <div class="sidebar-brand-icon">
                     <i class="bi bi-cart-fill">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="width: 1.5em; height: 1.5em;">
-                            <image xlink:href="img\logo_pequeño.png" width="16" height="16" />
+                            <image xlink:href="{{asset('img\logo_pequeño.png')}}" width="16" height="16" />
                         </svg></i>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="width: 8em; height: 8em;">
-                    <image xlink:href="img\logo_letras.png" width="16" height="16" />
+                    <image xlink:href="{{asset('img\logo_letras.png')}}" width="16" height="16" />
                 </svg></i>
             </a>
 
             <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('producto.index')}}">
-                    <img src="{{asset('img/grocery-icon.svg')}}" width=30 height="30">
-                    <span>Productos</span>
+                <a class="nav-link" href="{{route('producto.index')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/compras.png')}}" width=30 height="30">
+                    <span style="color: black;">Productos</span>
                 </a>
             </li>
-
+            
             <li class="nav-item">
-                <a class="nav-link" href="{{route('proveedor.index')}}">
-                    <img src="{{asset('img/proveedor-icon.svg')}}" width=30 height="30">
-                    <span>Proveedores</span>
+                <a class="nav-link" href="{{route('proveedor.index')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
+                    <span style="color: black;">Proveedores</span>
                 </a>
             </li>
-
+            
             <li class="nav-item">
-                <a class="nav-link" href="{{route('categoria.index')}}">
-                    <img src="{{asset('img/category-icon.svg')}}" width=30 height="30">
-                    <span>Categorías</span>
+                <a class="nav-link" href="{{route('categoria.index')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/categorizacion.png')}}" width=30 height="30">
+                    <span style="color: black;">Categorías</span>
                 </a>
             </li>
-
+            
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <img src="{{asset('img/carrito.png')}}" width=30 height="30">
-                    <span>Carrito</span>
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
+                    <span style="color: black;">Carrito</span>
                 </a>
             </li>
             
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.336);">
 
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
+            <div class="text-center d-none d-md-inline" style="color: black;">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
@@ -199,7 +199,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter">4+</span>
                             </a>
 
                             <!-- Dropdown - Messages -->
@@ -210,18 +210,18 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('img/undraw_profile_1.svg')}}"
+                                        <img class="rounded-circle" src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_956,h_956/v1675245816/assets/db/df90dc-09b5-4876-9459-5a2a5a93f1d3/original/UberIM_008570-large-%281%29.webp"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">ya voy para su domicilio</div>
+                                        <div class="text-truncate">Ya voy para su domicilio</div>
                                         <div class="small text-gray-500">Maria Jose · 5:19 pm </div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('img/undraw_profile_2.svg')}}"
+                                        <img class="rounded-circle" src="https://www.sopitas.com/wp-content/uploads/2016/08/meme-juan-gabriel-palmera-origan.png"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -232,7 +232,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('img/undraw_profile_3.svg')}}"
+                                        <img class="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyp8DE41SJEGqBDiJ-dKKEjlEclFDg-baYUn-ADi2XUg&s"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -243,7 +243,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                        <img class="rounded-circle" src="https://img.buzzfeed.com/buzzfeed-static/static/2017-05/16/14/asset/buzzfeed-prod-fastlane-03/sub-buzz-31712-1494958682-9.jpg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -264,7 +264,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('img/undraw_profile.svg')}}">
+                                    src="{{asset('img/usuario.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -275,13 +275,13 @@
                                     Mi perfil
                                 </a>
                                 <a class="dropdown-item" href="#">
+                                    <i class="fas fa-map-marker-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Direcciones
+                                </a>  
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Configuraciones
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Direcciones
-                                </a>
+                                </a>                                 
                                 <div class="dropdown-divider"></div>
                                 <form id="logout-form" method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf

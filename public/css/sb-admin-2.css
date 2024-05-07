@@ -66,7 +66,7 @@ body {
   line-height: 1.5;
   color: #858796;
   text-align: left;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10420,6 +10420,7 @@ a:focus {
 
 .sidebar #sidebarToggle::after {
   font-weight: 900;
+  
   content: '\f104';
   font-family: 'Font Awesome 5 Free';
   margin-right: 0.1rem;
@@ -10718,19 +10719,19 @@ a:focus {
 }
 
 .sidebar-dark #sidebarToggle {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #01020a;
 }
 
 .sidebar-dark #sidebarToggle::after {
-  color: rgba(255, 255, 255, 0.5);
+  color: #01020a;
 }
 
 .sidebar-dark #sidebarToggle:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: #01020a;
 }
 
 .sidebar-dark.toggled #sidebarToggle::after {
-  color: rgba(255, 255, 255, 0.5);
+  color: #01020a;
 }
 
 .btn-circle {
