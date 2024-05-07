@@ -4,10 +4,12 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\SubcategoriaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
     return redirect(route('login'));
@@ -39,9 +43,12 @@ Route::middleware('auth')->group(function(){
     });
     
 
-    Route::get('/clientes', function(){
-        return view('clientes');
-    })->name('clientes')->middleware(ClienteMiddleware::class);
+    Route::middleware(ClienteMiddleware::class)->group(function(){
+        Route::controller(HomeController::class)->group(function(){
+            Route::get('/clientes', 'index')->name('clientes')->middleware(ClienteMiddleware::class);
+        });
+
+    });
 
 });
 
@@ -59,3 +66,7 @@ Route::middleware([
         }
     })->name('dashboard');
 });
+
+
+
+

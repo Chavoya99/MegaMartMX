@@ -48,30 +48,30 @@
 
             <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('producto.index')}}" style="color: black; font-size: 14px;">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/compras.png')}}" width=30 height="30">
-                    <span style="color: black;">Productos</span>
-                </a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('proveedor.index')}}" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
-                    <span style="color: black;">Proveedores</span>
-                </a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('categoria.index')}}" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/categorizacion.png')}}" width=30 height="30">
-                    <span style="color: black;">Categorías</span>
+                    <span style="color: black;">Mis compras</span>
                 </a>
             </li>
             
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
-                    <span style="color: black;">Carrito</span>
+                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
+                    <span style="color: black;">Entregas</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/etiqueta.png')}}" width=30 height="30">
+                    <span style="color: black;">Ofertas</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/ayuda.png')}}" width=30 height="30">
+                    <span style="color: black;">Ayuda</span>
                 </a>
             </li>
             
