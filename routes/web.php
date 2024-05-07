@@ -33,20 +33,20 @@ Route::middleware('auth')->group(function(){
         Route::resource('categoria', CategoriaController::class);
         Route::resource('proveedor', ProveedorController::class);
 
-        Route::get('subcategoria/create/categoria/{categoria}', 
-        [SubcategoriaController::class, 'create'])->name('subcategoria.create');
+        Route::controller(SubcategoriaController::class)->group(function(){
+            Route::get('subcategoria/create/categoria/{categoria}', 'create')->name('subcategoria.create');
 
-        Route::get('subcategoria/{subcategoria}/edit/categoria/{categoria}', 
-        [SubcategoriaController::class, 'edit'])->name('subcategoria.edit');
+            Route::get('subcategoria/{subcategoria}/edit/categoria/{categoria}', 'edit')->name('subcategoria.edit');
 
-        Route::post('subcategoria/{categoria}', 
-        [SubcategoriaController::class, 'store'])->name('subcategoria.store');
+            Route::post('subcategoria/{categoria}', 'store')->name('subcategoria.store');
 
-        Route::patch('subcategoria/{subcategoria}/{categoria}', 
-        [SubcategoriaController::class, 'update'])->name('subcategoria.update');
+            Route::patch('subcategoria/{subcategoria}/{categoria}', 'update')->name('subcategoria.update');
 
-        Route::delete('subcategoria/{subcategoria}/{categoria}', 
-        [SubcategoriaController::class, 'destroy'])->name('subcategoria.destroy');
+            Route::delete('subcategoria/{subcategoria}/{categoria}', 'destroy')->name('subcategoria.destroy');
+        });
+        
+
+        Route::get('/producto/download/{archivo}', [ProductoController::class, 'download'])->name('archivo.download');
 
         Route::delete('eliminar_proveedor_permanente/{proveedor}', 
         [ProveedorController::class, 'eliminar_proveedor_permanente'])
