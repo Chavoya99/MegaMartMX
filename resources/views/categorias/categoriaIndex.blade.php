@@ -23,7 +23,7 @@
                                     <a class="btn btn-primary mt-1" href="{{route('categoria.show', $categoria)}}"> <i class="fa fa-info-circle"></i>Detalle</a>
                                     <a class="btn btn-success mt-1" href="{{route('categoria.edit', $categoria)}}">&#x270E;Editar</a>
                                     @can('delete', Auth::user())
-                                        <form onsubmit="return confirm('Se eliminará el registro y todas sus relaciones, ¿continuar?')" action="{{route('categoria.destroy', $categoria)}}" method="POST">
+                                        <form style="display: inline;" onsubmit="return confirm('Se eliminará el registro y todas sus relaciones, ¿continuar?')" action="{{route('categoria.destroy', $categoria)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <input class="btn btn-danger mt-1" type="submit" value="x Eliminar">

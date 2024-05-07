@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Archivo;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Proveedor;
@@ -204,5 +205,10 @@ class ProductoController extends Controller
         $this->authorize('delete', Auth::user());
         $producto->delete();
         return redirect()->route('producto.index')->with('success', 'Producto eliminado con éxito');
+    }
+
+
+    public function download(Archivo $archivo){
+        return response()->download(storage_path('app/public/' . $archivo->ubicacion) , $archivo->nombre_original);
     }
 }
