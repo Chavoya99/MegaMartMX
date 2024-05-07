@@ -38,11 +38,11 @@
                 <div class="sidebar-brand-icon">
                     <i class="bi bi-cart-fill">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="width: 1.5em; height: 1.5em;">
-                            <image xlink:href="img\logo_pequeño.png" width="16" height="16" />
+                            <image xlink:href="{{asset('img\logo_pequeño.png')}}" width="16" height="16" />
                         </svg></i>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="width: 8em; height: 8em;">
-                    <image xlink:href="img\logo_letras.png" width="16" height="16" />
+                    <image xlink:href="{{asset('img\logo_letras.png')}}" width="16" height="16" />
                 </svg></i>
             </a>
 
