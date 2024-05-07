@@ -156,7 +156,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">13 de mayo, 2024</div>
+                                        <div class="small text-gray-500">13 may 2024</div>
                                         <span class="font-weight-bold">Entrega programada para el prox. lunes</span>
                                     </div>
                                 </a>
@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">10 de mayo, 2024</div>
+                                        <div class="small text-gray-500">10 may 2024</div>
                                     ¡Hemos entregado tu pedido!
                                     </div>
                                 </a>
@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">2 de mayo, 2024</div>
+                                        <div class="small text-gray-500">2 may 2024</div>
                                         Alerta de gastos: Hemos notado gastos inusualmente altos en su cuenta.
                                     </div>
                                 </a>
@@ -209,7 +209,7 @@
                                     </div>
                                     <div class="font-weight-bold">
                                         <div class="text-truncate">ya voy para su domicilio</div>
-                                        <div class="small text-gray-500">Juan Pablo</div>
+                                        <div class="small text-gray-500">Maria Jose · 5:19 pm </div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -219,9 +219,8 @@
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        <div class="text-truncate">Solamente tenemos coca sin azucar</div>
+                                        <div class="small text-gray-500">Juan Gabriel · sab</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -231,9 +230,8 @@
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        <div class="text-truncate">¿Gusta agregar algo mas a su lista de compras? </div>
+                                        <div class="small text-gray-500">Cortana Godinez · 29 abr</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -243,12 +241,11 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        <div class="text-truncate">tambien tenemos botanas para su amigo</div>
+                                        <div class="small text-gray-500">Don Raul · 15 nov 2023</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos los mensajes</a>
                             </div>
                         </li>
 
