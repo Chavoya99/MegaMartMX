@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
 use Illuminate\Support\Facades\Auth;
@@ -64,11 +65,19 @@ Route::middleware('auth')->group(function(){
         });
 
     });
+    
+    Route::get('/', function () {
+        return redirect()->route('usuario.homeIndex', ['categoria' => 'all']);
+    });
 
     Route::get('/usuario/producto/{producto}', [HomeController::class, 'show'])->name('usuario.producto.show');
-    
-
+    Route::get('/usuario/homeIndex', [HomeController::class, 'index'])->name('usuario.homeIndex');
     Route::get('/home', [HomeController::class, 'index'])->name('homeIndex');
+
+    Route::get('/carrito', [CarritoController::class, 'carrito'])->name('carrito');
+    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregarProducto'])->name('carrito.agregar');
+    Route::post('/carrito/quitar/{id}', [CarritoController::class, 'quitarProducto'])->name('carrito.quitar');
+    Route::post('carrito/vaciar', [CarritoController::class, 'vaciarCarrito'])->name('carrito.vaciar');
 
 
 });

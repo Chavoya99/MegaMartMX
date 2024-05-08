@@ -48,9 +48,16 @@
 
             <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                <a class="nav-link" href="{{ route('usuario.homeIndex', ['categoria' => 'all']) }}" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/compras.png')}}" width=30 height="30">
-                    <span style="color: black;">Mis compras</span>
+                    <span style="color: black;">Inicio</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('carrito') }}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
+                    <span style="color: black;">Carrito</span>
                 </a>
             </li>
             
@@ -61,24 +68,17 @@
                 </a>
             </li>
             
-            <li class="nav-item">
+        <!--<li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/etiqueta.png')}}" width=30 height="30">
                     <span style="color: black;">Ofertas</span>
                 </a>
-            </li>
+            </li>-->
 
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/favoritos.png')}}" width=30 height="30">
+                    <img src="{{asset('img/favorito.png')}}" width=30 height="30">
                     <span style="color: black;">Favoritos</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/reloj.png')}}" width=30 height="30">
-                    <span style="color: black;">Historial</span>
                 </a>
             </li>
             
@@ -188,7 +188,7 @@
                                     </div>
                                 </a>
                                 <!-- Fin del ejemplo -->
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Ir al carrito de compras</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('carrito') }}">Ir al carrito de compras</a>
                             </div>
                         </li>
 
@@ -366,13 +366,14 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white py-3"> <!-- Agrega clases py-3 para añadir padding en la parte superior e inferior -->
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; MegaMartMX 2024</span>
                     </div>
                 </div>
             </footer>
+            
             <!-- End of Footer -->
 
         </div>
