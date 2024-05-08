@@ -48,30 +48,51 @@
 
             <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('producto.index')}}" style="color: black; font-size: 14px;">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/compras.png')}}" width=30 height="30">
-                    <span style="color: black;">Productos</span>
-                </a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('proveedor.index')}}" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
-                    <span style="color: black;">Proveedores</span>
-                </a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('categoria.index')}}" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/categorizacion.png')}}" width=30 height="30">
-                    <span style="color: black;">Categorías</span>
+                    <span style="color: black;">Mis compras</span>
                 </a>
             </li>
             
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
-                    <span style="color: black;">Carrito</span>
+                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
+                    <span style="color: black;">Entregas</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/etiqueta.png')}}" width=30 height="30">
+                    <span style="color: black;">Ofertas</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/favoritos.png')}}" width=30 height="30">
+                    <span style="color: black;">Favoritos</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/reloj.png')}}" width=30 height="30">
+                    <span style="color: black;">Historial</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/ayuda.png')}}" width=30 height="30">
+                    <span style="color: black;">Ayuda</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/equipo.png')}}" width=30 height="30">
+                    <span style="color: black;">Quienes somos</span>
                 </a>
             </li>
             
@@ -138,6 +159,36 @@
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Carrito de compras -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart fa-fw"></i>
+                                <!-- Counter - Items en el carrito -->
+                                <span class="badge badge-primary badge-counter">3</span>
+                            </a>
+
+                            <!-- Dropdown - Carrito de compras -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="carritoDropdown">
+                                <h6 class="dropdown-header">
+                                    Carrito de compras
+                                </h6>
+                                <!-- Ejemplo de elemento en el carrito -->
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <img src="ruta/a/la/imagen.jpg" class="img-fluid rounded" alt="Producto">
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">Nombre del Producto</div>
+                                        <span class="font-weight-bold">$50.00</span>
+                                    </div>
+                                </a>
+                                <!-- Fin del ejemplo -->
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Ir al carrito de compras</a>
                             </div>
                         </li>
 
