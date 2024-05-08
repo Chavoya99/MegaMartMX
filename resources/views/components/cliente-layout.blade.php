@@ -48,7 +48,12 @@
 
             <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('usuario.homeIndex', ['categoria' => 'all']) }}" style="color: black; font-size: 14px;">
+                @if(!Auth::check())
+                    <a class="nav-link" href="{{ route('clientes_guest') }}" style="color: black; font-size: 14px;">
+                @else
+                    <a class="nav-link" href="{{ route('clientes') }}" style="color: black; font-size: 14px;">
+                @endif
+                
                     <img src="{{asset('img/compras.png')}}" width=30 height="30">
                     <span style="color: black;">Inicio</span>
                 </a>
@@ -308,44 +313,52 @@
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
+                        @if(!Auth::check())
+                            <a href="{{route('login')}}">Iniciar sesión</a>   
+                        @endif
+                             
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('img/usuario.png')}}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-
-                                <a class="dropdown-item" href="{{route('profile.show')}}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Mi perfil
+                        @if (Auth::check())
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
+                                        
+                                    <img class="img-profile rounded-circle"
+                                        src="{{asset('img/usuario.png')}}">
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-map-marker-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Direcciones
-                                </a>  
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuraciones
-                                </a>                                 
-                                <div class="dropdown-divider"></div>
-                                <form id="logout-form" method="POST" action="{{ route('logout') }}" x-data>
-                                    @csrf
-                                    <a class="dropdown-item" href="{{route('logout')}}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Cerrar sesion
-                                    </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
 
-                                </form>
-                                
-                            </div>
-                        </li>
+                                    <a class="dropdown-item" href="{{route('profile.show')}}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Mi perfil
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-map-marker-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Direcciones
+                                    </a>  
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Configuraciones
+                                    </a>                                 
+                                    <div class="dropdown-divider"></div>
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}" x-data>
+                                        @csrf
+                                        <a class="dropdown-item" href="{{route('logout')}}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Cerrar sesion
+                                        </a>
+
+                                    </form>
+                                    
+                                </div>
+                            </li>
+                        @endif
+                        
 
                     </ul>
 
