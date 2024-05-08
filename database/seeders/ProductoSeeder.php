@@ -17,10 +17,10 @@ class ProductoSeeder extends Seeder
     public function run(): void
     {
         $productos = [
-            ['Sabritas Naturales 160g', 3, 7, 100, '100000', 5, 2],
-            ['Refresco Retornable Coca-Cola Original 3L', 1, 2, 100, '100001', 5, 3],
-            ['Atun Dolores Agua', 3, 11, 100, '100002', 5, 1],
-            ['Ruffles Queso 185g', 3, 7, 100, '100003', 5, 2]
+            ['Sabritas Naturales 160g', 3, 7, 40, '100000', 100, 2],
+            ['Refresco Retornable Coca-Cola Original 3L', 1, 2, 41, '100001', 100, 3],
+            ['Atun Dolores Agua', 3, 11, 20, '100002', 100, 1],
+            ['Ruffles Queso 185g', 3, 7, 38, '100003', 100, 2]
         ];
 
         foreach($productos as $producto){

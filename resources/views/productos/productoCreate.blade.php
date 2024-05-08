@@ -19,7 +19,7 @@
         
         <br>
         <label for="codigoBarras">Código de barras</label>
-        <input class="form-control" name="codigoBarras" type="text" value="{{old('codigoBarras')}}" placeholder="Código de barras (mínimo 6 dígitos)" required>
+        <input class="form-control" name="codigoBarras" type="text" value="{{old('codigoBarras')}}" placeholder="Código de barras (mínimo 6 dígitos)" pattern="[0-9]{6,13}" required>
         @error('codigoBarras')
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
