@@ -67,13 +67,13 @@
                     <span style="color: black;">Categorías</span>
                 </a>
             </li>
-            
+            <!--
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
                     <span style="color: black;">Carrito</span>
                 </a>
-            </li>
+            </li>-->
             
 
             <!-- Divider -->

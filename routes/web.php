@@ -65,6 +65,12 @@ Route::middleware('auth')->group(function(){
 
     });
 
+    Route::get('/usuario/producto/{producto}', [HomeController::class, 'show'])->name('usuario.producto.show');
+    
+
+    Route::get('/home', [HomeController::class, 'index'])->name('homeIndex');
+
+
 });
 
 
