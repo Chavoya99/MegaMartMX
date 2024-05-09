@@ -31,6 +31,7 @@ class CompraController extends Controller
 
     public function index_admin()
     {   
+        $this->authorize('view', Auth::user());
         $compras = Compra::with('user')->get();
         return view('admin.ver_ventas', compact('compras'));
     }
