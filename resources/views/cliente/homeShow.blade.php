@@ -5,9 +5,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <a class="btn btn-primary" href="{{ route('cliente.homeIndex)}}"> &#129044; Regresar</a>
+                            <a class="btn btn-primary" href="{{ route('cliente.homeIndex') }}"> &#129044; Regresar</a>
                         </div>
-                        
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -25,12 +24,10 @@
                                     <li class="list-group-item"><strong>Precio:</strong> ${{ number_format($producto->precio, 2) }}</li>
                                     <li class="list-group-item">
                                         <strong>Descripción:</strong>
-                                        
-                                            <text class="text-success"> Envío gratis <i class="fas fa-bolt"></i></text> 
-                                            Para toda la república mexicana a partir de $150 en tu carrito o $50 en envío. 
-                                            Envío al día siguiente a la puerta de tu casa. 
-                                            Solo pago en efectivo. 
-                                        
+                                        <span class="text-success"> Envío gratis <i class="fas fa-bolt"></i></span> 
+                                        Para toda la república mexicana a partir de $150 en tu carrito o $50 en envío. 
+                                        Envío al día siguiente a la puerta de tu casa. 
+                                        Solo pago en efectivo. 
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center" style="border-top: 1px solid #dee2e6;">
                                         <span style="flex-grow: 1;">Disponibilidad: {{ $producto->existencia }}</span>
@@ -54,3 +51,4 @@
         </div>
     </div>
 </x-cliente-layout>
+
