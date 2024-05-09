@@ -48,37 +48,42 @@
 
             <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                @if(!Auth::check())
+                    <a class="nav-link" href="{{ route('clientes_guest') }}" style="color: black; font-size: 14px;">
+                @else
+                    <a class="nav-link" href="{{ route('cliente.homeIndex') }}" style="color: black; font-size: 14px;">
+                @endif
+                
                     <img src="{{asset('img/compras.png')}}" width=30 height="30">
+                    <span style="color: black;">Inicio</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('carrito') }}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
+                    <span style="color: black;">Carrito</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('cliente.mis_compras')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
                     <span style="color: black;">Mis compras</span>
                 </a>
             </li>
             
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
-                    <span style="color: black;">Entregas</span>
-                </a>
-            </li>
-            
-            <li class="nav-item">
+        <!--<li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/etiqueta.png')}}" width=30 height="30">
                     <span style="color: black;">Ofertas</span>
                 </a>
-            </li>
+            </li>-->
 
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/favoritos.png')}}" width=30 height="30">
+                    <img src="{{asset('img/favorito.png')}}" width=30 height="30">
                     <span style="color: black;">Favoritos</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/reloj.png')}}" width=30 height="30">
-                    <span style="color: black;">Historial</span>
                 </a>
             </li>
             
@@ -164,11 +169,24 @@
 
                         <!-- Nav Item - Carrito de compras -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="{{route('carrito')}}" id="carritoDropdown" role="button"
+                             aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-shopping-cart fa-fw"></i>
                                 <!-- Counter - Items en el carrito -->
-                                <span class="badge badge-primary badge-counter">3</span>
+                                <span class="badge badge-primary badge-counter">
+                                    @if(session('carrito'))
+                                        @php
+                                            $cantidad = 0;
+                                            foreach(session('carrito') as $item){
+                                                $cantidad += $item['cantidad'];
+                                            }
+                                        @endphp
+                                        {{$cantidad}}
+                                        
+                                    @else
+                                        0
+                                    @endif
+                                </span>
                             </a>
 
                             <!-- Dropdown - Carrito de compras -->
@@ -188,7 +206,7 @@
                                     </div>
                                 </a>
                                 <!-- Fin del ejemplo -->
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Ir al carrito de compras</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('carrito') }}">Ir al carrito de compras</a>
                             </div>
                         </li>
 
@@ -308,44 +326,52 @@
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
+                        @if(!Auth::check())
+                            <a href="{{route('login')}}">Iniciar sesión</a>   
+                        @endif
+                             
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('img/usuario.png')}}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-
-                                <a class="dropdown-item" href="{{route('profile.show')}}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Mi perfil
+                        @if (Auth::check())
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
+                                        
+                                    <img class="img-profile rounded-circle"
+                                        src="{{asset('img/usuario.png')}}">
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-map-marker-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Direcciones
-                                </a>  
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuraciones
-                                </a>                                 
-                                <div class="dropdown-divider"></div>
-                                <form id="logout-form" method="POST" action="{{ route('logout') }}" x-data>
-                                    @csrf
-                                    <a class="dropdown-item" href="{{route('logout')}}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Cerrar sesion
-                                    </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
 
-                                </form>
-                                
-                            </div>
-                        </li>
+                                    <a class="dropdown-item" href="{{route('profile.show')}}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Mi perfil
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-map-marker-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Direcciones
+                                    </a>  
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Configuraciones
+                                    </a>                                 
+                                    <div class="dropdown-divider"></div>
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}" x-data>
+                                        @csrf
+                                        <a class="dropdown-item" href="{{route('logout')}}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Cerrar sesion
+                                        </a>
+
+                                    </form>
+                                    
+                                </div>
+                            </li>
+                        @endif
+                        
 
                     </ul>
 
@@ -366,13 +392,14 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white py-3"> <!-- Agrega clases py-3 para añadir padding en la parte superior e inferior -->
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; MegaMartMX 2024</span>
                     </div>
                 </div>
             </footer>
+            
             <!-- End of Footer -->
 
         </div>

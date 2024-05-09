@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
                 if(Auth::user()->tipo_usuario == "admin" || Auth::user()->tipo_usuario == "superAdmin"){
                     return redirect(route('producto.index'));
                 }else{
-                    return redirect(route('clientes'));
+                    return redirect(route('cliente.homeIndex'));
                 }
                 
             }

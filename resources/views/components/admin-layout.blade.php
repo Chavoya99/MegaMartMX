@@ -67,6 +67,15 @@
                     <span style="color: black;">Categorías</span>
                 </a>
             </li>
+            @can('view', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.ver_ventas')}}" style="color: black; font-size: 14px;">
+                        <img src="{{asset('img/venta-icon.svg')}}" width=30 height="30">
+                        <span style="color: black;">Ventas</span>
+                    </a>
+                </li>
+            @endcan
+            
             <!--
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
