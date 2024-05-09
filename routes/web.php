@@ -23,10 +23,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('/home_invitado', [HomeController::class, 'index'])->name('clientes_guest')->middleware('guest');
 
 Route::get('/', function () {
-    return redirect(route('login'));
+
+    return redirect(route('clientes_guest'));
 });
 
 
@@ -61,23 +64,20 @@ Route::middleware('auth')->group(function(){
 
     Route::middleware(ClienteMiddleware::class)->group(function(){
         Route::controller(HomeController::class)->group(function(){
-            Route::get('/clientes', 'index')->name('clientes')->middleware(ClienteMiddleware::class);
+            Route::get('/home', 'index')->name('clientes')->middleware(ClienteMiddleware::class);
         });
+    
+        Route::get('/usuario/producto/{producto}', [HomeController::class, 'show'])->name('usuario.producto.show');
+        Route::get('/usuario/homeIndex', [HomeController::class, 'index'])->name('usuario.homeIndex');
+        
 
+        Route::get('/carrito', [CarritoController::class, 'carrito'])->name('carrito');
+        Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregarProducto'])->name('carrito.agregar');
+        Route::post('/carrito/quitar/{id}', [CarritoController::class, 'quitarProducto'])->name('carrito.quitar');
+        Route::post('carrito/vaciar', [CarritoController::class, 'vaciarCarrito'])->name('carrito.vaciar');
     });
     
-    Route::get('/', function () {
-        return redirect()->route('usuario.homeIndex', ['categoria' => 'all']);
-    });
-
-    Route::get('/usuario/producto/{producto}', [HomeController::class, 'show'])->name('usuario.producto.show');
-    Route::get('/usuario/homeIndex', [HomeController::class, 'index'])->name('usuario.homeIndex');
-    Route::get('/home', [HomeController::class, 'index'])->name('homeIndex');
-
-    Route::get('/carrito', [CarritoController::class, 'carrito'])->name('carrito');
-    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregarProducto'])->name('carrito.agregar');
-    Route::post('/carrito/quitar/{id}', [CarritoController::class, 'quitarProducto'])->name('carrito.quitar');
-    Route::post('carrito/vaciar', [CarritoController::class, 'vaciarCarrito'])->name('carrito.vaciar');
+    
 
 
 });

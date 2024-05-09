@@ -17,7 +17,7 @@ class AdminTest extends TestCase
      * A basic feature test example.
      */
 
-    public function test_login_como_admin(): void
+    public function test_listado_productos(): void
     {   
         $response = $this->get('/producto');
         $response->assertRedirect('/login');

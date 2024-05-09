@@ -42,7 +42,7 @@ class AdminPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user): bool
+    public function delete(User $user)
     {
         return $user->tipo_usuario == "superAdmin";
     }
