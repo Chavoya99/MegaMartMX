@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function(){
 
         Route::get('/producto/download/{archivo}', [ProductoController::class, 'download'])->name('archivo.download');
 
+        Route::get('/ver_ventas', [CompraController::class, 'index_admin'])->name('admin.ver_ventas');
+        Route::get('/detalle_compra/{compra}', [CompraController::class, 'show_admin'])->name('admin.detalle_compra');
+
         Route::delete('eliminar_proveedor_permanente/{proveedor}', 
         [ProveedorController::class, 'eliminar_proveedor_permanente'])
         ->name('borrar_proveedor');
@@ -71,7 +74,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/cliente/producto/{producto}', [HomeController::class, 'show'])->name('cliente.producto.show');
         
         
-        Route::get('/cliente/mis_compras', [CompraController::class, 'index'])->name('cliente.mis_compras');
+        Route::get('/cliente/mis_compras', [CompraController::class, 'index_cliente'])->name('cliente.mis_compras');
+        Route::get('/cliente/detalle_compra/{compra}', [CompraController::class, 'show_cliente'])->name('cliente.detalle_compra');
 
         Route::controller(CarritoController::class)->group(function(){
             Route::get('/carrito', 'carrito')->name('carrito');

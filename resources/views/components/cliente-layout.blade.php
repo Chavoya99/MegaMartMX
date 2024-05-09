@@ -67,9 +67,9 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                <a class="nav-link" href="{{route('cliente.mis_compras')}}" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/caja.png')}}" width=30 height="30">
-                    <span style="color: black;">Entregas</span>
+                    <span style="color: black;">Mis compras</span>
                 </a>
             </li>
             
