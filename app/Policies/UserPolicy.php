@@ -28,9 +28,10 @@ class UserPolicy
         return $user->tipo_usuario == "superAdmin";
     }
 
-    public function view(User $user): bool
+    public function view(User $user)
     {
-        return $user->tipo_usuario == "superAdmin";
+        return $user->tipo_usuario == "superAdmin" ? Response::allow()
+        : Response::denyWithStatus(404);;
     }
 
     public function ver_compra_cliente(User $user, Compra $compra){
@@ -41,7 +42,8 @@ class UserPolicy
             return true;
         }
 
-        return false;
+        return false ? Response::allow()
+        : Response::denyWithStatus(404);
         
     }
 }
