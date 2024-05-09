@@ -71,10 +71,14 @@ Route::middleware('auth')->group(function(){
         Route::get('/usuario/homeIndex', [HomeController::class, 'index'])->name('usuario.homeIndex');
         
 
-        Route::get('/carrito', [CarritoController::class, 'carrito'])->name('carrito');
-        Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregarProducto'])->name('carrito.agregar');
-        Route::post('/carrito/quitar/{id}', [CarritoController::class, 'quitarProducto'])->name('carrito.quitar');
-        Route::post('carrito/vaciar', [CarritoController::class, 'vaciarCarrito'])->name('carrito.vaciar');
+        Route::controller(CarritoController::class)->group(function(){
+            Route::get('/carrito', 'carrito')->name('carrito');
+            Route::post('/carrito/agregar/{id}', 'agregarProducto')->name('carrito.agregar');
+            Route::post('/carrito/quitar/{id}', 'quitarProducto')->name('carrito.quitar');
+            Route::post('/carrito/vaciar', 'vaciarCarrito')->name('carrito.vaciar');
+            Route::post('/carrito/comprar', 'confirmarCarrito')->name('carrito.confirmar');
+        });
+        
     });
     
     

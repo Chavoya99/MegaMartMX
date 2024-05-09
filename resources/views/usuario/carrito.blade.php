@@ -1,10 +1,4 @@
 <x-cliente-layout titulo="Carrito de Compras">
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
     <div class="d-flex justify-content-between align-items-center">
         <a class="btn btn-primary" href="{{ URL::previous() }}"> &#129044; Regresar</a>
     </div>
@@ -48,7 +42,9 @@
                         <div class="row justify-content-center align-items-center">
                             <div class="col-md-8 text-center">
                                 <img src="{{ asset('img/no-hay-ventas.png') }}" alt="No hay ventas" style="max-width: 200px;">
-                                <p class="mt-3">Aun hay productos en tu carrito.</p>
+                                <p class="mt-3">Aún no hay productos en tu carrito.
+                                    <a href="{{route('clientes')}}">¡Comienza a comprar!</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -81,7 +77,15 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-warning text-dark"><i class="fas fa-dollar-sign"></i> Proceder a la compra</button>
+                        @if (session('carrito') && count(session('carrito')) > 0)
+                            <form action="{{ route('carrito.confirmar') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-warning text-dark"><i class="fas fa-dollar-sign"></i> Proceder a la compra</button>
+                            </form>
+                        @else
+                            <button type="submit" class="btn btn-warning text-dark" disabled><i class="fas fa-dollar-sign"></i> Proceder a la compra</button>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

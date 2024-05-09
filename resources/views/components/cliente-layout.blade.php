@@ -169,11 +169,24 @@
 
                         <!-- Nav Item - Carrito de compras -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="{{route('carrito')}}" id="carritoDropdown" role="button"
+                             aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-shopping-cart fa-fw"></i>
                                 <!-- Counter - Items en el carrito -->
-                                <span class="badge badge-primary badge-counter">3</span>
+                                <span class="badge badge-primary badge-counter">
+                                    @if(session('carrito'))
+                                        @php
+                                            $cantidad = 0;
+                                            foreach(session('carrito') as $item){
+                                                $cantidad += $item['cantidad'];
+                                            }
+                                        @endphp
+                                        {{$cantidad}}
+                                        
+                                    @else
+                                        0
+                                    @endif
+                                </span>
                             </a>
 
                             <!-- Dropdown - Carrito de compras -->

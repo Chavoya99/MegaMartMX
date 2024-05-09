@@ -66,5 +66,14 @@ class CarritoController extends Controller
         session()->forget('carrito');
         return redirect()->route('carrito')->with('success', 'El carrito se ha vaciado correctamente');
     }
-    
-}
+
+    public function confirmarCarrito(){
+
+        $carrito = session()->get('carrito');
+        return view('usuario.confirmarCarrito', compact('carrito'));
+    }
+
+    public function confirmarCompraCarrito(){
+        dd(session('carrito'));
+    }
+}   
