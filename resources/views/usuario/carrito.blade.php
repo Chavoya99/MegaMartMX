@@ -10,6 +10,9 @@
     </div>
     
     <br><br>
+    @if (session('success'))
+        <x-success-message type="success" :mensaje="session('success')"/>
+    @endif
     <body>
         <div class="container">
             <div class="row">

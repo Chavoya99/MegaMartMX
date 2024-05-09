@@ -1,8 +1,14 @@
+
 <x-guest-layout>
+    
     <x-authentication-card>
+        @if (isset($_GET["false"]))
+            <x-success-message type="login"/>
+        @endif
         <x-slot name="logo">
             <img src="img/logo_completo.png" alt="MegaMartMX" style="max-width: 157px; max-height: 170px;">
         </x-slot>
+        
 
         <x-validation-errors class="mb-4" />
 
