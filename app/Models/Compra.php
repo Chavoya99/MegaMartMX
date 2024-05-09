@@ -12,7 +12,7 @@ class Compra extends Model
     public $timestamps = false;
 
     protected $casts = ['fecha' => 'datetime:d-m-Y H:i:s'],
-    $fillable = ['user_id','total','fecha'];
+    $fillable = ['user_id', 'subtotal', 'envio','total','fecha'];
 
 
     public function user(){

@@ -6,6 +6,8 @@
                 <hr>
                 @php
                     $subtotal = 0;
+                    $total = 0;
+                    $envio = 50;
                     $totalProductos = 0; // Variable para contar el total de productos
                     if(session('carrito')) {
                         foreach(session('carrito') as $id => $item) {
@@ -13,9 +15,10 @@
                             $totalProductos += $item['cantidad']; // Suma la cantidad de cada producto
                         }
                         if ($subtotal < 150) {
-                            $total = $subtotal + 50; // Suma $50 si el subtotal es menor a $150
+                            $total = $subtotal + $envio; // Suma $50 si el subtotal es menor a $150
                         }else{
                             $total = $subtotal;
+                            $envio = 0;
                         }
                         
                     }
@@ -30,7 +33,7 @@
             </div>
         </div>
         <br>
-        <form action="{{route('carrito.comprar', [$subtotal,$total])}}" method="POST">
+        <form action="{{route('carrito.comprar', [$subtotal,$total,$envio])}}" method="POST">
             @csrf
             <button type="submit" class="btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 

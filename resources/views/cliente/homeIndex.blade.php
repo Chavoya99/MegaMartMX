@@ -16,6 +16,7 @@
                 </form>
             </div>
         </div>
+
         <div class="row">
             @if(count($productos) > 0)
                 @foreach ($productos as $producto)

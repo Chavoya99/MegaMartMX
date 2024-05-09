@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function(){
             Route::post('/carrito/quitar/{id}', 'quitarProducto')->name('carrito.quitar');
             Route::post('/carrito/vaciar', 'vaciarCarrito')->name('carrito.vaciar');
             Route::get('/carrito/confirmar', 'confirmarCarrito')->name('carrito.confirmar');
-            Route::post('/carrito/comprar/{subtotal}/{total}', 'confirmarCompraCarrito')->name('carrito.comprar');
+            Route::post('/carrito/comprar/{subtotal}/{total}/{envio}', 'confirmarCompraCarrito')->name('carrito.comprar');
         });
         
     });

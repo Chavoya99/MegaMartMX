@@ -72,16 +72,20 @@ class CarritoController extends Controller
 
     public function confirmarCarrito(){
 
+        $this->authorize('ver_carrito', Auth::user());
         $carrito = session()->get('carrito');
 
         return view('cliente.confirmarCarrito', compact('carrito'));
     }
 
-    public function confirmarCompraCarrito($subtotal, $total,){
+    public function confirmarCompraCarrito($subtotal, $total, $envio){
+        $this->authorize('ver_carrito' , Auth::user());
         $carrito = session()->get('carrito');
         $compra = Compra::Create([
             'user_id' => Auth::id(),
+            'envio' => $envio,
             'total' => $total,
+            'subtotal' => $subtotal,
             'fecha' => date('Y-m-d H:i:s'),
         ]);
 
@@ -91,6 +95,7 @@ class CarritoController extends Controller
             $cantidad = $item['cantidad'];
             $precio_unitario = $item['producto']->precio;
             $subtotal = $item['cantidad'] * $precio_unitario;
+            
 
             $compra->productos()->attach($producto_id, [
                 'nombre_producto' => $nombre_producto, 
@@ -98,7 +103,7 @@ class CarritoController extends Controller
                 'precio_unitario' => $precio_unitario, 
                 'subtotal' => $subtotal]);
         }
-
-        return redirect()->route('cliente.mis_compras');
+        session()->forget('carrito');
+        return redirect()->route('cliente.mis_compras')->with('success', 'Compra realizada con éxito');
     }
 }   

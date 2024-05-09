@@ -18,13 +18,13 @@ class HomeController extends Controller
         
         $categorias = Categoria::all();
 
-        return view('usuario.homeIndex', compact('productos', 'categorias'))->with('categoriaSeleccionada', $request->categoria ?? 'all');
+        return view('cliente.homeIndex', compact('productos', 'categorias'))->with('categoriaSeleccionada', $request->categoria ?? 'all');
     }
 
 
     public function show(Producto $producto)
     {
-        return view('usuario.homeShow', compact('producto'));
+        return view('cliente.homeShow', compact('producto'));
     }
 
     public function create()
