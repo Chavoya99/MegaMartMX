@@ -90,6 +90,7 @@ class CarritoController extends Controller
         ]);
 
         foreach($carrito as $item){
+            
             $producto_id = $item['producto']->id;
             $nombre_producto = $item['producto']->nombre;
             $cantidad = $item['cantidad'];
@@ -102,6 +103,10 @@ class CarritoController extends Controller
                 'cantidad' => $cantidad, 
                 'precio_unitario' => $precio_unitario, 
                 'subtotal' => $subtotal]);
+
+            //Actualizar existencia luego de hacer la compra
+            $producto = Producto::find($producto_id);
+            $producto->update(['existencia' => $producto->existencia - $cantidad]);
         }
         session()->forget('carrito');
         return redirect()->route('cliente.mis_compras')->with('success', 'Compra realizada con éxito');
