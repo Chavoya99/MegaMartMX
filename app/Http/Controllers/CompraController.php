@@ -33,7 +33,7 @@ class CompraController extends Controller
     {   
         $this->authorize('view', Auth::user());
         $compras = Compra::with('user')->get();
-        return view('admin.ver_ventas', compact('compras'));
+        return view('admin.verVentas', compact('compras'));
     }
 
     /**
@@ -44,7 +44,7 @@ class CompraController extends Controller
         
         $this->authorize('ver_compra_cliente', $compra);
         $productos = $compra->productos;
-        return view('admin.ver_detalle_venta', compact('productos', 'compra'));
+        return view('admin.verDetalleVenta', compact('productos', 'compra'));
     }
 
     /**

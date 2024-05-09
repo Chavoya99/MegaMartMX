@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DetallesCompra;
 use App\Models\Carrito;
 use App\Models\Compra;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use DateTime;
 use GuzzleHttp\Promise\Create;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -78,8 +80,9 @@ class CarritoController extends Controller
         return view('cliente.confirmarCarrito', compact('carrito'));
     }
 
-    public function confirmarCompraCarrito($subtotal, $total, $envio){
+    public function confirmarCompraCarrito(Request $request, $subtotal, $total, $envio){
         $this->authorize('ver_carrito' , Auth::user());
+
         $carrito = session()->get('carrito');
         $compra = Compra::Create([
             'user_id' => Auth::id(),
@@ -109,6 +112,11 @@ class CarritoController extends Controller
             $producto->update(['existencia' => $producto->existencia - $cantidad]);
         }
         session()->forget('carrito');
+        
+        if($request->has('confirmarEnvioCorreo')){
+            Mail::to(Auth::user()->email)->send(new DetallesCompra($compra));
+        }
+        
         return redirect()->route('cliente.mis_compras')->with('success', 'Compra realizada con éxito');
     }
 }   
