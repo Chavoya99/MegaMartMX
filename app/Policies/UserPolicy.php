@@ -2,8 +2,10 @@
 
 namespace App\Policies;
 
+use App\Models\Compra;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -29,5 +31,17 @@ class UserPolicy
     public function view(User $user): bool
     {
         return $user->tipo_usuario == "superAdmin";
+    }
+
+    public function ver_compra_cliente(User $user, Compra $compra){
+        if($user->tipo_usuario == "cliente"){
+            return $user->id == $compra->user_id ? Response::allow()
+            : Response::denyWithStatus(404);
+        }else if($user->tipo_usuario == 'superAdmin'){
+            return true;
+        }
+
+        return false;
+        
     }
 }
