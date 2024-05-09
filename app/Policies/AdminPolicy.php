@@ -20,7 +20,7 @@ class AdminPolicy
      */
     public function view(User $user): bool
     {
-        //
+        return $user->tipo_usuario == "superAdmin";
     }
 
     /**

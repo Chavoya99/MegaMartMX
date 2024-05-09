@@ -17,6 +17,6 @@ class Compra extends Model
     }
 
     public function productos(){
-        return $this->belongsToMany(Producto::class)->withPivot('cantidad', 'subtotal');
+        return $this->belongsToMany(Producto::class)->withPivot('nombre_producto', 'cantidad', 'subtotal');
     }
 }
