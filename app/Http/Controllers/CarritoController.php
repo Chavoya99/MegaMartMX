@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrito;
+use App\Models\Compra;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use DateTime;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,7 +17,7 @@ class CarritoController extends Controller
 
     public function carrito()
     {
-        return view('usuario.carrito');
+        return view('cliente.carrito');
     }
 
     public function agregarProducto(Request $request, $id)
@@ -70,10 +73,32 @@ class CarritoController extends Controller
     public function confirmarCarrito(){
 
         $carrito = session()->get('carrito');
-        return view('usuario.confirmarCarrito', compact('carrito'));
+
+        return view('cliente.confirmarCarrito', compact('carrito'));
     }
 
-    public function confirmarCompraCarrito(){
-        dd(session('carrito'));
+    public function confirmarCompraCarrito($subtotal, $total,){
+        $carrito = session()->get('carrito');
+        $compra = Compra::Create([
+            'user_id' => Auth::id(),
+            'total' => $total,
+            'fecha' => date('Y-m-d H:i:s'),
+        ]);
+
+        foreach($carrito as $item){
+            $producto_id = $item['producto']->id;
+            $nombre_producto = $item['producto']->nombre;
+            $cantidad = $item['cantidad'];
+            $precio_unitario = $item['producto']->precio;
+            $subtotal = $item['cantidad'] * $precio_unitario;
+
+            $compra->productos()->attach($producto_id, [
+                'nombre_producto' => $nombre_producto, 
+                'cantidad' => $cantidad, 
+                'precio_unitario' => $precio_unitario, 
+                'subtotal' => $subtotal]);
+        }
+
+        return redirect()->route('cliente.mis_compras');
     }
 }   

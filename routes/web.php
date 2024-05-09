@@ -6,6 +6,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CompraController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
 use Illuminate\Support\Facades\Auth;
@@ -64,19 +65,21 @@ Route::middleware('auth')->group(function(){
 
     Route::middleware(ClienteMiddleware::class)->group(function(){
         Route::controller(HomeController::class)->group(function(){
-            Route::get('/home', 'index')->name('clientes')->middleware(ClienteMiddleware::class);
+            Route::get('/cliente/homeIndex', 'index')->name('cliente.homeIndex');
         });
     
-        Route::get('/usuario/producto/{producto}', [HomeController::class, 'show'])->name('usuario.producto.show');
-        Route::get('/usuario/homeIndex', [HomeController::class, 'index'])->name('usuario.homeIndex');
+        Route::get('/cliente/producto/{producto}', [HomeController::class, 'show'])->name('cliente.producto.show');
         
+        
+        Route::get('/cliente/mis_compras', [CompraController::class, 'index'])->name('cliente.mis_compras');
 
         Route::controller(CarritoController::class)->group(function(){
             Route::get('/carrito', 'carrito')->name('carrito');
             Route::post('/carrito/agregar/{id}', 'agregarProducto')->name('carrito.agregar');
             Route::post('/carrito/quitar/{id}', 'quitarProducto')->name('carrito.quitar');
             Route::post('/carrito/vaciar', 'vaciarCarrito')->name('carrito.vaciar');
-            Route::post('/carrito/comprar', 'confirmarCarrito')->name('carrito.confirmar');
+            Route::get('/carrito/confirmar', 'confirmarCarrito')->name('carrito.confirmar');
+            Route::post('/carrito/comprar/{subtotal}/{total}', 'confirmarCompraCarrito')->name('carrito.comprar');
         });
         
     });
@@ -96,7 +99,7 @@ Route::middleware([
         if(Auth::user()->tipo_usuario == "superAdmin" || Auth::user()->tipo_usuario == "admin"){
             return redirect(route('producto.index'));
         }else if(Auth::user()->tipo_usuario == "cliente"){
-            return redirect(route('clientes'));
+            return redirect(route('cliente.homeIndex'));
         }
     })->name('dashboard');
 });

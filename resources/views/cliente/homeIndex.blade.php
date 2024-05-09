@@ -3,7 +3,7 @@
         <!-- Filtro por Categorías -->
         <div class="row mb-2">
             <div class="col-md-12">
-                <form action="{{ route('usuario.homeIndex') }}" method="GET" id="filtroForm">
+                <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
                     <div class="form-group">
                         <label for="categoria" class="sr-only">Categoría:</label>
                         <select name="categoria" id="categoria" class="form-control form-control-sm" onchange="submitForm()" style="font-size: 16px; width: 240px;">
@@ -21,12 +21,12 @@
                 @foreach ($productos as $producto)
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a  href="{{ route('usuario.producto.show', $producto) }}">
+                            <a  href="{{ route('cliente.producto.show', $producto) }}">
                                 <img class="card-img-top" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a  href="{{ route('usuario.producto.show', $producto) }}">{{ $producto->nombre }}</a>
+                                    <a  href="{{ route('cliente.producto.show', $producto) }}">{{ $producto->nombre }}</a>
                                 </h4>
                                 <h5>${{ $producto->precio }}</h5>
                                 <p class="card-text">{{ $producto->descripcion }}</p>
@@ -40,7 +40,7 @@
                                         @csrf
                                         <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Agregar</button>
                                     </form>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('usuario.producto.show', $producto) }}"> <i class="fa fa-info-circle"></i> Detalles</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('cliente.producto.show', $producto) }}"> <i class="fa fa-info-circle"></i> Detalles</a>
                                 </div>
                             </div>
                         </div>

@@ -51,7 +51,7 @@
                 @if(!Auth::check())
                     <a class="nav-link" href="{{ route('clientes_guest') }}" style="color: black; font-size: 14px;">
                 @else
-                    <a class="nav-link" href="{{ route('clientes') }}" style="color: black; font-size: 14px;">
+                    <a class="nav-link" href="{{ route('cliente.homeIndex') }}" style="color: black; font-size: 14px;">
                 @endif
                 
                     <img src="{{asset('img/compras.png')}}" width=30 height="30">

@@ -9,14 +9,18 @@ use Carbon\Carbon;
 class Compra extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
-    protected $casts = ['fecha' => 'datetime:d-m-Y H:i:s'];
+    protected $casts = ['fecha' => 'datetime:d-m-Y H:i:s'],
+    $fillable = ['user_id','total','fecha'];
+
 
     public function user(){
         return $this->belongsTo(User::class);
     }
 
     public function productos(){
-        return $this->belongsToMany(Producto::class)->withPivot('nombre_producto', 'cantidad', 'subtotal');
+        return $this->belongsToMany(Producto::class)
+        ->withPivot('nombre_producto', 'cantidad', 'precio_unitario', 'subtotal');
     }
 }

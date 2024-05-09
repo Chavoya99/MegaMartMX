@@ -1,6 +1,6 @@
 <x-cliente-layout titulo="Carrito de Compras">
     <div class="d-flex justify-content-between align-items-center">
-        <a class="btn btn-primary" href="{{ URL::previous() }}"> &#129044; Regresar</a>
+        <a class="btn btn-primary" href="{{route('cliente.homeIndex')}}"> &#129044; Regresar</a>
     </div>
     
     <br><br>
@@ -43,7 +43,7 @@
                             <div class="col-md-8 text-center">
                                 <img src="{{ asset('img/no-hay-ventas.png') }}" alt="No hay ventas" style="max-width: 200px;">
                                 <p class="mt-3">Aún no hay productos en tu carrito.
-                                    <a href="{{route('clientes')}}">¡Comienza a comprar!</a>
+                                    <a href="{{route('cliente.homeIndex')}}">¡Comienza a comprar!</a>
                                 </p>
                             </div>
                         </div>
@@ -57,6 +57,7 @@
                             <hr>
                             @php
                                 $subtotal = 0;
+                                $total = 0;
                                 $totalProductos = 0; // Variable para contar el total de productos
                                 if(session('carrito')) {
                                     foreach(session('carrito') as $id => $item) {
@@ -64,7 +65,9 @@
                                         $totalProductos += $item['cantidad']; // Suma la cantidad de cada producto
                                     }
                                     if ($subtotal < 150) {
-                                        $subtotal += 50; // Suma $50 si el subtotal es menor a $150
+                                        $total = $subtotal + 50; // Suma $50 si el subtotal es menor a $150
+                                    }else{
+                                        $total = $subtotal;
                                     }
                                 }
                             @endphp
@@ -74,16 +77,16 @@
                                 <p style="color: grey;">Envío: $50</p>
                             @endif
                             <p>Subtotal ({{ $totalProductos }} productos): <br><strong style="font-size: 30px;">${{ number_format($subtotal, 2) }}</strong></p>
+                            <p>Total: <br><strong style="font-size: 30px;">${{ number_format($total, 2) }}</strong></p>
                         </div>
                     </div>
                     <div class="text-center mt-3">
                         @if (session('carrito') && count(session('carrito')) > 0)
-                            <form action="{{ route('carrito.confirmar') }}" method="POST" style="display: inline;">
-                                @csrf
+                            <a href="{{ route('carrito.confirmar') }}" >
                                 <button type="submit" class="btn btn-warning text-dark"><i class="fas fa-dollar-sign"></i> Proceder a la compra</button>
-                            </form>
+                            </a>
                         @else
-                            <button type="submit" class="btn btn-warning text-dark" disabled><i class="fas fa-dollar-sign"></i> Proceder a la compra</button>
+                            <button class="btn btn-warning text-dark" disabled><i class="fas fa-dollar-sign"></i> Proceder a la compra</button>
                         @endif
                         
                     </div>

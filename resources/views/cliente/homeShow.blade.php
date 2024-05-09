@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <a class="btn btn-primary" href="{{ URL::previous() }}"> &#129044; Regresar</a>
+                            <a class="btn btn-primary" href="{{ route('cliente.homeIndex)}}"> &#129044; Regresar</a>
                         </div>
                         
                     </div>
