@@ -1,4 +1,5 @@
-<x-cliente-layout titulo="Bienvenido">
+<x-cliente-layout titulo="Comprar productos">
+    <h1>Bienvenido @if (Auth::check()) {{Auth::user()->name}} @endif</h1>
     <div class="container-fluid">
         <!-- Filtro por Categorías -->
         <div class="row mb-2">
