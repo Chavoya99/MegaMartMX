@@ -20,7 +20,8 @@ class ProductoSeeder extends Seeder
             ['Sabritas Naturales 160g', 3, 7, 40, '100000', 100, 2],
             ['Refresco Retornable Coca-Cola Original 3L', 1, 2, 41, '100001', 100, 3],
             ['Atun Dolores Agua', 3, 11, 20, '100002', 100, 1],
-            ['Ruffles Queso 185g', 3, 7, 38, '100003', 100, 2]
+            ['Ruffles Queso 185g', 3, 7, 38, '100003', 100, 2],
+            ['Fabuloso Fresca Lavanda 2L', 6, 1, 27, '100004', 100, 2]
         ];
 
         foreach($productos as $producto){

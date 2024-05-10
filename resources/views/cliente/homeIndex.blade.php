@@ -1,5 +1,6 @@
 <x-cliente-layout titulo="{{ Auth::check() ? 'Bienvenido ' . Auth::user()->name : 'Bienvenido' }}">
     <div class="container-fluid">
+        <!-- Filtro por Categorías -->
         <div class="row mb-2">
             <div class="col-md-12">
                 <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
@@ -36,9 +37,9 @@
                                 <small class="text-muted">a partir de $150 </small> 
                                 <small class="text-muted">Disponibles: {{ $producto->existencia }}</small>
                                 <div class="d-flex justify-content-between mt-2">
-                                    <form action="{{ route('carrito.agregar', ['id' => $producto->id]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('carrito.agregar', ['id' => $producto->id]) }}" method="POST" id="agregarForm{{$producto->id}}" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Agregar</button>
+                                        <button type="button" class="btn btn-success btn-sm" onclick="agregarAlCarrito({{$producto->id}})"><i class="fas fa-plus"></i> Agregar</button>
                                     </form>
                                     <a class="btn btn-primary btn-sm" href="{{ route('cliente.producto.show', $producto) }}"> <i class="fa fa-info-circle"></i> Detalles</a>
                                 </div>
@@ -57,6 +58,31 @@
     </div>
 </x-cliente-layout>
 
+<!-- Modal -->
+<div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mensajeModalLabel">Producto Agregado al Carrito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>El producto ha sido agregado correctamente al carrito de compras.</p>
+                <div class="container mt-3 mb-3 text-center">
+                    <img src="{{ asset('img/seguir.png') }}" alt="Seguir comprando" style="max-width: 100px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning text-dark ml-auto" data-dismiss="modal">
+                    Seguir comprando
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function submitForm() {
         document.getElementById("filtroForm").submit();
@@ -67,5 +93,26 @@
         if (categoriaSeleccionada) {
             document.getElementById("categoria").value = categoriaSeleccionada;
         }
+    }
+
+    function agregarAlCarrito(idProducto) {
+        var form = document.getElementById("agregarForm" + idProducto);
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                $('#mensajeModal').modal('show');
+            } else {
+                alert("Hubo un error al agregar el producto al carrito");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Hubo un error al agregar el producto al carrito");
+        });
     }
 </script>
