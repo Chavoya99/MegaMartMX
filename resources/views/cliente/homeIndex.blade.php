@@ -1,6 +1,5 @@
-<x-cliente-layout titulo="Bienvenido {{Auth::user()->name}}">
+<x-cliente-layout titulo="{{ Auth::check() ? 'Bienvenido ' . Auth::user()->name : 'Bienvenido' }}">
     <div class="container-fluid">
-        <!-- Filtro por Categorías -->
         <div class="row mb-2">
             <div class="col-md-12">
                 <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
