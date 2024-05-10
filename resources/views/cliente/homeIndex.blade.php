@@ -1,4 +1,4 @@
-<x-cliente-layout titulo="Bienvenido">
+<x-cliente-layout titulo="Bienvenido {{Auth::user()->name}}">
     <div class="container-fluid">
         <!-- Filtro por Categorías -->
         <div class="row mb-2">

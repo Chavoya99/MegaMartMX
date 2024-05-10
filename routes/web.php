@@ -9,6 +9,8 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
+use App\Models\Compra;
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +31,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home_invitado', [HomeController::class, 'index'])->name('clientes_guest')->middleware('guest');
 
 Route::get('/', function () {
-
     return redirect(route('clientes_guest'));
 });
 

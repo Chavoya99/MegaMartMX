@@ -97,6 +97,4 @@
             @csrf
             <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Vaciar carrito</button>
         </form>
-    </body>
-    </html>
 </x-cliente-layout>

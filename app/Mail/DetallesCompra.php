@@ -13,14 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class DetallesCompra extends Mailable
 {
     use Queueable, SerializesModels;
-    public $productos;
-    public $total;
+    public $productos, $subtotal, $envio, $total;
     /**
      * Create a new message instance.
      */
     public function __construct(public Compra $compra)
     {
-        $this->productos = $compra->productos();
+        $this->productos = $compra->productos;
+        $this->subtotal = $compra->subtotal;
+        $this->envio = $compra->envio;
         $this->total = $compra->total;
     }
 
@@ -40,7 +41,7 @@ class DetallesCompra extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.detalles-compra',
+            markdown: 'emails.correo_detalles_compra',
         );
     }
 
