@@ -67,6 +67,15 @@
                     <span style="color: black;">Categorías</span>
                 </a>
             </li>
+            @can('view', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.ver_ventas')}}" style="color: black; font-size: 14px;">
+                        <img src="{{asset('img/venta-icon.svg')}}" width=30 height="30">
+                        <span style="color: black;">Ventas</span>
+                    </a>
+                </li>
+            @endcan
+            
             <!--
             <li class="nav-item">
                 <a class="nav-link" href="#" style="color: black; font-size: 14px;">
@@ -270,7 +279,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
 
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('profile.show')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Mi perfil
                                 </a>

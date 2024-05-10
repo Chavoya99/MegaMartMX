@@ -17,7 +17,7 @@ class AdminTest extends TestCase
      * A basic feature test example.
      */
 
-    public function test_login_como_admin(): void
+    public function test_listado_productos(): void
     {   
         $response = $this->get('/producto');
         $response->assertRedirect('/login');
@@ -34,7 +34,7 @@ class AdminTest extends TestCase
         $response->assertStatus(200)->assertSee("Sabritas Naturales 160g");
     }
 
-    public function test_formulario_creacion_producto(): void
+    public function test_formulario_creacion_proveedor(): void
     {
         $user = User::factory()->create([
             'name' => "Administrador de prueba",
@@ -58,6 +58,7 @@ class AdminTest extends TestCase
             'nombre' => 'Proveedor de prueba', 
         ]);
         
+        $response->assertStatus(302);
         $response->assertRedirect(route('proveedor.index'));
     }
 
