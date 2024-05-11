@@ -1,7 +1,41 @@
-<x-cliente-layout titulo="Comprar productos">
-    <h1>Bienvenido @if (Auth::check()) {{Auth::user()->name}} @endif</h1>
+<x-cliente-layout titulo="">
     <div class="container-fluid">
-        <!-- Filtro por Categorías -->
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <h1>¡Bienvenido! <br>@if (Auth::check()) {{Auth::user()->name}} @endif </h1>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div id="carouselPortadas" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ asset('img/descuentos.jpg') }}" class="d-block w-100" alt="Sombrero de Salir" style="max-height: 300px;">
+                        </div>
+                        <div class="carousel-item ">
+                            <img src="{{ asset('img/whats.png') }}" class="d-block w-100" alt="WhatsApp" style="max-height: 300px;">
+                        </div>
+                        <div class="carousel-item ">
+                            <img src="{{ asset('img/licores.png') }}" class="d-block w-100" alt="Licores" style="max-height: 300px;">
+                        </div>
+                        <div class="carousel-item ">
+                            <img src="{{ asset('img/hotSale.png') }}" class="d-block w-100" alt="hotSale" style="max-height: 300px;">
+                        </div>
+                        
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselPortadas" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselPortadas" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="row mb-2">
             <div class="col-md-12">
                 <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
@@ -20,16 +54,19 @@
 
         <div class="row">
             @if(count($productos) > 0)
-            
                 @foreach ($productos as $producto)
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a  href="{{ route('cliente.producto.show', $producto) }}">
-                                <img class="card-img-top" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
+                            <a href="{{ route('cliente.producto.show', $producto) }}">
+                                @if($producto->archivo)
+                                    <img class="card-img-top" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
+                                @else
+                                    <img class="card-img-top" src="ruta/a/imagen/por/defecto.jpg" alt="{{ $producto->nombre }}" style="max-height: 200px;"> <!-- Si no hay archivo asociado, muestra una imagen por defecto -->
+                                @endif
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a  href="{{ route('cliente.producto.show', $producto) }}">{{ $producto->nombre }}</a>
+                                    <a href="{{ route('cliente.producto.show', $producto) }}">{{ $producto->nombre }}</a>
                                 </h4>
                                 <h5>${{ $producto->precio }}</h5>
                                 <p class="card-text">{{ $producto->descripcion }}</p>
@@ -60,7 +97,6 @@
     </div>
 </x-cliente-layout>
 
-<!-- Modal -->
 <div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -91,7 +127,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     function submitForm() {
