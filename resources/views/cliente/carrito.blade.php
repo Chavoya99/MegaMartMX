@@ -22,9 +22,9 @@
                                         <form action="{{ route('carrito.agregar', ['id' => $id]) }}" method="POST" style="display: inline;">
                                             @csrf
                                             <input type="hidden" name="accion" value="incrementar">
-                                            <input type="hidden" name="max_cantidad" value="{{ $item['producto']->existencia }}"> <!-- Agrega el valor máximo de la cantidad -->
+                                            <input type="hidden" name="max_cantidad" value="{{ $item['producto']->existencia }}"> 
                                             <span>Cantidad: {{ $item['cantidad'] }}</span>
-                                            <button type="submit" class="btn btn-primary btn-sm" {{ $item['cantidad'] >= $item['producto']->existencia ? 'disabled' : '' }}> <!-- Deshabilita el botón cuando la cantidad alcanza el máximo -->
+                                            <button type="submit" class="btn btn-primary btn-sm" {{ $item['cantidad'] >= $item['producto']->existencia ? 'disabled' : '' }}> 
                                                 <i class="fas fa-plus"></i> Agregar
                                             </button>
                                         </form>
@@ -58,14 +58,14 @@
                             @php
                                 $subtotal = 0;
                                 $total = 0;
-                                $totalProductos = 0; // Variable para contar el total de productos
+                                $totalProductos = 0; 
                                 if(session('carrito')) {
                                     foreach(session('carrito') as $id => $item) {
                                         $subtotal += $item['producto']->precio * $item['cantidad'];
-                                        $totalProductos += $item['cantidad']; // Suma la cantidad de cada producto
+                                        $totalProductos += $item['cantidad']; 
                                     }
                                     if ($subtotal < 150) {
-                                        $total = $subtotal + 50; // Suma $50 si el subtotal es menor a $150
+                                        $total = $subtotal + 50;
                                     }else{
                                         $total = $subtotal;
                                     }

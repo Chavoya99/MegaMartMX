@@ -119,4 +119,27 @@ class CarritoController extends Controller
         
         return redirect()->route('cliente.mis_compras')->with('success', 'Compra realizada con éxito');
     }
+
+    public function agregarProductoGet($id)
+    {
+        $producto = Producto::find($id);
+        
+        if (!$producto) {
+            abort(404);
+        }
+        
+        $carrito = session()->get('carrito');
+        
+        if (isset($carrito[$id])) {
+            $carrito[$id]['cantidad']++;
+        } else {
+            $carrito[$id] = [
+                'producto' => $producto,
+                'cantidad' => 1
+            ];
+        }
+        
+        session()->put('carrito', $carrito);
+        return redirect()->route('carrito')->with('success', 'Producto agregado al carrito exitosamente');
+    }
 }   

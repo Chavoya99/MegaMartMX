@@ -72,13 +72,6 @@
                     <span style="color: black;">Mis compras</span>
                 </a>
             </li>
-            
-        <!--<li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/etiqueta.png')}}" width=30 height="30">
-                    <span style="color: black;">Ofertas</span>
-                </a>
-            </li>-->
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('cliente.favoritos')}}" style="color: black; font-size: 14px;">
