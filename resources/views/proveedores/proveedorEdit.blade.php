@@ -1,4 +1,7 @@
-<x-milayout titulo="Editar proveedor">
+<x-admin-layout titulo="Editar proveedor">
+    @if (session('success'))
+        <x-success-message type="success" :mensaje="session('success')"/>
+    @endif
     <a class="btn btn-primary" href="{{route('proveedor.index')}}">&#129044;Regresar</a><br><br>
     <legend>Introduzca los siguientes datos</legend>
     <form action="{{route('proveedor.update', $proveedor)}}" method="POST">
@@ -41,4 +44,4 @@
 
         <button class="btn btn-primary" type="submit">Modificar</button>
     </form>
-</x-milayout>
+</x-admin-layout>

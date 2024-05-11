@@ -1,8 +1,14 @@
+
 <x-guest-layout>
+    
     <x-authentication-card>
+        @if (isset($_GET["false"]))
+            <x-success-message type="login"/>
+        @endif
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="img/logo_completo.png" alt="MegaMartMX" style="max-width: 157px; max-height: 170px;">
         </x-slot>
+        
 
         <x-validation-errors class="mb-4" />
 
@@ -16,19 +22,19 @@
             @csrf
 
             <div>
-                <x-label for="email" value="{{ __('Email') }}" />
+                <x-label for="email" value="{{ __('Correo electrónico') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password" value="{{ __('Contraseña') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ms-2 text-sm text-gray-600">{{ __('Recordar mis datos') }}</span>
                 </label>
             </div>
 
@@ -38,12 +44,14 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif--}}
-
+                <span class="text-sm text-gray-600">{{ __('¿No tienes una cuenta?') }}</span>
+                &nbsp;
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
-                        {{ __('Crear cuenta') }}
+                    {{ __(' Crea una ') }}
                 </a>
+
                 <x-button class="ms-4">
-                    {{ __('Log in') }}
+                    {{ __('Ingresar') }}
                 </x-button>
             </div>
         </form>

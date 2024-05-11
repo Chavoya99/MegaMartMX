@@ -4,15 +4,47 @@ namespace App\Http\Controllers;
 
 use App\Models\Compra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompraController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index_cliente()
+    {   
+        $compras = Auth::user()->compras;
+        return view('cliente.misCompras', compact('compras'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show_cliente(Compra $compra)
     {
-        //
+        
+        $this->authorize('ver_compra_cliente', $compra);
+        $productos = $compra->productos;
+
+        return view('cliente.detalle_compra', compact('productos', 'compra'));
+    }
+
+    public function index_admin()
+    {   
+        $this->authorize('view', Auth::user());
+        $compras = Compra::with('user')->get();
+        return view('admin.verVentas', compact('compras'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show_admin(Compra $compra)
+    {
+        
+        $this->authorize('ver_compra_cliente', $compra);
+        $productos = $compra->productos;
+        return view('admin.verDetalleVenta', compact('productos', 'compra'));
     }
 
     /**
@@ -31,13 +63,7 @@ class CompraController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Compra $compra)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

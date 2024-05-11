@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Archivo;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Response;
 
 class ProductoController extends Controller
 {
@@ -99,7 +102,7 @@ class ProductoController extends Controller
             $producto = Producto::create($request->all());
         }
 
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index')->with('success', 'Producto creado con éxito');
     }
 
     /**
@@ -192,15 +195,28 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect()->route('producto.show', $producto);
+        return redirect()->route('producto.show', $producto)->with('success', 'Producto modificado con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Producto $producto)
-    {
+    {   
+        $this->authorize('delete', Auth::user());
+        
+        if($producto->archivo){
+            Storage::disk('public')->delete($producto->archivo->ubicacion);
+        }
+        
         $producto->delete();
-        return redirect()->route('producto.index');
+        
+        return redirect()->route('producto.index')->with('success', 'Producto eliminado con éxito');
+    }
+
+
+    public function download(Archivo $archivo){
+        return response()->download(storage_path('app/public/' . $archivo->ubicacion) , $archivo->nombre_original);
+
     }
 }

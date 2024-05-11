@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\Producto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoSeeder extends Seeder
 {
@@ -14,14 +17,14 @@ class ProductoSeeder extends Seeder
     public function run(): void
     {
         $productos = [
-            ['Sabritas Naturales 160g', 3, 7, 45, '100000', 5, 2],
-            ['Coca Cola 1L', 1, 2, 32, '100001', 5, 3],
-            ['Atun Dolores Agua', 3, 11, 20, '100002', 5, 1],
-            ['Ruffles Queso 185g', 3, 7, 36, '100003', 5, 2]
+            ['Sabritas Naturales 160g', 3, 7, 40, '100000', 100, 2],
+            ['Refresco Retornable Coca-Cola Original 3L', 1, 2, 41, '100001', 100, 3],
+            ['Atun Dolores Agua', 3, 11, 20, '100002', 100, 1],
+            ['Ruffles Queso 185g', 3, 7, 38, '100003', 100, 2]
         ];
 
         foreach($productos as $producto){
-            Producto::create([
+            $nuevoProducto = Producto::create([
                 'nombre' => $producto[0],
                 'categoria_id' => $producto[1],
                 'subcategoria_id' => $producto[2],
@@ -30,6 +33,29 @@ class ProductoSeeder extends Seeder
                 'existencia' => $producto[5],
                 'proveedor_id' => $producto[6]
             ]);
+
+            $rutaImagen = public_path('img/imagenes_producto_prueba/'. strtr($producto[0], " ", "_") . ".png");
+
+            if(File::exists($rutaImagen)){
+                
+                $archivoSimulado = new UploadedFile(
+                    $rutaImagen,
+                    pathinfo($rutaImagen, PATHINFO_EXTENSION),
+                    'image/png',
+                );
+        
+                $ubicacion = $archivoSimulado->store('archivos_productos', 'public');
+                $nuevoProducto->archivo()->create(
+                    [
+                        'ubicacion' => $ubicacion,
+                        'nombre_original' => strtr($producto[0], " ", "_"). ".".pathinfo($rutaImagen, PATHINFO_EXTENSION),
+                        'mime' => $archivoSimulado->getClientMimeType(),
+                    ]
+                );
+            }
+
+            
+            
         }
     }
 }

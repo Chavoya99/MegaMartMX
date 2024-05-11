@@ -1,4 +1,8 @@
-<x-mi-layout titulo="Lista de productos">
+<x-admin-layout titulo="Lista de productos">
+    @if (session('success'))
+        <x-success-message type="success" :mensaje="session('success')"/>
+    @endif
+    
     <a class="btn btn-primary" href="{{route('producto.create')}}">Agregar producto</a><br><br>
     <div class="container-fluid">
         
@@ -53,4 +57,4 @@
             </div>
      
     </div>
-</x-mi-layout>
+</x-admin-layout>

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->decimal('subtotal', 10, 2);
+            $table->decimal('envio', 10, 2);
             $table->decimal('total', 10, 2);
             $table->dateTime('fecha');
         });

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clintes</title>
+    <title>{{$titulo}}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -30,39 +30,66 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- barra lateral -->
+        <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
                 <div class="sidebar-brand-icon">
                     <i class="bi bi-cart-fill">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="width: 1.5em; height: 1.5em;">
+                            <image xlink:href="{{asset('img\logo_pequeño.png')}}" width="16" height="16" />
                         </svg></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">MegaMartMX</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16" style="width: 8em; height: 8em;">
+                    <image xlink:href="{{asset('img\logo_letras.png')}}" width="16" height="16" />
+                </svg></i>
             </a>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('producto.index')}}">
-                    <img src="{{asset('img/grocery-icon.svg')}}" width=30 height="30">
-                    <span>Productos</span>
-                </a>
-            </li>
 
+            <!-- barra lateral -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('proveedor.index')}}">
-                    <img src="{{asset('img/proveedor-icon.svg')}}" width=30 height="30">
-                    <span>Proveedores</span>
+                <a class="nav-link" href="{{route('producto.index')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/compras.png')}}" width=30 height="30">
+                    <span style="color: black;">Productos</span>
                 </a>
             </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('proveedor.index')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/caja.png')}}" width=30 height="30">
+                    <span style="color: black;">Proveedores</span>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('categoria.index')}}" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/categorizacion.png')}}" width=30 height="30">
+                    <span style="color: black;">Categorías</span>
+                </a>
+            </li>
+            @can('view', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.ver_ventas')}}" style="color: black; font-size: 14px;">
+                        <img src="{{asset('img/venta-icon.svg')}}" width=30 height="30">
+                        <span style="color: black;">Ventas</span>
+                    </a>
+                </li>
+            @endcan
+            
+            <!--
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
+                    <span style="color: black;">Carrito</span>
+                </a>
+            </li>-->
+            
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.336);">
 
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
+            <div class="text-center d-none d-md-inline" style="color: black;">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
@@ -83,12 +110,11 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <!-- Barra de búsqueda -->
+                    <form class="form-inline">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search"
+                                aria-describedby="basic-addon2" style="width: 500px;"> 
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -97,7 +123,7 @@
                         </div>
                     </form>
 
-                    <!-- Topbar Navbar -->
+
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -132,11 +158,12 @@
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
+                            
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    Notificaciones
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
@@ -145,8 +172,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <div class="small text-gray-500">13 may 2024</div>
+                                        <span class="font-weight-bold">Entrega programada para el prox. lunes</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -156,8 +183,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
+                                        <div class="small text-gray-500">10 may 2024</div>
+                                    ¡Hemos entregado tu pedido!
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -167,11 +194,11 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
+                                        <div class="small text-gray-500">2 may 2024</div>
+                                        Alerta de gastos: Hemos notado gastos inusualmente altos en su cuenta.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas las alertas</a>
                             </div>
                         </li>
 
@@ -181,63 +208,60 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter">4+</span>
                             </a>
+
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
-                                    Message Center
+                                    Mensajes
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('img/undraw_profile_1.svg')}}"
+                                        <img class="rounded-circle" src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_956,h_956/v1675245816/assets/db/df90dc-09b5-4876-9459-5a2a5a93f1d3/original/UberIM_008570-large-%281%29.webp"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                        <div class="text-truncate">Ya voy para su domicilio</div>
+                                        <div class="small text-gray-500">Maria Jose · 5:19 pm </div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('img/undraw_profile_2.svg')}}"
+                                        <img class="rounded-circle" src="https://www.sopitas.com/wp-content/uploads/2016/08/meme-juan-gabriel-palmera-origan.png"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                        <div class="text-truncate">Solamente tenemos coca sin azucar</div>
+                                        <div class="small text-gray-500">Juan Gabriel · sab</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('img/undraw_profile_3.svg')}}"
+                                        <img class="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyp8DE41SJEGqBDiJ-dKKEjlEclFDg-baYUn-ADi2XUg&s"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                        <div class="text-truncate">¿Gusta agregar algo mas a su lista de compras? </div>
+                                        <div class="small text-gray-500">Cortana Godinez · 29 abr</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                        <img class="rounded-circle" src="https://img.buzzfeed.com/buzzfeed-static/static/2017-05/16/14/asset/buzzfeed-prod-fastlane-03/sub-buzz-31712-1494958682-9.jpg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                        <div class="text-truncate">tambien tenemos botanas para su amigo</div>
+                                        <div class="small text-gray-500">Don Raul · 15 nov 2023</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos los mensajes</a>
                             </div>
                         </li>
 
@@ -249,30 +273,31 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset('img/undraw_profile.svg')}}">
+                                    src="{{asset('img/usuario.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+
+                                <a class="dropdown-item" href="{{route('profile.show')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Mi perfil
                                 </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-map-marker-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Direcciones
+                                </a>  
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
+                                    Configuraciones
+                                </a>                                 
                                 <div class="dropdown-divider"></div>
                                 <form id="logout-form" method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf
                                     <a class="dropdown-item" href="{{route('logout')}}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Salir
+                                        Cerrar sesion
                                     </a>
 
                                 </form>
@@ -289,7 +314,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1>Clientes</h1>
+                    <h1>{{$titulo}}</h1>
+                    {{ $slot }}
 
                 </div>
                 <!-- /.container-fluid -->

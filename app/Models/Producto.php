@@ -38,6 +38,11 @@ class Producto extends Model
     }
 
     public function compras(){
-        return $this->belongsToMany(Compra::class)->withPivot('cantidad', 'subtotal');
+        return $this->belongsToMany(Compra::class)
+        ->withPivot('nombre_producto', 'cantidad', 'precio_unitario', 'subtotal');
+    }
+
+    public function favoritos(){
+        return $this->belongsToMany(User::class, 'favoritos')->withPivot('fecha');
     }
 }
