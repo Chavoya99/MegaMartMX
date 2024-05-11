@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function(){
         });
     
         
+
         Route::get('/cliente/producto/{producto}', [HomeController::class, 'show'])->name('cliente.producto.show');
         
         Route::get('/cliente/mis_compras', [CompraController::class, 'index_cliente'])->name('cliente.mis_compras');

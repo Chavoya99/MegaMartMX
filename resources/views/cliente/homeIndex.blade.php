@@ -75,13 +75,21 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning text-dark ml-auto" data-dismiss="modal">
-                    Seguir comprando
-                </button>
+                <div class="mr-auto">
+                    <a href="{{ route('carrito') }}" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Ir al carrito
+                    </a>
+                </div>
+                <div class="ml-auto">
+                    <button type="button" class="btn btn-warning text-dark" data-dismiss="modal">
+                        Seguir comprando <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     function submitForm() {
