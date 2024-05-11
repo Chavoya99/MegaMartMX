@@ -32,20 +32,18 @@
                                     <li class="list-group-item d-flex justify-content-between align-items-center" style="border-top: 1px solid #dee2e6;">
                                         <span style="flex-grow: 1;">Disponibilidad: {{ $producto->existencia }}</span>
                                         <div style="flex-grow: 1; text-align: right;">
-                                            <form action="{{ route('carrito.agregar', ['id' => $producto->id]) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('carrito.agregar', ['id' => $producto->id]) }}" method="POST" id="agregarForm{{$producto->id}}" style="display: inline;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-success mr-2"><i class="fas fa-plus"></i> Agregar al carrito</button>
+                                                <button type="button" class="btn btn-success " onclick="agregarAlCarrito({{$producto->id}})"><i class="fas fa-plus"></i> Agregar al carrito</button>
                                             </form>
                                             @if ($producto->favoritos()->where('user_id', Auth::id())->exists())
                                                 <button class="btn btn-danger" disabled><i class="fas fa-heart"></i> Guardar para más tarde</button>
                                             @else
-                                                <form action="{{route('cliente.nuevo_favorito', $producto)}}" method="POST" style="display: inline;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-heart"></i> Guardar para más tarde</button>
-
-                                                </form>
+                                            <form action="{{route('cliente.nuevo_favorito', $producto)}}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-heart"></i> Guardar para más tarde</button>
+                                            </form>
                                             @endif
-                                            
                                         </div>
                                     </li>
                                 </ul>
@@ -58,3 +56,56 @@
     </div>
 </x-cliente-layout>
 
+<div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mensajeModalLabel">Producto Agregado al Carrito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>El producto ha sido agregado correctamente al carrito de compras.</p>
+                <div class="container mt-3 mb-3 text-center">
+                    <img src="{{ asset('img/seguir.png') }}" alt="Seguir comprando" style="max-width: 100px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="mr-auto">
+                    <a href="{{ route('carrito') }}" class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Ir al carrito
+                    </a>
+                </div>
+                <div class="ml-auto">
+                    <button type="button" class="btn btn-warning text-dark" data-dismiss="modal">
+                        Seguir comprando <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function agregarAlCarrito(idProducto) {
+        var form = document.getElementById("agregarForm" + idProducto);
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                $('#mensajeModal').modal('show');
+            } else {
+                alert("Hubo un error al agregar el producto al carrito");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Hubo un error al agregar el producto al carrito");
+        });
+    }
+</script>
