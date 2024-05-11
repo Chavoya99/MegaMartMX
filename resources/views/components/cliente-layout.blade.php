@@ -81,7 +81,7 @@
             </li>-->
 
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
+                <a class="nav-link" href="{{route('cliente.favoritos')}}" style="color: black; font-size: 14px;">
                     <img src="{{asset('img/favorito.png')}}" width=30 height="30">
                     <span style="color: black;">Favoritos</span>
                 </a>

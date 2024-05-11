@@ -41,4 +41,8 @@ class Producto extends Model
         return $this->belongsToMany(Compra::class)
         ->withPivot('nombre_producto', 'cantidad', 'precio_unitario', 'subtotal');
     }
+
+    public function favoritos(){
+        return $this->belongsToMany(User::class, 'favoritos')->withPivot('fecha');
+    }
 }

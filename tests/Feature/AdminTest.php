@@ -20,7 +20,7 @@ class AdminTest extends TestCase
     public function test_listado_productos(): void
     {   
         $response = $this->get('/producto');
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/login?false');
         Artisan::call('db:seed');
         $user = User::factory()->create([
             'name' => "Administrador de prueba",
