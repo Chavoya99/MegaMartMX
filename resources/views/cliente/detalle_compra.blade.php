@@ -1,13 +1,8 @@
 <x-cliente-layout titulo="Detalles de compra {{ $compra->id }}">
+        <a class="btn btn-primary" href="{{ route('cliente.mis_compras') }}">
+            <i class="fas fa-arrow-left"></i> Regresar
+        </a>
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6">
-                <a class="btn btn-primary" href="{{ route('cliente.mis_compras') }}">
-                    <i class="fas fa-arrow-left"></i> Regresar
-                </a>
-            </div>
-        </div>
-
         <div class="row mt-4">
             <div class="col-md-12">
                 <div class="card">
@@ -23,15 +18,15 @@
                                 <div class="list-group list-group-flush">
                                     <div class="list-group-item d-flex justify-content-between align-items-center">
                                         <span class="font-weight-bold">Subtotal:</span>
-                                        <span class="badge badge-primary badge-pill font-weight-bold font-size-lg">${{ $compra->subtotal }}</span>
+                                        <span class="badge bg-primary badge-pill font-weight-bold font-size-lg text-white">${{ $compra->subtotal }}</span>
                                     </div>
                                     <div class="list-group-item d-flex justify-content-between align-items-center">
                                         <span class="font-weight-bold">Envío:</span>
-                                        <span class="badge badge-primary badge-pill font-weight-bold font-size-lg">${{ $compra->envio }}</span>
+                                        <span class="badge badge-success badge-pill font-weight-bold font-size-lg text-white">${{ $compra->envio }}</span>
                                     </div>
                                     <div class="list-group-item d-flex justify-content-between align-items-center">
                                         <span class="font-weight-bold">Total:</span>
-                                        <span class="badge badge-success badge-pill font-weight-bold font-size-lg">${{ $compra->total }}</span>
+                                        <span class="badge badge-warning badge-pill font-weight-bold font-size-lg text-dark">${{ $compra->total }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -40,10 +35,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="card-title mb-4">Productos</h5>
-                                <div class="table-responsive">    
+                                <div class="table-responsive">
                                     <table class="table table-striped" id="dataTable">
                                         <thead>
-                                            <tr>
+                                            <tr class="bg-warning text-dark">
                                                 <th>Producto</th>
                                                 <th>Nombre</th>
                                                 <th>Cantidad</th>
@@ -78,4 +73,3 @@
         </div>
     </div>
 </x-cliente-layout>
-
