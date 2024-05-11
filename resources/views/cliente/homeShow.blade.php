@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <a class="btn btn-primary" href="{{ route('cliente.homeIndex)}}"> &#129044; Regresar</a>
+                            <a class="btn btn-primary" href="{{ route('cliente.homeIndex')}}"> &#129044; Regresar</a>
                         </div>
                         
                     </div>
@@ -39,10 +39,16 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-success mr-2"><i class="fas fa-plus"></i> Agregar al carrito</button>
                                             </form>
-                                            <form action="#" method="POST" style="display: inline;">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"><i class="fas fa-heart"></i> Guardar para más tarde</button>
-                                            </form>
+                                            @if ($producto->favoritos()->where('user_id', Auth::id())->exists())
+                                                <button class="btn btn-danger" disabled><i class="fas fa-heart"></i> Guardar para más tarde</button>
+                                            @else
+                                                <form action="{{route('cliente.nuevo_favorito', $producto)}}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-heart"></i> Guardar para más tarde</button>
+
+                                                </form>
+                                            @endif
+                                            
                                         </div>
                                     </li>
                                 </ul>

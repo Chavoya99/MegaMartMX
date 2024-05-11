@@ -9,6 +9,8 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
+use App\Models\Compra;
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +31,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home_invitado', [HomeController::class, 'index'])->name('clientes_guest')->middleware('guest');
 
 Route::get('/', function () {
-
     return redirect(route('clientes_guest'));
 });
 
@@ -69,13 +70,19 @@ Route::middleware('auth')->group(function(){
     Route::middleware(ClienteMiddleware::class)->group(function(){
         Route::controller(HomeController::class)->group(function(){
             Route::get('/cliente/homeIndex', 'index')->name('cliente.homeIndex');
+            Route::get('/cliente/favoritos', 'favoritos')->name('cliente.favoritos');
+            Route::post('/cliente/nuevo_favorito/{producto}', 'nuevo_favorito')->name('cliente.nuevo_favorito');
+            Route::post('/cliente/quitar_favorito/{producto}', 'quitar_favorito')->name('cliente.quitar_favorito');
+            Route::get('/cliente/producto/{producto}', 'show')->name('cliente.producto.show');
         });
     
-        Route::get('/cliente/producto/{producto}', [HomeController::class, 'show'])->name('cliente.producto.show');
+        
         
         
         Route::get('/cliente/mis_compras', [CompraController::class, 'index_cliente'])->name('cliente.mis_compras');
         Route::get('/cliente/detalle_compra/{compra}', [CompraController::class, 'show_cliente'])->name('cliente.detalle_compra');
+
+        
 
         Route::controller(CarritoController::class)->group(function(){
             Route::get('/carrito', 'carrito')->name('carrito');

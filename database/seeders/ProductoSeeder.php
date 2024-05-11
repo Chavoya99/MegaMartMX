@@ -48,7 +48,7 @@ class ProductoSeeder extends Seeder
                 $nuevoProducto->archivo()->create(
                     [
                         'ubicacion' => $ubicacion,
-                        'nombre_original' => strtr($producto[0], " ", "_"). ".png",
+                        'nombre_original' => strtr($producto[0], " ", "_"). ".".pathinfo($rutaImagen, PATHINFO_EXTENSION),
                         'mime' => $archivoSimulado->getClientMimeType(),
                     ]
                 );
