@@ -80,7 +80,12 @@
                                         @csrf
                                         <button type="button" class="btn btn-success btn-sm" onclick="agregarAlCarrito({{$producto->id}})"><i class="fas fa-plus"></i> Agregar</button>
                                     </form>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('cliente.producto.show', $producto) }}"> <i class="fa fa-info-circle"></i> Detalles</a>
+                                    
+                                    <form action="{{route('cliente.nuevo_favorito', $producto)}}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-heart"></i> Guardar</button>
+                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>
