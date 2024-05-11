@@ -11,11 +11,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                @if ($producto->archivo)
-                                    <img src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" class="img-fluid" alt="{{ $producto->nombre }}">
-                                @else
-                                    <img src="{{ asset('img/producto_default.png') }}" class="img-fluid" alt="{{ $producto->nombre }}">
-                                @endif
+                                <img src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" class="img-fluid" alt="{{ $producto->nombre }}">
                             </div>
                             <div class="col-md-8">
                                 <ul class="list-group list-group-flush">
@@ -36,15 +32,12 @@
                                                 @csrf
                                                 <button type="button" class="btn btn-success " onclick="agregarAlCarrito({{$producto->id}})"><i class="fas fa-plus"></i> Agregar al carrito</button>
                                             </form>
-                                            @if ($producto->favoritos()->where('user_id', Auth::id())->exists())
-                                                <button class="btn btn-danger" disabled><i class="fas fa-heart"></i> Guardar para más tarde</button>
-                                            @else
-                                            <form action="{{route('cliente.nuevo_favorito', $producto)}}" method="POST" style="display: inline;">
+                                            <form action="{{ route('cliente.nuevo_favorito', $producto) }}" method="POST" id="guardarForm{{$producto->id}}" style="display: inline;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger"><i class="fas fa-heart"></i> Guardar para más tarde</button>
-                                            </form>
-                                            @endif
+                                                <button type="button" class="btn btn-danger" onclick="guardarProducto({{$producto->id}})"><i class="fas fa-heart"></i> Guardar para más tarde</button>
+                                            </form>                                            
                                         </div>
+                                        
                                     </li>
                                 </ul>
                             </div>
@@ -56,19 +49,49 @@
     </div>
 </x-cliente-layout>
 
-<div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="guardarModal{{$producto->id}}" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel{{$producto->id}}" aria-hidden="true">    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mensajeModalLabel">Producto Agregado al Carrito</h5>
+                <h5 class="modal-title" id="guardarModalLabel{{$producto->id}}">¡Que bien!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p>El producto ha sido agregado correctamente al carrito de compras.</p>
+            <div class="modal-body text-center">
+                <p>El producto ha sido agregado a favoritos<br>¡Sigue asi!</p>
                 <div class="container mt-3 mb-3 text-center">
-                    <img src="{{ asset('img/seguir.png') }}" alt="Seguir comprando" style="max-width: 100px;">
+                    <img src="{{ asset('img/guardar.png') }}" alt="Seguir comprando" style="max-width: 150px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+                <a href="{{ route('cliente.favoritos') }}" class="btn btn-danger">
+                    <i class="fas fa-heart"></i> Ir a favoritos
+                </a>
+                <div class="ml-auto">
+                    <button type="button" class="btn btn-warning text-dark" data-dismiss="modal">
+                        Seguir comprando <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title " id="mensajeModalLabel">¡Excelente!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>El producto ha sido agregado al carrito de compras<br>¡Sigue así!</p>
+                <div class="container mt-3 mb-3 text-center">
+                    <img src="{{ asset('img/seguir.png') }}" alt="Seguir comprando" style="max-width: 150px;">
                 </div>
             </div>
             <div class="modal-footer">
@@ -88,8 +111,8 @@
 </div>
 
 <script>
-    function agregarAlCarrito(idProducto) {
-        var form = document.getElementById("agregarForm" + idProducto);
+    function guardarProducto(idProducto) {
+        var form = document.getElementById("guardarForm" + idProducto);
         var formData = new FormData(form);
 
         fetch(form.action, {
@@ -98,14 +121,23 @@
         })
         .then(response => {
             if (response.ok) {
-                $('#mensajeModal').modal('show');
+                $('#guardarModal' + idProducto).modal('show'); 
             } else {
-                alert("Hubo un error al agregar el producto al carrito");
+                alert("Hubo un error al guardar el producto en favoritos");
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("Hubo un error al agregar el producto al carrito");
+            alert("Hubo un error al guardar el producto en favoritos");
         });
     }
+
+    function seguirComprando() {
+        $('#guardarModal').modal('hide');
+    }
 </script>
+
+
+
+
+
