@@ -20,6 +20,7 @@
 
         <div class="row">
             @if(count($productos) > 0)
+            
                 @foreach ($productos as $producto)
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card h-100">
