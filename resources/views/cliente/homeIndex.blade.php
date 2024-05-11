@@ -22,7 +22,6 @@
                         <div class="carousel-item ">
                             <img src="{{ asset('img/hotSale.png') }}" class="d-block w-100" alt="hotSale" style="max-height: 300px;">
                         </div>
-                        
                     </div>
                     <a class="carousel-control-prev" href="#carouselPortadas" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -61,7 +60,7 @@
                             @if($producto->archivo)
                                 <img class="card-img-top" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
                             @else
-                                <img class="card-img-top" src="ruta/a/imagen/por/defecto.jpg" alt="{{ $producto->nombre }}" style="max-height: 200px;"> <!-- Si no hay archivo asociado, muestra una imagen por defecto -->
+                                <img class="card-img-top" src="ruta/a/imagen/por/defecto.jpg" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
                             @endif
                         </a>
                         <div class="card-body">
@@ -90,7 +89,6 @@
                     </div>
                 </div>
 
-                <!-- Ventana modal de guardar producto en favoritos -->
                 <div class="modal fade" id="guardarModal{{$producto->id}}" tabindex="-1" role="dialog" aria-labelledby="guardarModalLabel{{$producto->id}}" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
