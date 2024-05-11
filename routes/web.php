@@ -7,6 +7,7 @@ use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\FavoritosController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
 use App\Models\Compra;
@@ -77,12 +78,12 @@ Route::middleware('auth')->group(function(){
         });
     
         
+        Route::delete('/cliente/favoritos', [FavoritosController::class, 'eliminarFavoritos'])->name('favoritos.vaciar');
+        Route::get('/cliente/carrito/agregar/{producto}', [CarritoController::class, 'agregarProductoGet'])->name('cliente.carrito.agregar.get');
         
         
         Route::get('/cliente/mis_compras', [CompraController::class, 'index_cliente'])->name('cliente.mis_compras');
         Route::get('/cliente/detalle_compra/{compra}', [CompraController::class, 'show_cliente'])->name('cliente.detalle_compra');
-
-        
 
         Route::controller(CarritoController::class)->group(function(){
             Route::get('/carrito', 'carrito')->name('carrito');
