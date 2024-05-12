@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home_invitado', [HomeController::class, 'index'])->name('clientes_guest')->middleware('guest');
 Route::get('/ayuda', [AyudaController::class, 'ayuda'])->name('ayuda')->middleware('guest');
 Route::get('/Somos', [SomosController::class, 'somos'])->name('somos')->middleware('guest');
+Route::post('/busqueda', [HomeController::class, 'busqueda'])->name('busqueda_guest')->middleware('guest');
 
 Route::get('/', function () {
     return redirect(route('clientes_guest'));
@@ -80,6 +81,7 @@ Route::middleware('auth')->group(function(){
             Route::post('/cliente/nuevo_favorito/{producto}', 'nuevo_favorito')->name('cliente.nuevo_favorito');
             Route::post('/cliente/quitar_favorito/{producto}', 'quitar_favorito')->name('cliente.quitar_favorito');
             Route::get('/cliente/producto/{producto}', 'show')->name('cliente.producto.show');
+            Route::post('cliente/busqueda', 'busqueda')->name('cliente.busqueda');
         });
     
         Route::get('/cliente/ayuda', [AyudaController::class, 'ayuda'])->name('cliente.ayuda');

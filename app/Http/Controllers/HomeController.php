@@ -16,7 +16,7 @@ class HomeController extends Controller
         $categorias = Categoria::orderBy('nombre')->get();
 
         if ($request->has('categoria') && $request->categoria != 'all') {
-            $productos = Categoria::find($request->categoria)->productos;
+            $productos = Categoria::find($request->categoria)->productos()->orderBy('nombre')->get();
         }
         
         return view('cliente.homeIndex', compact('productos', 'categorias'))->with('categoriaSeleccionada', $request->categoria ?? 'all');
@@ -45,28 +45,19 @@ class HomeController extends Controller
 
     }
 
-    public function create()
-    {
-        //
+    public function busqueda(Request $request){
+        $busqueda = $request->busqueda;
+        if($busqueda != null){
+            $productos = Producto::with(['archivo'])
+            ->where('nombre', 'like', '%'.$request->busqueda.'%')
+            ->orderBy('nombre')->get();
+        }else{
+            $productos = Producto::with(['archivo'])->orderBy('nombre')->get();
+        }
+        $categorias = Categoria::orderBy('nombre')->get();
+        $categoriaSeleccionada = "";
+        
+        return view('cliente.homeIndex', compact('productos','categorias', 'categoriaSeleccionada', 'busqueda'));
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }
