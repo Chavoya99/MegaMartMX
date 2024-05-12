@@ -81,14 +81,22 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cliente.ayuda') }}" style="color: black; font-size: 14px;">
+                @if (Auth::check())
+                    <a class="nav-link" href="{{ route('cliente.ayuda') }}" style="color: black; font-size: 14px;">
+                @else
+                    <a class="nav-link" href="{{ route('ayuda') }}" style="color: black; font-size: 14px;">
+                @endif
                     <img src="{{ asset('img/ayuda.png') }}" width="30" height="30">
                     <span style="color: black;">Ayuda</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cliente.somos') }}" style="color: black; font-size: 14px;">
+                @if (Auth::check())
+                    <a class="nav-link" href="{{ route('cliente.somos') }}" style="color: black; font-size: 14px;">
+                @else
+                    <a class="nav-link" href="{{ route('somos') }}" style="color: black; font-size: 14px;">
+                @endif
                     <img src="{{ asset('img/equipo.png') }}" width="30" height="30">
                     <span style="color: black;">Quiénes somos</span>
                 </a>
