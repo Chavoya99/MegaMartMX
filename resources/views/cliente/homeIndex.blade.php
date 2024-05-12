@@ -7,7 +7,7 @@
         </div>
 
         <div class="row mb-4">
-            <div class="col-md-12">
+            <div class="col-md-8 offset-md-1">
                 <div id="carouselPortadas" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -60,7 +60,7 @@
                             @if($producto->archivo)
                                 <img class="card-img-top" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
                             @else
-                                <img class="card-img-top" src="ruta/a/imagen/por/defecto.jpg" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
+                                <img class="card-img-top" src="{{asset('img/producto_default.png')}}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
                             @endif
                         </a>
                         <div class="card-body">
@@ -68,7 +68,6 @@
                                 <a href="{{ route('cliente.producto.show', $producto) }}">{{ $producto->nombre }}</a>
                             </h4>
                             <h5>${{ $producto->precio }}</h5>
-                            <p class="card-text">{{ $producto->descripcion }}</p>
                         </div>
                         <div class="card-footer">
                             <small class="text-success">Envío gratis <i class="fas fa-bolt"></i></small>
@@ -77,12 +76,12 @@
                             <div class="d-flex justify-content-between mt-2">
                                 <form action="{{ route('carrito.agregar', ['id' => $producto->id]) }}" method="POST" id="agregarForm{{$producto->id}}" style="display: inline;">
                                     @csrf
-                                    <button type="button" class="btn btn-success btn-sm" onclick="agregarAlCarrito({{$producto->id}})"><i class="fas fa-plus"></i> Agregar</button>
+                                    <button class="btn btn-success btn-sm" @if(Auth::check())  type="button" onclick="agregarAlCarrito({{$producto->id}})" @else type="submit"  @endif><i class="fas fa-plus"></i> Agregar</button>
                                 </form>
                                 
                                 <form action="{{route('cliente.nuevo_favorito', $producto)}}" method="POST" id="guardarForm{{$producto->id}}" style="display: inline;">
                                     @csrf
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="guardarProducto({{$producto->id}})"><i class="fas fa-heart"></i> Guardar</button>
+                                    <button  class="btn btn-danger btn-sm" @if(Auth::check()) type="button" onclick="guardarProducto({{$producto->id}})" @else type="submit" @endif><i class="fas fa-heart"></i> Guardar</button>
                                 </form>
                             </div>
                         </div>
@@ -166,6 +165,8 @@
     function agregarAlCarrito(idProducto) {
         var form = document.getElementById("agregarForm" + idProducto);
         var formData = new FormData(form);
+
+        presionarBotonActualizar();
 
         fetch(form.action, {
             method: 'POST',

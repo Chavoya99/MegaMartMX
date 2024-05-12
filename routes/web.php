@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/home_invitado', [HomeController::class, 'index'])->name('clientes_guest')->middleware('guest');
+Route::get('/ayuda', [AyudaController::class, 'ayuda'])->name('ayuda')->middleware('guest');
+Route::get('/Somos', [SomosController::class, 'somos'])->name('somos')->middleware('guest');
 
 Route::get('/', function () {
     return redirect(route('clientes_guest'));

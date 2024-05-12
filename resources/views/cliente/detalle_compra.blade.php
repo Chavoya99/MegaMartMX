@@ -53,7 +53,7 @@
                                                         @if ($producto->archivo)
                                                             <img src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" class="img-fluid mx-auto" style="max-height: 50px;">
                                                         @else
-                                                            <img src="ruta/a/imagen/por/defecto.jpg" alt="{{ $producto->nombre }}" class="img-fluid mx-auto" style="max-height: 50px;">
+                                                            <img src="{{asset('img/producto_default.png')}}" alt="{{ $producto->nombre }}" class="img-fluid mx-auto" style="max-height: 50px;">
                                                         @endif
                                                     </td>
                                                     <td class="align-middle">{{ $producto->pivot->nombre_producto }}</td>

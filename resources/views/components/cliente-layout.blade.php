@@ -81,14 +81,22 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cliente.ayuda') }}" style="color: black; font-size: 14px;">
+                @if (Auth::check())
+                    <a class="nav-link" href="{{ route('cliente.ayuda') }}" style="color: black; font-size: 14px;">
+                @else
+                    <a class="nav-link" href="{{ route('ayuda') }}" style="color: black; font-size: 14px;">
+                @endif
                     <img src="{{ asset('img/ayuda.png') }}" width="30" height="30">
                     <span style="color: black;">Ayuda</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('cliente.somos') }}" style="color: black; font-size: 14px;">
+                @if (Auth::check())
+                    <a class="nav-link" href="{{ route('cliente.somos') }}" style="color: black; font-size: 14px;">
+                @else
+                    <a class="nav-link" href="{{ route('somos') }}" style="color: black; font-size: 14px;">
+                @endif
                     <img src="{{ asset('img/equipo.png') }}" width="30" height="30">
                     <span style="color: black;">Quiénes somos</span>
                 </a>
@@ -163,45 +171,8 @@
 
                         <!-- Nav Item - Carrito de compras -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link" href="{{route('carrito')}}" id="carritoDropdown" role="button"
-                             aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-shopping-cart fa-fw"></i>
-                                <!-- Counter - Items en el carrito -->
-                                <span class="badge badge-primary badge-counter">
-                                    @if(session('carrito'))
-                                        @php
-                                            $cantidad = 0;
-                                            foreach(session('carrito') as $item){
-                                                $cantidad += $item['cantidad'];
-                                            }
-                                        @endphp
-                                        {{$cantidad}}
-                                        
-                                    @else
-                                        0
-                                    @endif
-                                </span>
-                            </a>
 
-                            <!-- Dropdown - Carrito de compras -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="carritoDropdown">
-                                <h6 class="dropdown-header">
-                                    Carrito de compras
-                                </h6>
-                                <!-- Ejemplo de elemento en el carrito -->
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <img src="ruta/a/la/imagen.jpg" class="img-fluid rounded" alt="Producto">
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Nombre del Producto</div>
-                                        <span class="font-weight-bold">$50.00</span>
-                                    </div>
-                                </a>
-                                <!-- Fin del ejemplo -->
-                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('carrito') }}">Ir al carrito de compras</a>
-                            </div>
+                            <livewire:icono-carrito/>
                         </li>
 
                         <!-- Nav Item - Alerts -->
@@ -453,5 +424,13 @@
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @livewireScripts
 </body>
+<script>
+
+    function presionarBotonActualizar(){
+        var boton = document.getElementById('actualizarIconoCarrito');
+        boton.click();
+    }
+    
+</script>
 
 </html>
