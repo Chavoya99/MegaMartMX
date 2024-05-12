@@ -67,7 +67,7 @@
                     <div class="card h-100">
                         <a href="{{ route('cliente.producto.show', $producto) }}">
                             @if($producto->archivo)
-                                <img class="card-img-top" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
+                                <img class="card-img-top is-fluid" src="{{ asset(\Storage::url($producto->archivo->ubicacion)) }}" alt="{{ $producto->nombre }}" style="max-height: 200px; max-width: 200px; margin-left:50px"> 
                             @else
                                 <img class="card-img-top" src="{{asset('img/producto_default.png')}}" alt="{{ $producto->nombre }}" style="max-height: 200px;"> 
                             @endif
