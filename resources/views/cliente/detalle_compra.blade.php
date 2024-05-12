@@ -38,7 +38,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="dataTable">
                                         <thead>
-                                            <tr class="bg-warning text-dark">
+                                            <tr class="bg-primary text-white">
                                                 <th>Producto</th>
                                                 <th>Nombre</th>
                                                 <th>Cantidad</th>

@@ -12,7 +12,7 @@
                 <div class="table-responsive">
                     <table class="table table-hover" id="dataTable">
                         <thead>
-                            <tr class="bg-warning text-dark">
+                            <tr class="bg-primary text-white">
                                 <th>ID de compra</th>
                                 <th>Subtotal</th>
                                 <th>Envío</th>

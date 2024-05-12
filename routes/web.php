@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
@@ -7,6 +8,8 @@ use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\SomosController;
+use App\Http\Controllers\ayudaController;
 use App\Http\Controllers\FavoritosController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ClienteMiddleware;
@@ -30,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/home_invitado', [HomeController::class, 'index'])->name('clientes_guest')->middleware('guest');
+Route::get('/ayuda', [AyudaController::class, 'ayuda'])->name('ayuda')->middleware('guest');
+Route::get('/Somos', [SomosController::class, 'somos'])->name('somos')->middleware('guest');
 
 Route::get('/', function () {
     return redirect(route('clientes_guest'));
@@ -77,10 +82,13 @@ Route::middleware('auth')->group(function(){
             Route::get('/cliente/producto/{producto}', 'show')->name('cliente.producto.show');
         });
     
+        Route::get('/cliente/ayuda', [AyudaController::class, 'ayuda'])->name('cliente.ayuda');
+
+        Route::get('/cliente/Somos', [SomosController::class, 'somos'])->name('cliente.somos');
         
+
         Route::delete('/cliente/favoritos', [FavoritosController::class, 'eliminarFavoritos'])->name('favoritos.vaciar');
         Route::get('/cliente/carrito/agregar/{producto}', [CarritoController::class, 'agregarProductoGet'])->name('cliente.carrito.agregar.get');
-        
         
         Route::get('/cliente/mis_compras', [CompraController::class, 'index_cliente'])->name('cliente.mis_compras');
         Route::get('/cliente/detalle_compra/{compra}', [CompraController::class, 'show_cliente'])->name('cliente.detalle_compra');
@@ -93,9 +101,10 @@ Route::middleware('auth')->group(function(){
             Route::get('/carrito/confirmar', 'confirmarCarrito')->name('carrito.confirmar');
             Route::post('/carrito/comprar/{subtotal}/{total}/{envio}', 'confirmarCompraCarrito')->name('carrito.comprar');
         });
+
+
         
     });
-    
     
 
 
