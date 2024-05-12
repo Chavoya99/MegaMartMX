@@ -21,9 +21,9 @@
                         <td>{{$compra->id}}</td>
                         <td>{{$compra->user->id}}</td>
                         <td>{{$compra->user->name}}</td>
-                        <td>{{$compra->subtotal}}</td>
-                        <td>{{$compra->envio}}</td>
-                        <td>{{$compra->total}}</td>
+                        <td>$ {{$compra->subtotal}}</td>
+                        <td>$ {{$compra->envio}}</td>
+                        <td>$ {{$compra->total}}</td>
                         <td>{{date('d-m-Y H:i:s', strtotime($compra->fecha))}}</td>
                         <td>
                             <a class="btn btn-primary mt-1" href="{{route('admin.detalle_compra', $compra)}}"> <i class="fa fa-info-circle"></i>Detalles</a>       

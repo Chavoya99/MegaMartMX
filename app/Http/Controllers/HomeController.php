@@ -11,14 +11,14 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $productos = Producto::with(['categoria', 'subcategoria', 'proveedor', 'archivo'])->orderBy('nombre')->get();
+        $productos = Producto::with(['archivo'])->orderBy('nombre')->get();
+
+        $categorias = Categoria::orderBy('nombre')->get();
 
         if ($request->has('categoria') && $request->categoria != 'all') {
             $productos = Categoria::find($request->categoria)->productos;
         }
         
-        $categorias = Categoria::all();
-
         return view('cliente.homeIndex', compact('productos', 'categorias'))->with('categoriaSeleccionada', $request->categoria ?? 'all');
     }
 

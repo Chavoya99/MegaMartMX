@@ -65,8 +65,8 @@
                 <tr>
                     <td>{{ $producto->pivot->nombre_producto }}</td>
                     <td>{{ $producto->pivot->cantidad }}</td>
-                    <td>{{ $producto->pivot->precio_unitario }}</td>
-                    <td>{{ $producto->pivot->subtotal }}</td>
+                    <td>$ {{ $producto->pivot->precio_unitario }}</td>
+                    <td>$ {{ $producto->pivot->subtotal }}</td>
                 </tr>
             @endforeach
         </tbody>

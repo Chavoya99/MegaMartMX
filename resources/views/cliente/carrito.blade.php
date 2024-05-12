@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-8">
                     @if(session('carrito') && count(session('carrito')) > 0)
-                        @foreach(session('carrito') as $id => $item)
+                        @foreach($carrito as $id => $item)
                             <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
                                 <div style="display: flex; align-items: center;">
                                     <img src="{{ asset(\Storage::url($item['producto']->archivo->ubicacion)) }}" alt="{{ $item['producto']->nombre }}" style="max-width: 100px; margin-right: 20px;">
