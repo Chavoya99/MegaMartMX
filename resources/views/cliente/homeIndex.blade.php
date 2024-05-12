@@ -166,6 +166,8 @@
         var form = document.getElementById("agregarForm" + idProducto);
         var formData = new FormData(form);
 
+        presionarBotonActualizar();
+
         fetch(form.action, {
             method: 'POST',
             body: formData
