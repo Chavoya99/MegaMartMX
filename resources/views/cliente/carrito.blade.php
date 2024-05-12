@@ -12,19 +12,25 @@
             <div class="row">
                 <div class="col-md-8">
                     @if(session('carrito') && count(session('carrito')) > 0)
-                        @foreach(session('carrito') as $id => $item)
+                        @foreach($carrito as $id => $item)
                             <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
                                 <div style="display: flex; align-items: center;">
+
+                                @if($item['producto']->archivo)
                                     <img src="{{ asset(\Storage::url($item['producto']->archivo->ubicacion)) }}" alt="{{ $item['producto']->nombre }}" style="max-width: 100px; margin-right: 20px;">
+                                @else
+                                    <img src="{{asset('img/producto_default.png')}}" alt="{{ $item['producto']->nombre }}" style="max-width: 100px; margin-right: 20px;"> 
+                                @endif
+                                    
                                     <div>
                                         <h3>{{ $item['producto']->nombre }}</h3>
                                         <p>Precio: ${{ number_format($item['producto']->precio, 2) }}</p>
                                         <form action="{{ route('carrito.agregar', ['id' => $id]) }}" method="POST" style="display: inline;">
                                             @csrf
                                             <input type="hidden" name="accion" value="incrementar">
-                                            <input type="hidden" name="max_cantidad" value="{{ $item['producto']->existencia }}"> <!-- Agrega el valor máximo de la cantidad -->
+                                            <input type="hidden" name="max_cantidad" value="{{ $item['producto']->existencia }}"> 
                                             <span>Cantidad: {{ $item['cantidad'] }}</span>
-                                            <button type="submit" class="btn btn-primary btn-sm" {{ $item['cantidad'] >= $item['producto']->existencia ? 'disabled' : '' }}> <!-- Deshabilita el botón cuando la cantidad alcanza el máximo -->
+                                            <button type="submit" class="btn btn-primary btn-sm" {{ $item['cantidad'] >= $item['producto']->existencia ? 'disabled' : '' }}> 
                                                 <i class="fas fa-plus"></i> Agregar
                                             </button>
                                         </form>
@@ -58,14 +64,14 @@
                             @php
                                 $subtotal = 0;
                                 $total = 0;
-                                $totalProductos = 0; // Variable para contar el total de productos
+                                $totalProductos = 0; 
                                 if(session('carrito')) {
                                     foreach(session('carrito') as $id => $item) {
                                         $subtotal += $item['producto']->precio * $item['cantidad'];
-                                        $totalProductos += $item['cantidad']; // Suma la cantidad de cada producto
+                                        $totalProductos += $item['cantidad']; 
                                     }
                                     if ($subtotal < 150) {
-                                        $total = $subtotal + 50; // Suma $50 si el subtotal es menor a $150
+                                        $total = $subtotal + 50;
                                     }else{
                                         $total = $subtotal;
                                     }

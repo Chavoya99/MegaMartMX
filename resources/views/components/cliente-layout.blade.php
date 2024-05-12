@@ -72,13 +72,6 @@
                     <span style="color: black;">Mis compras</span>
                 </a>
             </li>
-            
-        <!--<li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/etiqueta.png')}}" width=30 height="30">
-                    <span style="color: black;">Ofertas</span>
-                </a>
-            </li>-->
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('cliente.favoritos')}}" style="color: black; font-size: 14px;">
@@ -169,45 +162,8 @@
 
                         <!-- Nav Item - Carrito de compras -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link" href="{{route('carrito')}}" id="carritoDropdown" role="button"
-                             aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-shopping-cart fa-fw"></i>
-                                <!-- Counter - Items en el carrito -->
-                                <span class="badge badge-primary badge-counter">
-                                    @if(session('carrito'))
-                                        @php
-                                            $cantidad = 0;
-                                            foreach(session('carrito') as $item){
-                                                $cantidad += $item['cantidad'];
-                                            }
-                                        @endphp
-                                        {{$cantidad}}
-                                        
-                                    @else
-                                        0
-                                    @endif
-                                </span>
-                            </a>
 
-                            <!-- Dropdown - Carrito de compras -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="carritoDropdown">
-                                <h6 class="dropdown-header">
-                                    Carrito de compras
-                                </h6>
-                                <!-- Ejemplo de elemento en el carrito -->
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <img src="ruta/a/la/imagen.jpg" class="img-fluid rounded" alt="Producto">
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Nombre del Producto</div>
-                                        <span class="font-weight-bold">$50.00</span>
-                                    </div>
-                                </a>
-                                <!-- Fin del ejemplo -->
-                                <a class="dropdown-item text-center small text-gray-500" href="{{ route('carrito') }}">Ir al carrito de compras</a>
-                            </div>
+                            <livewire:icono-carrito/>
                         </li>
 
                         <!-- Nav Item - Alerts -->
@@ -326,11 +282,19 @@
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
+                        <div class="container-fluid">
                         @if(!Auth::check())
-                            <a href="{{route('login')}}">Iniciar sesión</a>   
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="btn btn-primary" href="{{route('login')}}">
+                                <i><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/>
+                                <line x1="15" x2="3" y1="12" y2="12"/></svg></i>
+                                Iniciar sesión</a>
+                        </li>
                         @endif
                              
-
                         <!-- Nav Item - User Information -->
                         @if (Auth::check())
                             <li class="nav-item dropdown no-arrow">
@@ -451,5 +415,13 @@
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @livewireScripts
 </body>
+<script>
+
+    function presionarBotonActualizar(){
+        var boton = document.getElementById('actualizarIconoCarrito');
+        boton.click();
+    }
+    
+</script>
 
 </html>

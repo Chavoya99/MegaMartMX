@@ -43,14 +43,13 @@
 <body>
 
 <div class="container">
-
     <h1>Hola {{ Auth::user()->name }}</h1>
     <p>Gracias por comprar en MegaMartMX.</p>
 
     <h3>Este es el resumen de tu compra: {{ $compra->id }}</h3>
     <h3>Fecha de compra: {{ $compra->fecha }}</h3>
 
-    <h3>Subtotal: {{ $compra->subtotal }} <br> Envío: {{ $compra->envio }} <br> Total: {{ $compra->total }}</h3>
+    <h3>Subtotal: ${{ $compra->subtotal }} <br> Envío: ${{ $compra->envio }} <br> Total: ${{ $compra->total }}</h3>
 
     <table>
         <thead>
@@ -66,13 +65,12 @@
                 <tr>
                     <td>{{ $producto->pivot->nombre_producto }}</td>
                     <td>{{ $producto->pivot->cantidad }}</td>
-                    <td>{{ $producto->pivot->precio_unitario }}</td>
-                    <td>{{ $producto->pivot->subtotal }}</td>
+                    <td>$ {{ $producto->pivot->precio_unitario }}</td>
+                    <td>$ {{ $producto->pivot->subtotal }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
 </div>
 
 </body>

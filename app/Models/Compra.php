@@ -17,11 +17,11 @@ class Compra extends Model
 
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function productos(){
         return $this->belongsToMany(Producto::class)
-        ->withPivot('nombre_producto', 'cantidad', 'precio_unitario', 'subtotal');
+        ->withPivot('nombre_producto', 'cantidad', 'precio_unitario', 'subtotal')->withTrashed();
     }
 }
