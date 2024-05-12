@@ -41,7 +41,7 @@ class DetallesCompra extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.correo_detalles_compra',
+            view: 'emails.correo_detalles_compra',
         );
     }
 

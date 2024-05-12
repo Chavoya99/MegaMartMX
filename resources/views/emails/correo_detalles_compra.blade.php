@@ -270,7 +270,7 @@
     </table>
     <div class="contact-info">
         <p>Para dudas o aclaraciones, contáctanos a: <a href="mailto:megamartmx@gmail.com">megamartmx@gmail.com</a></p>
-        <p>Visita nuestro sitio web en: <a href="https://megamartmx.com.mx">megamartmx.com.mx</a></p>
+        <p>Visita nuestro sitio web en: <a href="{{route('clientes_guest')}}">megamartmx.com.mx</a></p>
     </div>
 </div>
 
