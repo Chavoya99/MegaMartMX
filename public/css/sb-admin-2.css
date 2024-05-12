@@ -34,6 +34,44 @@
 *::after {
   box-sizing: border-box;
 }
+        .bg-primary {
+            background-color: #53c5a9 !important; 
+        }
+        .text-dark {
+            color: #000000 !important; 
+        }
+
+.container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+}
+.logo {
+  width: 150px; /* Ajusta según el tamaño deseado */
+  height: auto; /* Para mantener la proporción */
+  margin-bottom: 20px;
+}
+.purchase-info {
+  margin-bottom: 20px;
+}
+.contact-info {
+  margin-top: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th {
+  background-color: #f2f2f2;
+}
 
 html {
   font-family: sans-serif;
