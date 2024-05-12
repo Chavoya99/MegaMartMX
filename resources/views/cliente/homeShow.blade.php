@@ -89,7 +89,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <p>El producto ha sido agregado al carrito de compras<br>¡Sigue así!</p>
+                <p>El producto ha sido agregado  al carrito de compras<br>¡Sigue asi!</p>
                 <div class="container mt-3 mb-3 text-center">
                     <img src="{{ asset('img/seguir.png') }}" alt="Seguir comprando" style="max-width: 150px;">
                 </div>
@@ -111,6 +111,29 @@
 </div>
 
 <script>
+    function agregarAlCarrito(idProducto) {
+        var form = document.getElementById("agregarForm" + idProducto);
+        var formData = new FormData(form);
+
+        presionarBotonActualizar();
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                $('#mensajeModal').modal('show');
+            } else {
+                alert("Hubo un error al agregar el producto al carrito");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Hubo un error al agregar el producto al carrito");
+        });
+    }
+
     function guardarProducto(idProducto) {
         var form = document.getElementById("guardarForm" + idProducto);
         var formData = new FormData(form);
@@ -132,10 +155,11 @@
         });
     }
 
-    function seguirComprando() {
-        $('#guardarModal').modal('hide');
+    function seguirComprando(idProducto) {
+        $('#guardarModal' + idProducto).modal('hide');
     }
 </script>
+
 
 
 
