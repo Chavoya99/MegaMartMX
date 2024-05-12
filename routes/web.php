@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function(){
             Route::post('/cliente/quitar_favorito/{producto}', 'quitar_favorito')->name('cliente.quitar_favorito');
             Route::get('/cliente/producto/{producto}', 'show')->name('cliente.producto.show');
             Route::post('cliente/busqueda', 'busqueda')->name('cliente.busqueda');
+            Route::post('/cliente/vaciar_favoritos', 'vaciar_favoritos')->name('favoritos.vaciar');
         });
     
         Route::get('/cliente/ayuda', [AyudaController::class, 'ayuda'])->name('cliente.ayuda');
@@ -89,7 +90,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/cliente/Somos', [SomosController::class, 'somos'])->name('cliente.somos');
         
 
-        Route::delete('/cliente/favoritos', [FavoritosController::class, 'eliminarFavoritos'])->name('favoritos.vaciar');
+        
         Route::get('/cliente/carrito/agregar/{producto}', [CarritoController::class, 'agregarProductoGet'])->name('cliente.carrito.agregar.get');
         
         Route::get('/cliente/mis_compras', [CompraController::class, 'index_cliente'])->name('cliente.mis_compras');

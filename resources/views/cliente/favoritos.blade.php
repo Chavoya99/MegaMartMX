@@ -7,7 +7,6 @@
             <div class="col-md-6 text-right">
                 <form action="{{ route('favoritos.vaciar') }}" method="POST" class="d-inline">
                     @csrf
-                    @method('DELETE')
                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Vaciar Favoritos</button>
                 </form>
             </div>
