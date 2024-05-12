@@ -3,6 +3,10 @@
         <div class="row mb-2">
             <div class="col-md-12">
                 <h1>¡Bienvenido! <br>@if (Auth::check()) {{Auth::user()->name}} @endif </h1>
+                @if (isset($busqueda))
+                    <h3>Resultado de la búsqueda: "{{$busqueda}}"</h3>
+                @endif
+                
             </div>
         </div>
 
@@ -37,7 +41,12 @@
 
         <div class="row mb-2">
             <div class="col-md-12">
-                <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
+                @if (Auth::check())
+                    <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
+                @else
+                    <form action="{{ route('clientes_guest') }}" method="GET" id="filtroForm">
+                @endif
+                
                     <div class="form-group">
                         <label for="categoria" class="sr-only">Categoría:</label>
                         <select name="categoria" id="categoria" class="form-control form-control-sm" onchange="submit()" style="font-size: 16px; width: 240px;">

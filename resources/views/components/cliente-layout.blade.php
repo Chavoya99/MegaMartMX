@@ -130,12 +130,17 @@
                     </button>
 
                     <!-- Barra de búsqueda -->
-                    <form class="form-inline">
+                    @if (Auth::check())
+                        <form action="{{route('cliente.busqueda')}}" method="POST" class="form-inline">
+                    @else
+                        <form action="{{ route('busqueda_guest')}}" method="POST" class="form-inline">
+                    @endif
+                        @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search"
+                            <input type="text" name="busqueda" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search"
                                 aria-describedby="basic-addon2" style="width: 500px;"> 
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
