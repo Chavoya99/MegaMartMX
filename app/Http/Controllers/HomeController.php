@@ -45,6 +45,13 @@ class HomeController extends Controller
 
     }
 
+    public function vaciar_favoritos(){
+        
+        Auth::user()->favoritos()->detach();
+
+        return redirect()->route('cliente.favoritos')->with('success', 'Los favoritos se han eliminado correctamente');
+    }
+
     public function busqueda(Request $request){
         $busqueda = $request->busqueda;
         if($busqueda != null){
