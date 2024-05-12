@@ -9,7 +9,7 @@
             <div class="table-responsive">
                 <table class="table" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="bg-primary text-white">
                             <th>Imagen</th>
                             <th>Nombre</th>
                             <th>Categoría</th>

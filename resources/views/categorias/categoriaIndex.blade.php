@@ -8,7 +8,7 @@
             <div class="table-responsive">
                 <table class="table" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="bg-primary text-white">
                             <th>Nombre</th>
                             <th>Cantidad de subcategorías</th>
                             <th>Acciones</th>
