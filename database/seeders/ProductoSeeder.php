@@ -66,7 +66,8 @@ class ProductoSeeder extends Seeder
             ['Salchicha Cocktail Pavo San Rafael 500gr', 5, 13, 120, '100047', 100, 1],
             ['Leche Lala light 1L', 5, 14, 49, '100048', 100, 1],
             ['Leche Santa Clara Deslactosada 1L', 5, 14, 25, '100049', 100, 1],
-            ['La lechera 335g', 3, 14, 59, '100050', 100, 1]
+            ['La lechera 335g', 3, 14, 59, '100050', 100, 1],
+            ['Avena Fortificada 3 Minutos 400 g', 3, 6, 34, '100051', 100, 1]
         ];
 
         foreach($productos as $producto){

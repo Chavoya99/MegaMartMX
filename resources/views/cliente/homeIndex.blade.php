@@ -40,7 +40,7 @@
                 <form action="{{ route('cliente.homeIndex') }}" method="GET" id="filtroForm">
                     <div class="form-group">
                         <label for="categoria" class="sr-only">Categoría:</label>
-                        <select name="categoria" id="categoria" class="form-control form-control-sm" onchange="submitForm()" style="font-size: 16px; width: 240px;">
+                        <select name="categoria" id="categoria" class="form-control form-control-sm" onchange="submit()" style="font-size: 16px; width: 240px;">
                             <option value="all">Todas las categorías</option>
                             @foreach($categorias as $categoria)
                                 <option value="{{ $categoria->id }}" {{ $categoria->id == $categoriaSeleccionada ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
