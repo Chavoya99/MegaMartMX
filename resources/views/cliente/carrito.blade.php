@@ -3,7 +3,7 @@
         <a class="btn btn-primary" href="{{route('cliente.homeIndex')}}"> &#129044; Regresar</a>
     </div>
     
-    <br><br>
+    <br>
     @if (session('success'))
         <x-success-message type="success" :mensaje="session('success')"/>
     @endif
