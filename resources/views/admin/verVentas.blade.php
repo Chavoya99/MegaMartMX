@@ -4,7 +4,7 @@
     <div class="table-responsive">    
         <table class="table" id="dataTable" width="100%" cellspacing="0">
             <thead>
-                <tr>
+                <tr class="bg-primary text-white">
                     <th>ID compra</th>
                     <th>ID Usuario</th>
                     <th>Nombre</th>

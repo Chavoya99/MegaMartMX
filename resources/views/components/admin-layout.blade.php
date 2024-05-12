@@ -74,16 +74,7 @@
                         <span style="color: black;">Ventas</span>
                     </a>
                 </li>
-            @endcan
-            
-            <!--
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="color: black; font-size: 14px;">
-                    <img src="{{asset('img/carritoN.png')}}" width=30 height="30">
-                    <span style="color: black;">Carrito</span>
-                </a>
-            </li>-->
-            
+            @endcan           
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.336);">
@@ -109,20 +100,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Barra de búsqueda -->
-                    <form class="form-inline">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." aria-label="Search"
-                                aria-describedby="basic-addon2" style="width: 500px;"> 
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
 
                     <ul class="navbar-nav ml-auto">
 
