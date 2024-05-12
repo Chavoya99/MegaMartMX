@@ -12,10 +12,16 @@
             <div class="row">
                 <div class="col-md-8">
                     @if(session('carrito') && count(session('carrito')) > 0)
-                        @foreach(session('carrito') as $id => $item)
+                        @foreach($carrito as $id => $item)
                             <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
                                 <div style="display: flex; align-items: center;">
+
+                                @if($item['producto']->archivo)
                                     <img src="{{ asset(\Storage::url($item['producto']->archivo->ubicacion)) }}" alt="{{ $item['producto']->nombre }}" style="max-width: 100px; margin-right: 20px;">
+                                @else
+                                    <img src="{{asset('img/producto_default.png')}}" alt="{{ $item['producto']->nombre }}" style="max-width: 100px; margin-right: 20px;"> 
+                                @endif
+                                    
                                     <div>
                                         <h3>{{ $item['producto']->nombre }}</h3>
                                         <p>Precio: ${{ number_format($item['producto']->precio, 2) }}</p>

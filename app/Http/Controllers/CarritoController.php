@@ -18,8 +18,9 @@ class CarritoController extends Controller
 {
 
     public function carrito()
-    {
-        return view('cliente.carrito');
+    {   
+        $carrito = session()->get('carrito');
+        return view('cliente.carrito', compact('carrito'));
     }
 
     public function agregarProducto(Request $request, $id)
