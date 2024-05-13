@@ -24,7 +24,7 @@ class CompraController extends Controller
     {
         
         $this->authorize('ver_compra_cliente', $compra);
-        $productos = $compra->productos;
+        $productos = $compra->productos()->with('archivo')->get();
 
         return view('cliente.detalle_compra', compact('productos', 'compra'));
     }

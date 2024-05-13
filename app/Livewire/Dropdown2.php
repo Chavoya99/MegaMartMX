@@ -16,9 +16,8 @@ class Dropdown2 extends Component
     public $productoId;
     
 
-    public function mount($id){
+    public function mount($producto){
 
-        $producto = Producto::find($id);
         $this->categorias = Categoria::orderBy('nombre')->get();
         $this->categoriaId = $producto->categoria_id;
         $this->categoriaId = old('categoria_id', $this->categoriaId);

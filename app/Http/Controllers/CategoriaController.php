@@ -14,7 +14,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::with('subcategorias')->get();
+        $categorias = Categoria::with(['productos','subcategorias'])->get();
         return view('categorias.categoriaIndex', compact('categorias'));
     }
 
@@ -50,9 +50,10 @@ class CategoriaController extends Controller
      * Display the specified resource.
      */
     public function show(Categoria $categorium)
-    {
+    {   
         $categoria = $categorium;
-        return view('categorias.categoriaShow', compact('categoria'));
+        $subcategorias = $categoria->subcategorias()->with('productos')->get();
+        return view('categorias.categoriaShow', compact('categoria','subcategorias'));
     }
 
     /**
