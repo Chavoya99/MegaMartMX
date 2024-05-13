@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categoria->subcategorias as  $subcategoria)
+                @foreach ($subcategorias as  $subcategoria)
                     <tr>
                         <td>{{ucfirst($subcategoria->nombre)}}</td>
                         <td>{{count($subcategoria->productos)}}</td>
