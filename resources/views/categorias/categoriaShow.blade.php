@@ -21,7 +21,7 @@
                 @foreach ($categoria->subcategorias as  $subcategoria)
                     <tr>
                         <td>{{ucfirst($subcategoria->nombre)}}</td>
-                        <td>{{count($subcategoria->productos)."::::".$subcategoria->productos}}</td>
+                        <td>{{count($subcategoria->productos)}}</td>
                         <td>
                             <a class="btn btn-success mt-1" href="{{route('subcategoria.edit', [$subcategoria, $categoria])}}">&#x270E;Editar</a>
                             @can('delete', Auth::user())
