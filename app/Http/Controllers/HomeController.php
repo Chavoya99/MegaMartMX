@@ -11,12 +11,14 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $productos = Producto::with(['archivo'])->orderBy('nombre')->get();
+        
 
         $categorias = Categoria::orderBy('nombre')->get();
 
         if ($request->has('categoria') && $request->categoria != 'all') {
-            $productos = Categoria::find($request->categoria)->productos()->orderBy('nombre')->get();
+            $productos = Categoria::find($request->categoria)->productos()->with(['archivo'])->orderBy('nombre')->get();
+        }else{
+            $productos = Producto::with(['archivo'])->orderBy('nombre')->get();
         }
         
         return view('cliente.homeIndex', compact('productos', 'categorias'))->with('categoriaSeleccionada', $request->categoria ?? 'all');
@@ -30,7 +32,7 @@ class HomeController extends Controller
 
     public function favoritos()
     {
-        $favoritos = Auth::user()->favoritos;
+        $favoritos = Auth::user()->favoritos()->with('categoria','subcategoria','archivo')->get();
         return view('cliente.favoritos', compact('favoritos'));
     }
 
