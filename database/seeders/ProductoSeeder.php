@@ -24,7 +24,7 @@ class ProductoSeeder extends Seeder
             ['Fabuloso Fresca Lavanda 2L', 2, 5, 27, '100004', 100, 4],
             ['Pinol El original 1L', 2, 5, 31, '100005', 100, 4],
             ['Kit de limpieza Trapeador escoba y recogedor', 2, 4, 79, '100006', 100, 4],
-            ['Leche Sello rojo entera 2L', 1, 14, 26, '100007', 100, 1],
+            ['Leche Sello rojo entera 2L', 5, 14, 26, '100007', 100, 1],
             ['Salchichas Corona 1kg', 5, 13, 43, '100008', 100, 1],
             ['zanahoria 1kg',3 , 8, 28, '100009', 100, 1],
             ['uva verde 1kg', 3, 9, 43, '100010', 100, 1],
@@ -66,7 +66,7 @@ class ProductoSeeder extends Seeder
             ['Salchicha Cocktail Pavo San Rafael 500gr', 5, 13, 120, '100047', 100, 1],
             ['Leche Lala light 1L', 5, 14, 49, '100048', 100, 1],
             ['Leche Santa Clara Deslactosada 1L', 5, 14, 25, '100049', 100, 1],
-            ['La lechera 335g', 3, 14, 59, '100050', 100, 1],
+            ['La lechera 335g', 5, 14, 59, '100050', 100, 1],
             ['Avena Fortificada 3 Minutos 400 g', 3, 6, 34, '100051', 100, 1]
         ];
 
