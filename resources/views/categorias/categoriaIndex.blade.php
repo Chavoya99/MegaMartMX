@@ -11,6 +11,7 @@
                         <tr class="bg-primary text-white">
                             <th>Nombre</th>
                             <th>Cantidad de subcategorías</th>
+                            <th>Cantidad de productos</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -19,6 +20,7 @@
                             <tr>
                                 <td>{{ucfirst($categoria->nombre)}}</td>
                                 <td>{{count($categoria->subcategorias)}}</td>
+                                <td>{{count($categoria->productos)}}</td>
                                 <td>
                                     <a class="btn btn-primary mt-1" href="{{route('categoria.show', $categoria)}}"> <i class="fa fa-info-circle"></i>Detalle</a>
                                     <a class="btn btn-success mt-1" href="{{route('categoria.edit', $categoria)}}">&#x270E;Editar</a>
