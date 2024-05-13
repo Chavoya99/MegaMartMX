@@ -10,7 +10,7 @@
             <div class="alert alert-danger" style="color:red;">{{ $message }}</div>
         @enderror
         
-        @livewire('dropdown2', ['id' => $producto->id])
+        @livewire('dropdown2', ['producto' => $producto])
         
 
         <label for="precio">Precio</label>
