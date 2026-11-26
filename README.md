@@ -72,7 +72,7 @@ Construir un sistema web intuitivo y dinámico que integre catálogo de producto
   <img src="img readme/Confirmar_compra.png" alt="Confirmar_compra" width="400"/>
   <img src="img readme/lista_productos.png" alt="Inforlista_productosmación" width="400""/>
   <img src="img readme/correo_detalles_compra..png" alt="correo_detalles_compra" width="400"/>
-  <img src="img readme/detalles_compra_pagina.png" alt="detalles_compra_pagina" width="400"/>
+  <img src="img readme/detalles_compra_pagina.jpeg" alt="detalles_compra_pagina" width="400"/>
 
 </p>
 
